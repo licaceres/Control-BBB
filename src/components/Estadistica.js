@@ -1,18 +1,16 @@
 import React from 'react';
 import { Row, Col, Table, Button, Form, Divider, message } from 'antd';
-
-
+import React, { Component } from 'react';
 
 class Estadistica extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            salas: null
-        }
-    }
-    render(){
-        return{
-            
-        }
-    }
+  render() {
+    return(
+      <div>
+        <h1>Estadística</h1>
+      </div>
+    );
+  }
 }
+
+export default Estadistica;
+
