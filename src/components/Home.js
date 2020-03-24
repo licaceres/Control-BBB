@@ -35,11 +35,13 @@ class Home extends Component {
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1">
                 <PieChartOutlined />
-                <Link to="/"><span>Main</span></Link>
+                <span>Main</span>
+                <Link to="/" />
               </Menu.Item>
               <Menu.Item key="2">
                 <DesktopOutlined />
-                <Link to="/estadistica"><span>Estadísticas</span></Link>
+                <span>Estadísticas</span>
+                <Link to="/estadistica" />
               </Menu.Item>
               <SubMenu
                 key="sub1"
