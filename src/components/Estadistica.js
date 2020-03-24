@@ -1,4 +1,3 @@
-import React from 'react';
 import { Row, Col, Table, Button, Form, Divider, message } from 'antd';
 import React, { Component } from 'react';
 
