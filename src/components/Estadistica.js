@@ -1,4 +1,3 @@
-import { Row, Col, Table, Button, Form, Divider, message } from 'antd';
 import React, { Component } from 'react';
 
 class Estadistica extends Component {
@@ -6,6 +5,9 @@ class Estadistica extends Component {
     return(
       <div>
         <h1>Estadística</h1>
+        <div>
+          
+        </div>
       </div>
     );
   }

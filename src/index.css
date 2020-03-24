@@ -23,3 +23,29 @@ code {
   [data-theme="dark"] .site-layout .site-layout-background {
     background: #141414;
   }
+
+  .login {
+    height: 100%;
+    background-color: #0741AD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-logo {
+    max-width: 75%;
+  }
+  
+  .login-title {
+    color: white;
+    font-size: 2em;
+  }
+  
+  .login-form {
+    margin-bottom: 20px;
+  }
+  
+  .login-copyright {
+    font-size: 0.7rem;
+    color: #6c757d !important;
+  }
