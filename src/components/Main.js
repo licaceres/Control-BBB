@@ -22,14 +22,14 @@ class Main extends Component {
   render() {
     const { url, clave } = this.state;
 
-    return (
+    return (      
       <div>
         <Row justify="center">
           <Col span={24}>
             <Card title="Control BigBlueButton" style={{ width: '100%' }} headStyle={{ fontWeight: 'bold', fontSize: '1.75em' }}>
               <Col span={18} offset={3} >
                 <Form
-                  onSubmit={this.handleSubmit}>
+                  onSubmitCapture={this.handleSubmit}>
 
                   <FormItem
                     key='url'
