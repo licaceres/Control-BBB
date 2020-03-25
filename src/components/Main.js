@@ -9,43 +9,46 @@ class Main extends Component {
     super(props);
   
     this.state = {
-      
+      url: '',
+      clave: ''
     };
   }
   
   render() {
+    const { url, clave } = this.state;
     return(
       <div>
         <h1>Control BigBlueButton</h1>
          <div>
          <Row>
           <Col xs={{ span: 10 }} lg={{ span: 12 }}>
-         <Form
-              onSubmit={this.handleSubmit}
+            <Form
+              //onSubmit={this.handleSubmit}
               className='login-form'>
               <FormItem 
                 key='url'
                 label='URL Server: '
                 name='url'
                 placeholder='Ingrese'
-                value={this.url}
+                value={url}
                 error={null}
-                onChange={this.onChange}/>
+                onChange={this.onChange} />
 
-              <FormItem 
-                key='clave'
-                name='Clave Secreta: '
-                label='clave'
-                placeholder='Ingrese'
-                value={this.clave}
-                error={null}
-                onChange={this.onChange}/>
+                <FormItem 
+                  key='clave'
+                  label='Clave: '
+                  name='clave'
+                  placeholder='Ingrese'
+                  value={clave}
+                  error={null}
+                  onChange={this.onChange}/>
 
               <div className='clientes-buttons'>
-                <Button 
+              <Button 
                   type='primary' 
-                  htmlType='submit'>
-                  Guardar
+                  icon='search'
+                  onClick={this.handleSubmit}>
+                  Buscar
                 </Button>
                 
               </div>
@@ -56,6 +59,25 @@ class Main extends Component {
       </div>
     );
   }
+  onChange = (value, key) => {
+    this.setState({ [key]: value });
+    console.log(value);
+  }
+  
+  handleSubmit = (event) => {  
+    const { url, clave } = this.state;
+    console.log(url);
+    if (!!event) event.preventDefault();
+
+    if (!url && !clave) {
+      return message.warning('Complete formulario para realizar la busqueda');
+    }
+    console.log(url);
+    this.props.handleSubmit(url, clave);
+    
+  }
 }
+
+
 
 export default Main;
