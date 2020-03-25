@@ -23,7 +23,7 @@ class Main extends Component {
          <Row>
           <Col xs={{ span: 10 }} lg={{ span: 12 }}>
             <Form
-              //onSubmit={this.handleSubmit}
+              onSubmit={this.handleSubmit}
               className='login-form'>
               <FormItem 
                 key='url'
@@ -44,11 +44,11 @@ class Main extends Component {
                   onChange={this.onChange}/>
 
               <div className='clientes-buttons'>
-              <Button 
+                <Button 
                   type='primary' 
-                  icon='search'
-                  onClick={this.handleSubmit}>
-                  Buscar
+                  //icon='search'
+                  htmlType='submit'>
+                  Guardar
                 </Button>
                 
               </div>
