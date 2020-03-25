@@ -12,18 +12,21 @@ class App extends Component () {
       url: 'http://test-install.blindsidenetworks.com/bigbluebutton/api',
       clave: '8cd8console.log(url);ef52e8e101574e400365b55e11a6'
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   render(){
     return (
-      <div onSubmit = {this.handleSubmit}>
-        
+      <div>
+        <Main
+          handleSubmit={this.handleSubmit} />
       </div>
       
     );
   }
 
-  handleSubmit = (event) => {  
-    
+  handleSubmit = (url, clave) => {  
+    this.url = url;
+    this.clave = clave;
     this.setState({ url, clave });
     
   }

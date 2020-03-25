@@ -7,7 +7,6 @@ class Main extends Component {
 
   constructor(props) {
     super(props);
-  
     this.state = {
       url: '',
       clave: ''
@@ -23,7 +22,7 @@ class Main extends Component {
          <Row>
           <Col xs={{ span: 10 }} lg={{ span: 12 }}>
             <Form
-              onSubmit={this.handleSubmit}
+              //onSubmit={this.handleSubmit}
               className='login-form'>
               <FormItem 
                 key='url'
@@ -44,11 +43,11 @@ class Main extends Component {
                   onChange={this.onChange}/>
 
               <div className='clientes-buttons'>
-                <Button 
+              <Button 
                   type='primary' 
-                  //icon='search'
-                  htmlType='submit'>
-                  Guardar
+                  icon='search'
+                  onClick={this.handleSubmit}>
+                  Buscar
                 </Button>
                 
               </div>
@@ -59,6 +58,7 @@ class Main extends Component {
       </div>
     );
   }
+
   onChange = (value, key) => {
     this.setState({ [key]: value });
     console.log(value);
@@ -67,17 +67,16 @@ class Main extends Component {
   handleSubmit = (event) => {  
     const { url, clave } = this.state;
     console.log(url);
-    if (!!event) event.preventDefault();
+    //  if (!!event) event.preventDefault();
 
-    if (!url && !clave) {
+    if (!url || !clave) {
       return message.warning('Complete formulario para realizar la busqueda');
     }
-    console.log(url);
+
+    console.log(this.props);
     this.props.handleSubmit(url, clave);
-    
   }
+  
 }
-
-
 
 export default Main;
