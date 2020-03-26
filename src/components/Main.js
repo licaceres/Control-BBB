@@ -30,9 +30,9 @@ class Main extends Component {
         <Row justify="center">
           <Col span={24}>
             <Card title="Control BigBlueButton" style={{ width: '100%' }} headStyle={{ fontWeight: 'bold', fontSize: '1.75em' }}>
-              <Col span={18} offset={2}>
+              <Col span={18} offset={1}>
                 <Form
-                  labelCol={{span: 4}}
+                  labelCol={{span: 8}}
                   onSubmitCapture={this.handleSubmit}>
 
                   <FormItem

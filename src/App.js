@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import Home from './components/Home';
 
-class App extends Component () {
-
-  render(){
-    console.log(this.state.url);
-    return (
-      <div>
-      </div>
-      
-    );
-  }
+function App() {
+  return (
+    <BrowserRouter>
+      <Home/>
+    </BrowserRouter>
+  );
 }
 
 export default App;
