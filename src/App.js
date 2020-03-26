@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Main } from './components/Main';
 
 
 
@@ -12,19 +13,19 @@ class App extends Component () {
       url: 'http://test-install.blindsidenetworks.com/bigbluebutton/api',
       clave: '8cd8console.log(url);ef52e8e101574e400365b55e11a6'
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.update = this.update.bind(this);
   }
   render(){
+    console.log(this.state.url);
     return (
       <div>
-        <Main
-          handleSubmit={this.handleSubmit} />
+        <Main hSubmit={this.update} url={this.state.url} clave={this.state.clave} />
       </div>
       
     );
   }
 
-  handleSubmit = (url, clave) => {  
+  update = (url, clave) => {  
     this.url = url;
     this.clave = clave;
     this.setState({ url, clave });
@@ -33,6 +34,7 @@ class App extends Component () {
   
   onChange = (value, key) => {
     this.setState({ [key]: value });
+    console.log(value)
   }
 }
 

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Row, Col, Table, Button, Form, Divider, message } from 'antd';
+import { Row, Col, Table, Button, Form, Divider, message, Card, Input } from 'antd';
+import { SaveOutlined } from '@ant-design/icons';
 import { FormItem } from '../globalComponents';
+import '../styles/main.css';
 
 
 class Main extends Component {
@@ -11,61 +13,64 @@ class Main extends Component {
       url: '',
       clave: ''
     };
+
+    this.onChange = this.onChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   render() {
     const { url, clave } = this.state;
-    return(
+
+    return (      
       <div>
-        <h1>Control BigBlueButton</h1>
-         <div>
-         <Row>
-          <Col xs={{ span: 10 }} lg={{ span: 12 }}>
-            <Form
-              //onSubmit={this.handleSubmit}
-              className='login-form'>
-              <FormItem 
-                key='url'
-                label='URL Server: '
-                name='url'
-                placeholder='Ingrese'
-                value={url}
-                error={null}
-                onChange={this.onChange} />
+        <Row justify="center">
+          <Col span={24}>
+            <Card title="Control BigBlueButton" style={{ width: '100%' }} headStyle={{ fontWeight: 'bold', fontSize: '1.75em' }}>
+              <Col span={18} offset={3} >
+                <Form
+                  onSubmitCapture={this.handleSubmit}>
 
-                <FormItem 
-                  key='clave'
-                  label='Clave: '
-                  name='clave'
-                  placeholder='Ingrese'
-                  value={clave}
-                  error={null}
-                  onChange={this.onChange}/>
+                  <FormItem
+                    key='url'
+                    label='URL Server: '
+                    name='url'
+                    placeholder='Ingrese'
+                    value={url}
+                    error={null}
+                    onChange={this.onChange} />
 
-              <div className='clientes-buttons'>
-              <Button 
-                  type='primary' 
-                  icon='search'
-                  onClick={this.handleSubmit}>
-                  Buscar
-                </Button>
-                
-              </div>
-            </Form>
-            </Col>
-            </Row>
-         </div>
+                  <FormItem
+                    key='clave'
+                    label='Clave: '
+                    name='clave'
+                    placeholder='Ingrese'
+                    value={clave}
+                    error={null}
+                    onChange={this.onChange} />
+
+                  <div className='btn-buscar'>
+                    <Button
+                      htmlType='submit'
+                      type='primary'
+                      icon={<SaveOutlined />}>
+                      Guardar
+                      </Button>
+                  </div>
+
+                </Form>
+              </Col>
+            </Card>
+          </Col>
+        </Row>
       </div>
     );
   }
 
-  onChange = (value, key) => {
+  onChange(value, key) {
     this.setState({ [key]: value });
-    console.log(value);
   }
-  
-  handleSubmit = (event) => {  
-    const { url, clave } = this.state;
+
+  handleSubmit(url, clave) {
     console.log(url);
     //  if (!!event) event.preventDefault();
 
@@ -74,7 +79,7 @@ class Main extends Component {
     }
 
     console.log(this.props);
-    this.props.handleSubmit(url, clave);
+    this.props.hSubmit(url, clave);
   }
   
 }
