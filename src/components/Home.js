@@ -20,7 +20,7 @@ class Home extends Component {
   state = {
     collapsed: false,
   };
-z
+
   onCollapse = collapsed => {
     console.log(collapsed);
     this.setState({ collapsed });

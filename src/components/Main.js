@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Row, Col, Table, Button, Form, Divider, message, Card, Input } from 'antd';
 import { SaveOutlined } from '@ant-design/icons';
 import { FormItem } from '../globalComponents';
@@ -9,30 +9,35 @@ class Main extends Component {
 
   constructor(props) {
     super(props);
+    
     this.state = {
-      url: '',
-      clave: ''
+      url: 'http://localhost:8000/bigbluebutton/api',
+      clave: '8cd8ef52e8e101574e400365b55e11a6'
     };
 
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    localStorage.setItem('url', this.state.url);
+    localStorage.setItem('clave', this.state.clave);
+
   }
 
   render() {
     const { url, clave } = this.state;
 
-    return (      
+    return (
       <div>
         <Row justify="center">
           <Col span={24}>
             <Card title="Control BigBlueButton" style={{ width: '100%' }} headStyle={{ fontWeight: 'bold', fontSize: '1.75em' }}>
-              <Col span={18} offset={3} >
+              <Col span={18} offset={2}>
                 <Form
+                  labelCol={{span: 4}}
                   onSubmitCapture={this.handleSubmit}>
 
                   <FormItem
                     key='url'
-                    label='URL Server: '
+                    label='URL Server:'
                     name='url'
                     placeholder='Ingrese'
                     value={url}
@@ -41,7 +46,7 @@ class Main extends Component {
 
                   <FormItem
                     key='clave'
-                    label='Clave: '
+                    label='Clave:'
                     name='clave'
                     placeholder='Ingrese'
                     value={clave}
@@ -56,7 +61,6 @@ class Main extends Component {
                       Guardar
                       </Button>
                   </div>
-
                 </Form>
               </Col>
             </Card>
@@ -70,18 +74,17 @@ class Main extends Component {
     this.setState({ [key]: value });
   }
 
-  handleSubmit(url, clave) {
-    console.log(url);
-    //  if (!!event) event.preventDefault();
+  handleSubmit(event) {
+    if (!!event) event.preventDefault();
+    const { url,  clave } = this.state;
 
     if (!url || !clave) {
       return message.warning('Complete formulario para realizar la busqueda');
     }
 
-    console.log(this.props);
-    this.props.hSubmit(url, clave);
+    localStorage.setItem('url', url);
+    localStorage.setItem('clave', clave);
   }
-  
 }
 
 export default Main;
