@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Row, Col, Table, Button, Form, Divider, message, Card, Input } from 'antd';
 import { SaveOutlined } from '@ant-design/icons';
 import { FormItem } from '../globalComponents';
@@ -22,18 +22,19 @@ class Main extends Component {
   render() {
     const { url, clave } = this.state;
 
-    return (      
+    return (
       <div>
         <Row justify="center">
           <Col span={24}>
             <Card title="Control BigBlueButton" style={{ width: '100%' }} headStyle={{ fontWeight: 'bold', fontSize: '1.75em' }}>
-              <Col span={18} offset={3} >
+              <Col span={18} offset={2}>
                 <Form
+                  labelCol={{span: 4}}
                   onSubmitCapture={this.handleSubmit}>
 
                   <FormItem
                     key='url'
-                    label='URL Server: '
+                    label='URL Server:'
                     name='url'
                     placeholder='Ingrese'
                     value={url}
@@ -42,7 +43,7 @@ class Main extends Component {
 
                   <FormItem
                     key='clave'
-                    label='Clave: '
+                    label='Clave:'
                     name='clave'
                     placeholder='Ingrese'
                     value={clave}
@@ -57,7 +58,6 @@ class Main extends Component {
                       Guardar
                       </Button>
                   </div>
-
                 </Form>
               </Col>
             </Card>
