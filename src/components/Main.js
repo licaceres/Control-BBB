@@ -78,7 +78,7 @@ class Main extends Component {
     if (!!event) event.preventDefault();
 
     if (!url && !clave) {
-      return message.warning('Complete el formulario para realizar la búsqueda.');
+      return message.warning('Complete el formulario.');
     }
 
     console.log(url);
