@@ -14,8 +14,9 @@ import Main from './Main';
 import Estadistica from './Estadistica';
 import LogoComunidades from '../images/logo-comunidades-unr.png';
 import LogoUnr from '../images/logo-unr.png';
+import LogoBbb from '../images/logo-bbb.jpg';
 
-const { Content, Sider } = Layout;
+const { Content, Sider, Header } = Layout;
 const { SubMenu } = Menu;
 
 class Home extends Component {
@@ -81,6 +82,11 @@ class Home extends Component {
             </Menu>
           </Sider>
           <Layout className="site-layout">
+          <Header className="site-layout-background" style={{ paddingLeft: '16px', paddingRight: '35px' }}>
+            <div>
+              <div><h3 style={{fontWeight: 'initial', textAlign: 'right'}}>[ Panel de Control ]<span style={{paddingLeft: '10px' }}><img src={LogoBbb} alt='logo-bbb' className="logo-bbb-size"/></span></h3></div>
+            </div>
+          </Header>
             <Content style={{ margin: '16px' }}>
                 <Route exact path="/" component={ Main } />
                 <Route exact path="/estadistica" component={ Estadistica } />

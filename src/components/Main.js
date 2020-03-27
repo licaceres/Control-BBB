@@ -27,7 +27,7 @@ class Main extends Component {
     return (
       <div>
         <Row justify="center">
-          <Col span={24}>
+          <Col span={24}>            
             <Card title="Configurar Servidor [ BigBlueButton ]" extra={<SettingOutlined />} style={{ width: '100%' }}>
               <Col span={18} offset={1}>
                 <Form
