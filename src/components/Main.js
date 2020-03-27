@@ -78,7 +78,7 @@ class Main extends Component {
     const { url,  clave } = this.state;
 
     if (!url || !clave) {
-      return message.warning('Complete formulario.');
+      return message.warning('Complete el formulario.');
     }
 
     localStorage.setItem('url', url);
