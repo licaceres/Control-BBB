@@ -28,7 +28,7 @@ class Main extends Component {
       <div>
         <Row justify="center">
           <Col span={24}>
-            <Card title="Configurar Servidor [ BigBlueButton ]" extra={<SettingOutlined />} style={{ width: '100%' }} headStyle={{ fontWeight: 'normal', fontSize: '1.5em' }}>
+            <Card title="Configurar Servidor [ BigBlueButton ]" extra={<SettingOutlined />} style={{ width: '100%' }}>
               <Col span={18} offset={1}>
                 <Form
                   labelCol={{span: 8}}
