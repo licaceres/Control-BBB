@@ -3,7 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
   DesktopOutlined,
-  PieChartOutlined,
+  SettingOutlined,
   FileOutlined,
   TeamOutlined,
   UserOutlined,
@@ -12,7 +12,8 @@ import '../styles/home.css';
 
 import Main from './Main';
 import Estadistica from './Estadistica';
-import Logo from '../images/unr2.png';
+import LogoComunidades from '../images/logo-comunidades-unr.png';
+import LogoUnr from '../images/logo-unr.png';
 
 const { Content, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -32,16 +33,16 @@ class Home extends Component {
       <div>
         <Layout style={{ minHeight: '100vh' }}>
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-            <div className="logo">
-            <img 
-            src={Logo} 
-            alt=''
-            className='logo-unr' />
+            <div className="logo-comunidades" hidden={this.state.collapsed}>
+            <img src={LogoComunidades} alt='logo-comunidades' className='logo-comunidades-size' />
+            </div>
+            <div className="logo-unr" hidden={!this.state.collapsed}>
+              <img src={LogoUnr} alt='logo-unr' className='logo-unr-size'/>
             </div>
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1">
-                <PieChartOutlined />
-                <span>Main</span>
+                <SettingOutlined />
+                <span>Configuración</span>
                 <Link to="/" />
               </Menu.Item>
               <Menu.Item key="2">

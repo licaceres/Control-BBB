@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Form, message, Card } from 'antd';
-import { SaveOutlined } from '@ant-design/icons';
+import { SaveOutlined, SettingOutlined} from '@ant-design/icons';
 import { FormItem } from '../globalComponents';
 import '../styles/main.css';
 
@@ -19,7 +19,6 @@ class Main extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     localStorage.setItem('url', this.state.url);
     localStorage.setItem('clave', this.state.clave);
-
   }
 
   render() {
@@ -29,7 +28,7 @@ class Main extends Component {
       <div>
         <Row justify="center">
           <Col span={24}>
-            <Card title="Control BigBlueButton" style={{ width: '100%' }} headStyle={{ fontWeight: 'bold', fontSize: '1.75em' }}>
+            <Card title="Configurar Servidor [ BigBlueButton ]" extra={<SettingOutlined />} style={{ width: '100%' }} headStyle={{ fontWeight: 'normal', fontSize: '1.5em' }}>
               <Col span={18} offset={1}>
                 <Form
                   labelCol={{span: 8}}
@@ -79,7 +78,7 @@ class Main extends Component {
     const { url,  clave } = this.state;
 
     if (!url || !clave) {
-      return message.warning('Complete formulario para realizar la busqueda');
+      return message.warning('Complete formulario.');
     }
 
     localStorage.setItem('url', url);

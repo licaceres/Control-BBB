@@ -12,12 +12,36 @@ code {
     monospace;
 }
 
-.logo {
+.logo-comunidades {
   height: 50px;
-  background: rgba(255, 255, 255, 0.2);
+  background: white;
   margin: 16px;
   text-align: center;
+  border-style: solid;  
+  border-color: #B9519B;  
+  border-radius: 0.3em;
 }
+
+.logo-comunidades-size {
+  height: 40px;
+  margin-top: 2px;
+}
+
+.logo-unr {
+  height: 50px;
+  background: white;
+  margin: 16px;
+  text-align: center;
+  border-style: solid;
+  border-color: #B9519B;  
+  border-radius: 0.3em;
+}
+
+.logo-unr-size {
+  height: 38px;
+  margin-top: 3px;
+}
+
 .site-layout .site-layout-background {
   background: #fff;
 }
@@ -31,10 +55,6 @@ code {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .logo-unr {
-    max-width: 75%;
   }
   
   .login-title {
