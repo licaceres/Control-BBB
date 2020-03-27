@@ -18,8 +18,8 @@ code {
   margin: 16px;
   text-align: center;
   border-style: solid;  
-  border-color: #B9519B;  
-  border-radius: 0.3em;
+  border-color: white;  
+  border-radius: 0.2em;
 }
 
 .logo-comunidades-size {
@@ -33,13 +33,13 @@ code {
   margin: 16px;
   text-align: center;
   border-style: solid;
-  border-color: #B9519B;  
-  border-radius: 0.3em;
+  border-color: white;
+  border-radius: 0.2em;
 }
 
 .logo-unr-size {
-  height: 38px;
-  margin-top: 3px;
+  height: 40px;
+  margin-top: 2px;
 }
 
 .site-layout .site-layout-background {
