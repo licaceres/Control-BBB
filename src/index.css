@@ -13,9 +13,10 @@ code {
 }
 
 .logo {
-  height: 32px;
+  height: 50px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
+  text-align: center;
 }
 .site-layout .site-layout-background {
   background: #fff;
@@ -32,7 +33,7 @@ code {
     align-items: center;
   }
   
-  .login-logo {
+  .logo-unr {
     max-width: 75%;
   }
   

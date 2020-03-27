@@ -1,36 +1,57 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
-import { getHeader } from '../utils';
+import { Col, Row, Card } from 'antd';
 
 
 
 class Estadistica extends Component {
-  render() {
+  constructor(props) {
+    super(props);
     
-    this.handleRequest();
+    this.state = {
+      version: '',
+      salas: '',
+      loading: true,
+
+    };
+  }
+
+  render() {
     return(
       <div>
-        <h1>Estadística</h1>
-        <div>
-          
-        </div>
+        <Row justify="center">
+          <Col span={24}>
+            <Card title="Estadísticas">
+              <Col span={8}>
+                <Card type="inner" loading={this.state.loading}>
+                  BBB Version: {this.state.version}
+                </Card>
+              </Col>
+            </Card>
+          </Col>
+        </Row>
       </div>
     );
   }
+
   handleRequest = async () => {
-    const resp = await axios.get(localStorage.getItem('url'))
+    var resultado;
+    await axios.get(localStorage.getItem('url'))
     .then((response) => {
         parseString(response.data, function (err, result) {
             console.log(err);
-            console.log(result);
+            resultado = result.response;
         });
       });
-
-    console.log(resp);
-    return resp;
+    this.setState({version: resultado.version, loading: false});
+  }
+  componentDidMount(){
+    this.handleRequest();
   }
 }
+
+
 
 export default Estadistica;
 

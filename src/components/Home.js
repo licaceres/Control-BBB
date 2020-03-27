@@ -12,6 +12,7 @@ import '../styles/home.css';
 
 import Main from './Main';
 import Estadistica from './Estadistica';
+import Logo from '../images/unr2.png';
 
 const { Content, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -31,7 +32,12 @@ class Home extends Component {
       <div>
         <Layout style={{ minHeight: '100vh' }}>
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-            <div className="logo" />
+            <div className="logo">
+            <img 
+            src={Logo} 
+            alt=''
+            className='logo-unr' />
+            </div>
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1">
                 <PieChartOutlined />
