@@ -50,15 +50,18 @@ class Estadistica extends Component {
   }
 
   handleRequest = async () => {
-    var resultado;
-    await axios.get(localStorage.getItem('url'))
-    .then((response) => {
-        parseString(response.data, function (err, result) {
-            console.log(err);
-            resultado = result.response;
+      var ver;
+      var resultado;
+      await axios.get(localStorage.getItem('url'))
+      .then((response) => {
+          parseString(response.data, function (err, result) {
+              console.log(err);
+              ver = result.response;
+          });
         });
-      });
-    this.setState({version: resultado.version, loadingversion: false});
+      this.setState({version: ver.version, loadingversion: false});
+    
+
     await axios.get(tools.getMeetings())
     .then((response) => {
         parseString(response.data, function (err, result) {
@@ -71,7 +74,6 @@ class Estadistica extends Component {
       if (resultado[i].running[0] === 'true')
         count++;
     }
-    console.log(resultado[0].running[0]);
     this.setState({salas: resultado.length, loadingsalas: false, activas: count});    
   }
   componentDidMount(){

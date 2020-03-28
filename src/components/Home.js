@@ -12,6 +12,7 @@ import '../styles/home.css';
 
 import Main from './Main';
 import Estadistica from './Estadistica';
+import Salas from './Salas';
 import LogoComunidades from '../images/logo-comunidades-unr.png';
 import LogoUnr from '../images/logo-unr.png';
 import LogoBbb from '../images/logo-bbb.jpg';
@@ -51,6 +52,11 @@ class Home extends Component {
                 <span>Estadísticas</span>
                 <Link to="/estadistica" />
               </Menu.Item>
+              <Menu.Item key="2">
+                <DesktopOutlined />
+                <span>Salas</span>
+                <Link to="/salas" />
+              </Menu.Item>
               <SubMenu
                 key="sub1"
                 title={
@@ -88,6 +94,7 @@ class Home extends Component {
             <Content style={{ margin: '16px' }}>
                 <Route exact path="/" component={ Main } />
                 <Route exact path="/estadistica" component={ Estadistica } />
+                <Route exact path="/salas" component={ Salas } />
             </Content>
           </Layout>
         </Layout>
