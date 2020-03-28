@@ -80,3 +80,7 @@ code {
     font-size: 0.7rem;
     color: #6c757d !important;
   }
+
+  .site-card-wrapper {
+    padding: 30px;
+  }

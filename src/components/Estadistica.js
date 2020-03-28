@@ -12,6 +12,7 @@ class Estadistica extends Component {
     this.state = {
       version: '',
       salas: '',
+      activas: '',
       usuarios: '',
       loadingversion: true,
       loadingsalas: true,
@@ -26,17 +27,21 @@ class Estadistica extends Component {
         <Row justify="center">
           <Col span={24}>
             <Card title="Estadísticas">
+              <div className="site-card-wrapper">
               <Col span={8}>
+                
                 <Card type="inner" loading={this.state.loadingversion}>
                   BBB Version: {this.state.version}
                 </Card>
               </Col>
               <Col span={8}>
                 <Card type="inner" loading={this.state.loadingsalas}>
-                  Cantidad salas: {this.state.salas}
-                  Cantidad usuarios: {this.state.usuarios}
+                  Cantidad salas: {this.state.salas}<br/> 
+                  Salas activas: {this.state.activas}
                 </Card>
+                
               </Col>
+              </div>
             </Card>
           </Col>
         </Row>
@@ -54,15 +59,20 @@ class Estadistica extends Component {
         });
       });
     this.setState({version: resultado.version, loadingversion: false});
-    console.log();
-    await axios.get(localStorage.getItem('url') + '/getMeetings?checksum=' + tools.checksum('getMeetings' + localStorage.getItem('clave')))
+    await axios.get(tools.getMeetings())
     .then((response) => {
         parseString(response.data, function (err, result) {
             console.log(err);
-            resultado = result.response;
+            resultado = result.response.meetings[0].meeting;
         });
       });
-    console.log(resultado);
+    var count = 0;
+    for (var i = 0; i < resultado.length; ++i) {
+      if (resultado[i].running[0] === 'true')
+        count++;
+    }
+    console.log(resultado[0].running[0]);
+    this.setState({salas: resultado.length, loadingsalas: false, activas: count});    
   }
   componentDidMount(){
     this.handleRequest();
