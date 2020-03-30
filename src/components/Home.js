@@ -12,7 +12,7 @@ import '../styles/home.css';
 
 import Main from './Main';
 import Estadistica from './Estadistica';
-import Salas from './Salas';
+import Salas from './salas/Salas';
 import LogoComunidades from '../images/logo-comunidades-unr.png';
 import LogoUnr from '../images/logo-unr.png';
 import LogoBbb from '../images/logo-bbb.jpg';
@@ -52,7 +52,7 @@ class Home extends Component {
                 <span>Estadísticas</span>
                 <Link to="/estadistica" />
               </Menu.Item>
-              <Menu.Item key="2">
+              <Menu.Item key="3">
                 <DesktopOutlined />
                 <span>Salas</span>
                 <Link to="/salas" />

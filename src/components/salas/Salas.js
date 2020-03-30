@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
-import { Col, Row, Card, Table, Divider, Button, Popconfirm, message } from 'antd';
-import * as tools from '../globalComponents/api_calls/index';
+import { Col, Table, Divider, Button, Popconfirm, message } from 'antd';
+import * as tools from '../../globalComponents/api_calls/index';
+import ModalSala  from './modalSala';
 
 class Salas extends Component {
   constructor(props) {
@@ -16,12 +17,15 @@ class Salas extends Component {
       loadingversion: true,
       loadingsalas: true,
       loadingusuarios: true,
-
+      creating: false,
+      visibleModal: false,
+      sala: null,
+      act: false,
     };
   }
 
   render() {
-    const { salas, loadingsalas } = this.state;
+    const { salas, loadingsalas, visibleModal, sala } = this.state;
     const columns = [{
         title: 'Nombre de sala',
         dataIndex: 'meetingName',
@@ -44,26 +48,25 @@ class Salas extends Component {
         dataIndex: 'running',
         key: 'running',
         render: data => {
-            if (data === true) return 'Si'
+            if (data === true) return 'Sí'
             if (data === false) return 'No'            
             return data;
         }
     },{
         title: 'Acciones',
         key: 'acciones',
-        render: item => {
-            console.log(item);
+        render: item => {          
           return (
             <div>
               <Button
-                onClick={() => this.handleConsultar(item)}>
+                onClick={() => this.consultarSala(item)}>
                 Consultar
               </Button> 
               <Popconfirm 
                 onConfirm={() => this.handleEliminar(item)}
-                title="Seguro desea eliminar el usuario?" okText="Confirmar" cancelText="Cancelar">
+                title="Seguro desea cerrar la sala?" okText="Confirmar" cancelText="Cancelar">
                 <Button>
-                  Eliminar
+                  Cerrar
                 </Button>
               </Popconfirm>
             </div>
@@ -92,7 +95,13 @@ class Salas extends Component {
               rowKey='createTime'
               bordered
               locale={{ emptyText: "No hay salas" }} />
-          </Col>
+
+            <ModalSala
+              visibleModal={visibleModal}
+              sala={sala}
+              handleModal={this.closeModal} />
+
+        </Col>
       </div>
     );
   }
@@ -101,27 +110,22 @@ class Salas extends Component {
     await axios.get(tools.getMeetings())
     .then((response) => {
         parseString(response.data, function (err, result) {
-            console.log(err);
             resultado = result.response.meetings[0].meeting;
         });
         }
     );
     
     this.setState({salas: resultado, loadingsalas: false});
-    console.log(resultado);
     }
 
     handleEliminar = async (sala) => {
         var resultado;
-        console.log(sala);
         await axios.get(tools.endMeeting(sala))
             .then((response) => {
                 parseString(response.data, function (err, result) {
-                    console.log(err);
                     resultado = result.response;
-                    console.log(resultado);
                     if(resultado.returncode[0] === 'SUCCESS'){
-                        message.success('Sala cerrada con éxito');
+                        message.success('Sala cerrada con éxito. Actualice la lista en unos segundos.');
                     }else{
                         message.error(resultado.messageKey[0]);
                     }
@@ -130,8 +134,21 @@ class Salas extends Component {
             );
     }
 
-    handleConsultar = async (sala) => {
-        
+    closeModal = () => {
+      this.setState({ 
+        visibleModal: false 
+      });
+    }
+
+    
+    consultarSala = (sala) => {
+      this.setState({ visibleModal: true, sala: sala });
+    }
+
+    handleModal = () => {
+      this.setState({ 
+        visible: !this.state.visibleModal,
+      });
     }
 
     componentDidMount(){

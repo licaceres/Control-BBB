@@ -1,6 +1,4 @@
 import sha1 from 'sha1';
-import axios from 'axios';
-import parseString from 'xml2js';
 
 export const checksum = (str) => {
     return sha1(str);
@@ -13,4 +11,9 @@ export const getMeetings = () => {
 export const endMeeting = (sala) => {
     var str = 'endmeetingID=' + sala.meetingID[0] + '&password=' + encodeURIComponent(sala.moderatorPW[0]) + localStorage.getItem('clave');
     return localStorage.getItem('url') + '/end?meetingID=' + sala.meetingID[0] + '&password=' + encodeURIComponent(sala.moderatorPW[0]) + '&checksum=' + checksum(str);
+}
+
+export const getMeetingInfo = (sala) => {
+    var str = 'getMeetingInfomeetingID=' + sala.meetingID[0] + '&password=' + encodeURIComponent(sala.moderatorPW[0]) + localStorage.getItem('clave');
+    return localStorage.getItem('url') + '/getMeetingInfo?meetingID=' + sala.meetingID[0] + '&password=' + encodeURIComponent(sala.moderatorPW[0]) + '&checksum=' + checksum(str);
 }
