@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
-import { Col, Table, Divider, Button, Popconfirm, message } from 'antd';
+import { Col, Table, Divider, Button, Popconfirm, message, Card } from 'antd';
+import { DesktopOutlined, ReloadOutlined } from '@ant-design/icons';
 import * as tools from '../../globalComponents/api_calls/index';
 import ModalSala from './modalSala';
 
@@ -77,33 +78,31 @@ class Salas extends Component {
     ];
     return (
       <div>
-        <Button
-          type='primary'
-          //icon='plus-circle'
-          onClick={this.handleRequest}>
-          Actualizar
-        </Button>
+        <Card title="Salas" extra={<DesktopOutlined />}>
+          <Button
+            type='primary'
+            icon= {<ReloadOutlined />}
+            style={{marginBottom: '10px'}}
+            onClick={this.handleRequest}>
+            Actualizar
+        </Button>          
+            <Table
+              columns={columns}
+              pagination={{ pageSize: 5 }}
+              dataSource={salas}
+              loading={loadingsalas}
+              scroll={{ x: true }}
+              rowKey='createTime'
+              bordered
+              locale={{ emptyText: "No hay salas" }} />
 
-        <Divider />
-
-        <Col xs={{ span: 24 }} lg={{ span: 24, offset: 1 }}>
-          <Table
-            columns={columns}
-            pagination={{ pageSize: 5 }}
-            dataSource={salas}
-            loading={loadingsalas}
-            scroll={{ x: true }}
-            rowKey='createTime'
-            bordered
-            locale={{ emptyText: "No hay salas" }} />
-
-          <ModalSala
-            visibleModal={visibleModal}
-            sala={sala}
-            handleModal={this.closeModal} />
-
-        </Col>
+            <ModalSala
+              visibleModal={visibleModal}
+              sala={sala}
+              handleModal={this.closeModal} />
+        </Card>
       </div>
+
     );
   }
   handleRequest = async () => {
