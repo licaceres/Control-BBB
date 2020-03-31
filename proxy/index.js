@@ -13,7 +13,7 @@ if (fs.existsSync(configFile)) {
 } else {
   console.log(('Did not find configuration file ' + configFile + ', creating it').blue.bold);
   config = {
-    "host": "test-install.blindsidenetworks.com",
+    "host": "",
     "port": 80
   };
   fs.writeFileSync(configFile, JSON.stringify(config, null, 2), { encoding: 'utf8' });
