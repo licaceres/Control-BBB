@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Row, Col, Button, Form, message, Card } from 'antd';
-import { SaveOutlined, SettingOutlined} from '@ant-design/icons';
+import { Row, Col, Button, Form, message, Card, Alert } from 'antd';
+import { SaveOutlined, SettingOutlined } from '@ant-design/icons';
 import { FormItem } from '../globalComponents';
 import '../styles/main.css';
 
@@ -9,7 +9,7 @@ class Main extends Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       url: 'http://bbblisandro.duckdns.org/bigbluebutton/api',
       clave: 'xrlUJJKyUVfQ26F6AYcU6oTEcP4OxAaGbq4Fj6IFvg'
@@ -27,41 +27,48 @@ class Main extends Component {
     return (
       <div>
         <Row justify="center">
-          <Col span={24}>            
-            <Card title="Configurar Servidor [ BigBlueButton ]" extra={<SettingOutlined />} style={{ width: '100%' }}>
-              <Col span={18} offset={1}>
-                <Form
-                  labelCol={{span: 8}}
-                  onSubmitCapture={this.handleSubmit}>
+          <Col span={24}>
+            <Card title="Configuración" extra={<SettingOutlined />} style={{ width: '100%' }}>
+              <Row>
+                <Col span={16} offset={4}>
+                  <Alert message="Servidor: BigBlueButton" type="info" style={{ marginBottom: '30px' }} />
+                </Col>
+              </Row>
+              <Row>
+                <Col span={16} offset={4}>
+                  <Form
+                    labelCol={{span: 4 }}
+                    wrapperCol={{span: 20}}
+                    onSubmitCapture={this.handleSubmit}>
 
-                  <FormItem
-                    key='url'
-                    label='URL Server:'
-                    name='url'
-                    placeholder='Ingrese'
-                    value={url}
-                    error={null}
-                    onChange={this.onChange} />
+                    <FormItem
+                      key='url'
+                      label='URL Server:'
+                      name='url'
+                      placeholder='Ingrese'
+                      value={url}
+                      error={null}
+                      onChange={this.onChange} />
 
-                  <FormItem
-                    key='clave'
-                    label='Clave:'
-                    name='clave'
-                    placeholder='Ingrese'
-                    value={clave}
-                    error={null}
-                    onChange={this.onChange} />
-
-                  <div className='btn-buscar'>
-                    <Button
-                      htmlType='submit'
-                      type='primary'
-                      icon={<SaveOutlined />}>
-                      Guardar
+                    <FormItem
+                      key='clave'
+                      label='Clave:'
+                      name='clave'
+                      placeholder='Ingrese'
+                      value={clave}
+                      error={null}
+                      onChange={this.onChange} />
+                    <div className='btn-buscar'>
+                      <Button                        
+                        htmlType='submit'
+                        type='primary'
+                        icon={<SaveOutlined />}>
+                        Guardar
                       </Button>
-                  </div>
-                </Form>
-              </Col>
+                    </div>
+                  </Form>
+                </Col>
+              </Row>
             </Card>
           </Col>
         </Row>
@@ -75,14 +82,15 @@ class Main extends Component {
 
   handleSubmit(event) {
     if (!!event) event.preventDefault();
-    const { url,  clave } = this.state;
+    const { url, clave } = this.state;
 
     if (!url || !clave) {
       return message.warning('Complete el formulario.');
+    } else {
+      localStorage.setItem('url', url);
+      localStorage.setItem('clave', clave);
+      return message.success('Datos almacenados.')
     }
-
-    localStorage.setItem('url', url);
-    localStorage.setItem('clave', clave);
   }
 }
 

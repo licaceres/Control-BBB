@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
-import { Col, Row, Card } from 'antd';
+import { Col, Row, Card, Tag } from 'antd';
+import { StockOutlined } from '@ant-design/icons';
 import * as tools from '../globalComponents/api_calls/index';
 
 
@@ -24,27 +25,28 @@ class Estadistica extends Component {
   render() {
     return (
       <div>
-        <Row justify="center">
-          <Col span={24}>
-            <Card title="Estadísticas">
-              <div className="site-card-wrapper">
-                <Col span={8}>
-
-                  <Card type="inner" loading={this.state.loadingversion}>
-                    BBB Version: {this.state.version}
-                  </Card>
-                </Col>
-                <Col span={8}>
-                  <Card type="inner" loading={this.state.loadingsalas}>
-                    Cantidad salas: {this.state.salas}<br />
-                  Salas activas: {this.state.activas}
-                  </Card>
-
-                </Col>
-              </div>
-            </Card>
-          </Col>
-        </Row>
+        <Card title="Estadísticas" extra={<StockOutlined />}>
+          <div className="site-card-wrapper">
+            <Row gutter={16}>
+              <Col span={8}>
+                <Card title="Versión" type="inner" loading={this.state.loadingversion}>
+                  BBB Version: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.version}</Tag>
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card title="Salas" type="inner" loading={this.state.loadingsalas}>
+                  Total: <Tag style={{ marginLeft: '5px', marginRight: '25px' }} color="processing">{this.state.salas}</Tag> 
+                Activas: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.activas}</Tag>
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card title="Card title" type="inner">
+                  Card content
+                </Card>
+              </Col>
+            </Row>
+          </div>
+        </Card>
       </div>
     );
   }
@@ -77,10 +79,11 @@ class Estadistica extends Component {
           count++;
       }
       this.setState({ salas: resultado.length, loadingsalas: false, activas: count });
-    }else{
+    } else {
       this.setState({ salas: 0, loadingsalas: false, activas: count });
     }
   }
+
   componentDidMount() {
     this.handleRequest();
   }

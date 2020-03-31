@@ -7,6 +7,7 @@ import {
   FileOutlined,
   TeamOutlined,
   UserOutlined,
+  StockOutlined
 } from '@ant-design/icons';
 import '../styles/home.css';
 
@@ -47,7 +48,7 @@ class Home extends Component {
                 <Link to="/" />
               </Menu.Item>
               <Menu.Item key="2">
-                <DesktopOutlined />
+                <StockOutlined />
                 <span>Estadísticas</span>
                 <Link to="/estadistica" />
               </Menu.Item>
