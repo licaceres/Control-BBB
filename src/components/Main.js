@@ -12,7 +12,7 @@ class Main extends Component {
     
     this.state = {
       url: 'http://localhost:8000/bigbluebutton/api',
-      clave: '8cd8ef52e8e101574e400365b55e11a6'
+      clave: 'xrlUJJKyUVfQ26F6AYcU6oTEcP4OxAaGbq4Fj6IFvg'
     };
 
     this.onChange = this.onChange.bind(this);
