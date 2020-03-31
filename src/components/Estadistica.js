@@ -75,7 +75,6 @@ class Estadistica extends Component {
         parseString(response.data, function (err, result) {
           console.log(err);
           resultado = result.response.meetings[0].meeting;
-          console.log(result);
         });
       });
 

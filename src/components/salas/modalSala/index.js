@@ -73,12 +73,11 @@ class ModalSala extends Component {
               return message.error(resultado.messageKey[0]);
             }
             resultado = result.response;
-
-
+            console.log(resultado);
+            
           });
         }
         );
-      console.log(resultado);
       this.setState({ salaInfo: resultado });
     }
   }

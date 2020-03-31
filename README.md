@@ -1,3 +1,22 @@
+## CORS en  BigBlueButton
+
+Agregar el siguiente código en `/etc/bigbluebutton/nginx/web.nginx` dentro del bloque `location /bigbluebutton`:
+
+```
+    location /bigbluebutton {
+        ...
+
+        # add this block!
+        if ($http_origin) {
+            add_header Access-Control-Allow-Origin *;
+            add_header Access-Control-Allow-Methods "GET,POST,OPTIONS";
+            add_header Access-Control-Allow-Headers  Content-Type;
+            add_header Access-Control-Max-Age        86400;
+        }
+    }
+```
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
