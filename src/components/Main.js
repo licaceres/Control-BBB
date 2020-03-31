@@ -11,7 +11,7 @@ class Main extends Component {
     super(props);
     
     this.state = {
-      url: 'http://localhost:8000/bigbluebutton/api',
+      url: 'http://bbblisandro.duckdns.org/bigbluebutton/api',
       clave: 'xrlUJJKyUVfQ26F6AYcU6oTEcP4OxAaGbq4Fj6IFvg'
     };
 
