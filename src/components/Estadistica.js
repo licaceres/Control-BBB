@@ -35,8 +35,14 @@ class Estadistica extends Component {
               </Col>
               <Col span={8}>
                 <Card title="Salas" type="inner" loading={this.state.loadingsalas}>
-                  Total: <Tag style={{ marginLeft: '5px', marginRight: '25px' }} color="processing">{this.state.salas}</Tag> 
-                Activas: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.activas}</Tag>
+                  <Row>
+                    <Col>
+                      Total: <Tag style={{ marginLeft: '5px', marginRight: '25px' }} color="processing">{this.state.salas}</Tag>
+                    </Col>
+                    <Col>
+                      Activas: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.activas}</Tag>
+                    </Col>
+                  </Row>
                 </Card>
               </Col>
               <Col span={8}>
