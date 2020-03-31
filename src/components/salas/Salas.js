@@ -27,6 +27,7 @@ class Salas extends Component {
 
   render() {
     const { salas, loadingsalas, visibleModal, sala } = this.state;
+    
     const columns = [{
       title: 'Nombre de sala',
       dataIndex: 'meetingName',
@@ -49,10 +50,12 @@ class Salas extends Component {
       dataIndex: 'running',
       key: 'running',
       render: data => {
-        console.log(data);
-        if (data === 'true') return 'Sí'
-        if (data === 'false') return 'No'
-        return data;
+        // eslint-disable-next-line
+        if (data == 'true') return 'Si'
+        // eslint-disable-next-line
+        if (data == 'false') return 'No'
+        // eslint-disable-next-line
+        return data;     
       }
     }, {
       title: 'Acciones',
