@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
-import { Col, Table, Divider, Button, Popconfirm, message, Card } from 'antd';
+import { Table, Button, Popconfirm, message, Card } from 'antd';
 import { DesktopOutlined, ReloadOutlined } from '@ant-design/icons';
 import * as tools from '../../globalComponents/api_calls/index';
 import ModalSala from './modalSala';
