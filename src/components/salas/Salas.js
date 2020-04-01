@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
-import { Table, Button, Popconfirm, message, Card } from 'antd';
-import { DesktopOutlined, ReloadOutlined } from '@ant-design/icons';
+import { Table, Button, Popconfirm, message, Card, Tooltip } from 'antd';
+import { DesktopOutlined, ReloadOutlined, CloseCircleOutlined, ZoomInOutlined } from '@ant-design/icons';
 import * as tools from '../../globalComponents/api_calls/index';
 import ModalSala from './modalSala';
 
@@ -63,16 +63,23 @@ class Salas extends Component {
       render: item => {
         return (
           <div>
-            <Button
-              onClick={() => this.consultarSala(item)}>
-              Consultar
-              </Button>
-            <Popconfirm
-              onConfirm={() => this.handleEliminar(item)}
-              title="Seguro desea cerrar la sala?" okText="Confirmar" cancelText="Cancelar">
-              <Button>
-                Cerrar
+            <Tooltip placement="left" title={'Consultar'}>
+              <Button
+                type='primary'
+                icon={<ZoomInOutlined />}
+                onClick={() => this.consultarSala(item)}>
                 </Button>
+            </Tooltip>
+            <Popconfirm            
+              onConfirm={() => this.handleEliminar(item)}
+              title="¿Seguro desea cerrar la sala?" okText="Confirmar" cancelText="Cancelar">
+              <Tooltip placement="right" title={'Cerrar Sala'}>
+              <Button
+              style={{marginLeft: '10px'}}
+              type='primary'
+              icon={<CloseCircleOutlined />}>
+                </Button>
+                </Tooltip>
             </Popconfirm>
           </div>
         );
@@ -94,11 +101,9 @@ class Salas extends Component {
               pagination={{ pageSize: 5 }}
               dataSource={salas}
               loading={loadingsalas}
-              scroll={{ x: true }}
               rowKey='createTime'
-              bordered
+              size='small'             
               locale={{ emptyText: "No hay salas" }} />
-
             <ModalSala
               visibleModal={visibleModal}
               sala={sala}
