@@ -3,28 +3,43 @@ import axios from 'axios';
 import { parseString } from 'xml2js';
 import { Col, Row, message, Modal } from 'antd';
 import * as tools from '../../../globalComponents/api_calls/index';
+import _ from 'lodash';
 
 class ModalSala extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      version: '',
-      activas: '',
+      exists: false,
+      id: '',
+      nombre: '',
+      curso: '',
+      fecha: '',
+      moderatorPW: '',
+      activa: '',
+      duracion: '',
+      grabando: '',
+      participantes: '',
+      oyentes: '',
+      maxusr: '',
+      moderadores: '',
+      creador: '',
+      svrorigen: '',
+      origen: '',
       usuarios: '',
-      salaInfo: null,
       loading: false,
-      loadingPeriodo: false,
     };
   }
 
   render() {
     const { visibleModal, handleModal, loading } = this.props;
-    const { salaInfo } = this.state;
-    if (salaInfo) {
+    const { exists, id, nombre, curso, fecha, moderatorPW, activa, duracion, grabando, participantes, oyentes,
+      maxusr, moderadores, creador, svrorigen, origen, usuarios } = this.state;
+      console.log(usuarios);
+    if (exists) {
       return (
         <Modal
-          title={salaInfo.meetingName[0]}
+          title={nombre}
           visible={visibleModal}
           okText='Cerrar'
           onOk={handleModal}
@@ -40,19 +55,19 @@ class ModalSala extends Component {
           <div>
             <Row justify="center">
               <Col span={24}>
-                Curso: {salaInfo.metadata[0]["bbb-context"][0]}<br />
-                Fecha: {salaInfo.createDate[0]}<br />
-                Pass Moderador: {salaInfo.moderatorPW[0]}<br />
-                Activa: {salaInfo.running[0]}<br />
-                Duración: {salaInfo.duration[0]}<br />
-                Grabando: {salaInfo.recording[0]}<br />
-                Participantes: {salaInfo.participantCount[0]}<br />
-                Oyentes: {salaInfo.listenerCount[0]}<br />
-                Cant. Max. Usuarios: {salaInfo.maxUsers[0]}<br />
-                Moderadores: {salaInfo.moderatorCount[0]}<br />
-                Usuario Creador: {salaInfo.metadata[0]["bn-userid"][0]}<br />
-                Server Origen: {salaInfo.metadata[0]["bbb-origin-server-name"][0]}<br />
-                Origen: {salaInfo.metadata[0]["bbb-origin"][0]}<br />
+                Curso: {curso}<br />
+                Fecha: {fecha}<br />
+                Pass Moderador: {moderatorPW}<br />
+                Activa: {activa}<br />
+                Duración: {duracion}<br />
+                Grabando: {grabando}<br />
+                Participantes: {participantes}<br />
+                Oyentes: {oyentes}<br />
+                Cant. Max. Usuarios: {maxusr}<br />
+                Moderadores: {moderadores}<br />
+                Usuario Creador: {creador}<br />
+                Server Origen: {svrorigen}<br />
+                Origen: {origen}<br />
               </Col>
             </Row>
           </div>
@@ -64,7 +79,7 @@ class ModalSala extends Component {
   }
 
   componentDidUpdate = async () => {
-    if (this.props.visibleModal && !this.state.salaInfo) {
+    if (this.props.visibleModal && !this.state.id) {
       var resultado = null;
       await axios.get(tools.getMeetingInfo(this.props.sala))
         .then((response) => {
@@ -72,13 +87,34 @@ class ModalSala extends Component {
             if (result.response.returncode[0] !== 'SUCCESS') {
               return message.error(resultado.messageKey[0]);
             }
+
             resultado = result.response;
             console.log(resultado);
-            
+
           });
         }
         );
-      this.setState({ salaInfo: resultado });
+
+      this.setState({
+        exists: true,
+        id: _.get(resultado, 'meetingID[0]', ''),
+        nombre: _.get(resultado, 'meetingName[0]', ''),
+        curso: _.get(resultado, 'metadata[0]["bbb-context"][0]', ''),
+        fecha: _.get(resultado, 'createDate[0]', ''),
+        moderatorPW: _.get(resultado, 'moderatorPW[0]', ''),
+        activa: _.get(resultado,'running[0]', ''),
+        duracion: _.get(resultado, 'duration[0]', ''),
+        grabando: _.get(resultado, 'recording[0]', ''),
+        participantes: _.get(resultado, 'participantCount[0]', ''),
+        oyentes: _.get(resultado, 'listenerCount[0]', ''),
+        maxusr: _.get(resultado, 'maxUsers[0]', ''),
+        moderadores: _.get(resultado, 'moderatorCount[0]', ''),
+        creador: _.get(resultado, 'metadata[0]["bn-userid"][0]', ''),
+        svrorigen: _.get(resultado, 'metadata[0]["bbb-origin-server-name"][0]', ''),
+        origen: _.get(resultado, 'metadata[0]["bbb-origin"][0]', ''),
+        usuarios: _.get(resultado, 'attendees[0]', ''),
+      });
+      console.log(this.state.id);
     }
   }
 }
