@@ -4,22 +4,18 @@ import { Layout, Menu } from 'antd';
 import {
   DesktopOutlined,
   SettingOutlined,
-  FileOutlined,
-  TeamOutlined,
-  UserOutlined,
-  StockOutlined
+  InfoCircleOutlined
 } from '@ant-design/icons';
 import '../styles/home.css';
 
 import Main from './Main';
-import Estadistica from './Estadistica';
-import Salas from './salas/Salas';
+import Info from './Info';
+import Salas from './Salas'
 import LogoComunidades from '../images/logo-comunidades-unr.png';
 import LogoUnr from '../images/logo-unr.png';
 import LogoBbb from '../images/logo-bbb.jpg';
 
 const { Content, Sider, Header } = Layout;
-const { SubMenu } = Menu;
 
 class Home extends Component {
   state = {
@@ -36,10 +32,10 @@ class Home extends Component {
         <Layout style={{ minHeight: '100vh' }}>
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
             <div className="logo-comunidades" hidden={this.state.collapsed}>
-            <img src={LogoComunidades} alt='logo-comunidades' className='logo-comunidades-size' />
+              <img src={LogoComunidades} alt='logo-comunidades' className='logo-comunidades-size' />
             </div>
             <div className="logo-unr" hidden={!this.state.collapsed}>
-              <img src={LogoUnr} alt='logo-unr' className='logo-unr-size'/>
+              <img src={LogoUnr} alt='logo-unr' className='logo-unr-size' />
             </div>
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1">
@@ -48,53 +44,25 @@ class Home extends Component {
                 <Link to="/" />
               </Menu.Item>
               <Menu.Item key="2">
-                <StockOutlined />
-                <span>Estadísticas</span>
-                <Link to="/estadistica" />
+                <InfoCircleOutlined />
+                <span>Información</span>
+                <Link to="/info" />
               </Menu.Item>
               <Menu.Item key="3">
                 <DesktopOutlined />
                 <span>Salas</span>
                 <Link to="/salas" />
               </Menu.Item>
-              <SubMenu
-                key="sub1"
-                title={
-                  <span>
-                    <UserOutlined />
-                    <span>User</span>
-                  </span>
-                }
-              >
-                <Menu.Item key="3">Tom</Menu.Item>
-                <Menu.Item key="4">Bill</Menu.Item>
-                <Menu.Item key="5">Alex</Menu.Item>
-              </SubMenu>
-              <SubMenu
-                key="sub2"
-                title={
-                  <span>
-                    <TeamOutlined />
-                    <span>Team</span>
-                  </span>
-                }
-              >
-                <Menu.Item key="6">Team 1</Menu.Item>
-                <Menu.Item key="8">Team 2</Menu.Item>
-              </SubMenu>
-              <Menu.Item key="9">
-                <FileOutlined />
-              </Menu.Item>
             </Menu>
           </Sider>
           <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ paddingLeft: '16px', paddingRight: '35px' }}>
-              <h3 style={{fontWeight: 'initial', textAlign: 'right'}}>[ Panel de Control ]<span style={{paddingLeft: '10px' }}><img src={LogoBbb} alt='logo-bbb' className="logo-bbb-size"/></span></h3>
-          </Header>
+            <Header className="site-layout-background" style={{ paddingLeft: '16px', paddingRight: '35px' }}>
+              <h3 style={{ fontWeight: 'initial', textAlign: 'right' }}>[ Panel de Control ]<span style={{ paddingLeft: '10px' }}><img src={LogoBbb} alt='logo-bbb' className="logo-bbb-size" /></span></h3>
+            </Header>
             <Content style={{ margin: '16px' }}>
-                <Route exact path="/" component={ Main } />
-                <Route exact path="/estadistica" component={ Estadistica } />
-                <Route exact path="/salas" component={ Salas } />
+              <Route exact path="/" component={Main} />
+              <Route exact path="/info" component={Info} />
+              <Route exact path="/salas" component={Salas} />
             </Content>
           </Layout>
         </Layout>

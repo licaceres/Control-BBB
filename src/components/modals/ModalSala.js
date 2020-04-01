@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
 import { Col, Row, message, Modal } from 'antd';
-import * as tools from '../../../globalComponents/api_calls/index';
+import * as tools from '../../utils/ApiCalls';
 
 class ModalSala extends Component {
   constructor(props) {
@@ -21,6 +21,7 @@ class ModalSala extends Component {
   render() {
     const { visibleModal, handleModal, loading } = this.props;
     const { salaInfo } = this.state;
+
     if (salaInfo) {
       return (
         <Modal
@@ -74,7 +75,7 @@ class ModalSala extends Component {
             }
             resultado = result.response;
             console.log(resultado);
-            
+
           });
         }
         );

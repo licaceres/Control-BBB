@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
 import { Col, Row, Card, Tag } from 'antd';
-import { StockOutlined } from '@ant-design/icons';
-import * as tools from '../globalComponents/api_calls/index';
+import { InfoCircleOutlined } from '@ant-design/icons';
+import * as tools from '../utils/ApiCalls';
 
 
-class Estadistica extends Component {
+class Info extends Component {
   constructor(props) {
     super(props);
 
@@ -25,7 +25,7 @@ class Estadistica extends Component {
   render() {
     return (
       <div>
-        <Card title="Estadísticas" extra={<StockOutlined />}>
+        <Card title="Información" extra={<InfoCircleOutlined />}>
           <div className="site-card-wrapper">
             <Row gutter={16}>
               <Col span={8}>
@@ -95,7 +95,5 @@ class Estadistica extends Component {
   }
 }
 
-
-
-export default Estadistica;
+export default Info;
 
