@@ -117,8 +117,8 @@ class Salas extends Component {
         });
       }
       );
-
     this.setState({ salas: resultado, loadingsalas: false });
+    return message.success("Salas Actualizadas.");
   }
 
   handleEliminar = async (sala) => {
