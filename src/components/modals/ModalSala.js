@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
 import { Col, Row, message, Modal } from 'antd';
-import * as tools from '../../../globalComponents/api_calls/index';
+import * as tools from '../../utils/ApiCalls';
 import _ from 'lodash';
 
 class ModalSala extends Component {

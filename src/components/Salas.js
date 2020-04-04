@@ -3,8 +3,8 @@ import axios from 'axios';
 import { parseString } from 'xml2js';
 import { Table, Button, Popconfirm, message, Card, Tooltip } from 'antd';
 import { DesktopOutlined, ReloadOutlined, CloseCircleOutlined, ZoomInOutlined } from '@ant-design/icons';
-import * as tools from '../../globalComponents/api_calls/index';
-import ModalSala from './modalSala';
+import * as tools from '../utils/ApiCalls';
+import ModalSala from './modals/ModalSala';
 
 class Salas extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class Salas extends Component {
 
   render() {
     const { salas, loadingsalas, visibleModal, sala } = this.state;
-    
+
     const columns = [{
       title: 'Nombre de sala',
       dataIndex: 'meetingName',
@@ -55,7 +55,7 @@ class Salas extends Component {
         // eslint-disable-next-line
         if (data == 'false') return 'No'
         // eslint-disable-next-line
-        return data;     
+        return data;
       }
     }, {
       title: 'Acciones',
@@ -68,18 +68,18 @@ class Salas extends Component {
                 type='primary'
                 icon={<ZoomInOutlined />}
                 onClick={() => this.consultarSala(item)}>
-                </Button>
+              </Button>
             </Tooltip>
-            <Popconfirm            
+            <Popconfirm
               onConfirm={() => this.handleEliminar(item)}
               title="¿Seguro desea cerrar la sala?" okText="Confirmar" cancelText="Cancelar">
               <Tooltip placement="right" title={'Cerrar Sala'}>
-              <Button
-              style={{marginLeft: '10px'}}
-              type='primary'
-              icon={<CloseCircleOutlined />}>
+                <Button
+                  style={{ marginLeft: '10px' }}
+                  type='primary'
+                  icon={<CloseCircleOutlined />}>
                 </Button>
-                </Tooltip>
+              </Tooltip>
             </Popconfirm>
           </div>
         );
@@ -91,28 +91,29 @@ class Salas extends Component {
         <Card title="Salas" extra={<DesktopOutlined />}>
           <Button
             type='primary'
-            icon= {<ReloadOutlined />}
-            style={{marginBottom: '10px'}}
+            icon={<ReloadOutlined />}
+            style={{ marginBottom: '10px' }}
             onClick={this.handleRequest}>
             Actualizar
-        </Button>          
-            <Table
-              columns={columns}
-              pagination={{ pageSize: 5 }}
-              dataSource={salas}
-              loading={loadingsalas}
-              rowKey='createTime'
-              size='small'             
-              locale={{ emptyText: "No hay salas" }} />
-            <ModalSala
-              visibleModal={visibleModal}
-              sala={sala}
-              handleModal={this.closeModal} />
+        </Button>
+          <Table
+            columns={columns}
+            pagination={{ pageSize: 5 }}
+            dataSource={salas}
+            loading={loadingsalas}
+            rowKey='createTime'
+            size='small'
+            locale={{ emptyText: "No hay salas" }} />
+          <ModalSala
+            visibleModal={visibleModal}
+            sala={sala}
+            handleModal={this.closeModal} />
         </Card>
       </div>
 
     );
   }
+
   handleRequest = async () => {
     var resultado;
     await axios.get(tools.getMeetings())

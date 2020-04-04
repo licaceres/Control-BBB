@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Form, message, Card, Alert } from 'antd';
 import { SaveOutlined, SettingOutlined } from '@ant-design/icons';
-import { FormItem } from '../globalComponents';
+import { FormItem } from '../utils/FormItem';
 import '../styles/main.css';
 
 
@@ -37,8 +37,8 @@ class Main extends Component {
               <Row>
                 <Col span={16} offset={4}>
                   <Form
-                    labelCol={{span: 4 }}
-                    wrapperCol={{span: 20}}
+                    labelCol={{ span: 4 }}
+                    wrapperCol={{ span: 20 }}
                     onSubmitCapture={this.handleSubmit}>
 
                     <FormItem
@@ -58,8 +58,9 @@ class Main extends Component {
                       value={clave}
                       error={null}
                       onChange={this.onChange} />
+
                     <div className='btn-buscar'>
-                      <Button                        
+                      <Button
                         htmlType='submit'
                         type='primary'
                         icon={<SaveOutlined />}>
