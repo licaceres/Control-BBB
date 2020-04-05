@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
 import { Table, Button, Popconfirm, message, Card, Tooltip } from 'antd';
-import { DesktopOutlined, ReloadOutlined, CloseCircleOutlined, ZoomInOutlined } from '@ant-design/icons';
+import { DesktopOutlined, ReloadOutlined, CloseCircleOutlined, ZoomInOutlined, UserOutlined } from '@ant-design/icons';
 import * as tools from '../utils/ApiCalls';
 import ModalSala from './modals/ModalSala';
+import ModalUsuarios from './modals/ModalUsuarios';
 
 class Salas extends Component {
   constructor(props) {
@@ -20,13 +21,14 @@ class Salas extends Component {
       loadingusuarios: true,
       creating: false,
       visibleModal: false,
+      visibleModalUsr: false,
       sala: null,
       act: false,
     };
   }
 
   render() {
-    const { salas, loadingsalas, visibleModal, sala } = this.state;
+    const { salas, loadingsalas, visibleModal, sala, visibleModalUsr } = this.state;
 
     const columns = [{
       title: 'Nombre de sala',
@@ -63,17 +65,25 @@ class Salas extends Component {
       render: item => {
         return (
           <div>
-            <Tooltip placement="left" title={'Consultar'}>
+            <Tooltip placement="topLeft" title={'Consultar'}>
               <Button
                 type='primary'
                 icon={<ZoomInOutlined />}
                 onClick={() => this.consultarSala(item)}>
               </Button>
             </Tooltip>
+            <Tooltip placement="top" title={'Usuarios'}>
+              <Button
+                style={{ marginLeft: '10px' }}
+                type='primary'
+                icon={<UserOutlined />}
+                onClick={() => this.consultarUsuarios(item)}>
+              </Button>
+            </Tooltip>
             <Popconfirm
               onConfirm={() => this.handleEliminar(item)}
               title="¿Seguro desea cerrar la sala?" okText="Confirmar" cancelText="Cancelar">
-              <Tooltip placement="right" title={'Cerrar Sala'}>
+              <Tooltip placement="topRight" title={'Cerrar Sala'}>
                 <Button
                   style={{ marginLeft: '10px' }}
                   type='primary'
@@ -106,6 +116,10 @@ class Salas extends Component {
             locale={{ emptyText: "No hay salas" }} />
           <ModalSala
             visibleModal={visibleModal}
+            sala={sala}
+            handleModal={this.closeModal} />
+          <ModalUsuarios 
+            visibleModal={visibleModalUsr}
             sala={sala}
             handleModal={this.closeModal} />
         </Card>
@@ -145,7 +159,8 @@ class Salas extends Component {
 
   closeModal = () => {
     this.setState({
-      visibleModal: false
+      visibleModal: false,
+      visibleModalUsr: false,
     });
   }
 
@@ -154,11 +169,16 @@ class Salas extends Component {
     this.setState({ visibleModal: true, sala: sala });
   }
 
+  consultarUsuarios = (sala) => {
+    this.setState({ visibleModalUsr: true, sala: sala });
+  }
+
   handleModal = () => {
     this.setState({
       visible: !this.state.visibleModal,
     });
   }
+
 
   componentDidMount = async () => {
     await axios.get('http://bbblisandro.duckdns.org/bigbluebutton/api/create?allowStartStopRecording=true&attendeePW=ap&autoStartRecording=false&meetingID=2&moderatorPW=1234&name=2&record=false&voiceBridge=72668&welcome=%3Cbr%3EWelcome+to+%3Cb%3E%25%25CONFNAME%25%25%3C%2Fb%3E%21&checksum=9b87d8248888eb7bd1add180b648daa5d6305ec6');

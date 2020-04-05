@@ -33,7 +33,7 @@ class ModalSala extends Component {
 
   render() {
     const { visibleModal, handleModal, loading } = this.props;
-    const { exists, id, nombre, curso, fecha, moderatorPW, activa, duracion, grabando, participantes, oyentes,
+    const { exists, nombre, curso, fecha, moderatorPW, activa, duracion, grabando, participantes, oyentes,
       maxusr, moderadores, creador, svrorigen, origen, usuarios } = this.state;
       console.log(usuarios);
     if (exists) {
