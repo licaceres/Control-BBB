@@ -31,22 +31,25 @@ class Salas extends Component {
     const { salas, loadingsalas, visibleModal, sala, visibleModalUsr } = this.state;
 
     const columns = [{
+      title: 'Id Sala',
+      dataIndex: 'meetingID',
+      key: 'meetingID',
+      width: '15%',
+    }, {
       title: 'Nombre de sala',
       dataIndex: 'meetingName',
       key: 'meetingName',
+      width: '30%'
 
     }, {
       title: 'Fecha y hora',
       dataIndex: 'createTime',
       key: 'createTime',
-    }, {
-      title: 'attendeePW',
-      dataIndex: 'attendeePW',
-      key: 'attendeePW',
-    }, {
-      title: 'moderatorPW',
-      dataIndex: 'moderatorPW',
-      key: 'moderatorPW',
+      render: data => {
+        // eslint-disable-next-line
+        var fh = new Date(parseFloat(data)).toISOString();
+        return fh;
+      }
     }, {
       title: 'Activa',
       dataIndex: 'running',
@@ -62,6 +65,7 @@ class Salas extends Component {
     }, {
       title: 'Acciones',
       key: 'acciones',
+      width: '15%',
       render: item => {
         return (
           <div>
