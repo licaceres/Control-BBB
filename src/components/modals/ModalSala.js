@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
-import { Col, Row, message, Modal } from 'antd';
+import { Col, Row, message, Modal, Typography } from 'antd';
+
 import * as tools from '../../utils/ApiCalls';
 import _ from 'lodash';
+
+const { Text } = Typography;
+
 
 class ModalSala extends Component {
   constructor(props) {
@@ -35,7 +39,7 @@ class ModalSala extends Component {
     const { visibleModal, handleModal, loading } = this.props;
     const { exists, nombre, curso, fecha, moderatorPW, activa, duracion, grabando, participantes, oyentes,
       maxusr, moderadores, creador, svrorigen, origen, usuarios } = this.state;
-      console.log(usuarios);
+    console.log(usuarios);
     if (exists) {
       return (
         <Modal
@@ -54,20 +58,22 @@ class ModalSala extends Component {
           width='95%'>
           <div>
             <Row justify="center">
-              <Col span={24}>
-                Curso: {curso}<br />
-                Fecha: {fecha}<br />
-                Pass Moderador: {moderatorPW}<br />
-                Activa: {activa}<br />
-                Duración: {duracion}<br />
-                Grabando: {grabando}<br />
-                Participantes: {participantes}<br />
-                Oyentes: {oyentes}<br />
-                Cant. Max. Usuarios: {maxusr}<br />
-                Moderadores: {moderadores}<br />
-                Usuario Creador: {creador}<br />
-                Server Origen: {svrorigen}<br />
-                Origen: {origen}<br />
+              <Col span={12}>
+                <Text code>Curso:</Text> {curso}mi curso<br />
+                <Text code>Fecha:</Text>{fecha}<br />
+                <Text code>Pass Moderador:</Text> {moderatorPW}<br />
+                <Text code>Activa:</Text> {activa}<br />
+                <Text code>Duración:</Text> {duracion}<br />
+                <Text code>Grabando:</Text> {grabando}<br />
+                <Text code>Participantes:</Text> {participantes}<br />
+              </Col>
+              <Col span={12}>
+                <Text code>Oyentes:</Text> {oyentes}<br />
+                <Text code>Cant. Max. Usuarios:</Text> {maxusr}<br />
+                <Text code>Moderadores:</Text> {moderadores}<br />
+                <Text code>Usuario Creador:</Text> {creador}<br />
+                <Text code>Server Origen:</Text> {svrorigen}<br />
+                <Text code>Origen:</Text> {origen}<br />
               </Col>
             </Row>
           </div>
