@@ -32,18 +32,18 @@ class ModalSala extends Component {
       origen: '',
       usuarios: '',
       loading: false,
+      sala: '',
     };
   }
 
   render() {
     const { visibleModal, handleModal, loading } = this.props;
-    const { exists, nombre, curso, fecha, moderatorPW, activa, duracion, grabando, participantes, oyentes,
-      maxusr, moderadores, creador, svrorigen, origen, usuarios } = this.state;
+    const { exists, sala, usuarios } = this.state;
     console.log(usuarios);
     if (exists) {
       return (
         <Modal
-          title={nombre}
+          title={_.get(sala, 'meetingName[0]', '')}
           visible={visibleModal}
           okText='Cerrar'
           onOk={handleModal}
@@ -59,21 +59,21 @@ class ModalSala extends Component {
           <div>
             <Row justify="center">
               <Col span={12}>
-                <Text code>Curso:</Text> {curso}mi curso<br />
-                <Text code>Fecha:</Text>{fecha}<br />
-                <Text code>Pass Moderador:</Text> {moderatorPW}<br />
-                <Text code>Activa:</Text> {activa}<br />
-                <Text code>Duración:</Text> {duracion}<br />
-                <Text code>Grabando:</Text> {grabando}<br />
-                <Text code>Participantes:</Text> {participantes}<br />
+                <Text code>Curso:</Text> {_.get(sala, 'metadata[0]["bbb-context"][0]', '')}mi curso<br />
+                <Text code>Fecha:</Text>{_.get(sala, 'createDate[0]', '')}<br />
+                <Text code>Pass Moderador:</Text> {_.get(sala, 'moderatorPW[0]', '')}<br />
+                <Text code>Activa:</Text> {_.get(sala,'running[0]', '')}<br />
+                <Text code>Duración:</Text> {_.get(sala, 'duration[0]', '')}<br />
+                <Text code>Grabando:</Text> {_.get(sala, 'recording[0]', '')}<br />
+                <Text code>Participantes:</Text> {_.get(sala, 'participantCount[0]', '')}<br />
               </Col>
               <Col span={12}>
-                <Text code>Oyentes:</Text> {oyentes}<br />
-                <Text code>Cant. Max. Usuarios:</Text> {maxusr}<br />
-                <Text code>Moderadores:</Text> {moderadores}<br />
-                <Text code>Usuario Creador:</Text> {creador}<br />
-                <Text code>Server Origen:</Text> {svrorigen}<br />
-                <Text code>Origen:</Text> {origen}<br />
+                <Text code>Oyentes:</Text> {_.get(sala, 'listenerCount[0]', '')}<br />
+                <Text code>Cant. Max. Usuarios:</Text> {_.get(sala, 'maxUsers[0]', '')}<br />
+                <Text code>Moderadores:</Text> {_.get(sala, 'moderatorCount[0]', '')}<br />
+                <Text code>Usuario Creador:</Text> {_.get(sala, 'metadata[0]["bn-userid"][0]', '')}<br />
+                <Text code>Server Origen:</Text> {_.get(sala, 'metadata[0]["bbb-origin-server-name"][0]', '')}<br />
+                <Text code>Origen:</Text> {_.get(sala, 'metadata[0]["bbb-origin"][0]', '')}<br />
               </Col>
             </Row>
           </div>
@@ -104,21 +104,7 @@ class ModalSala extends Component {
       this.setState({
         exists: true,
         id: _.get(resultado, 'meetingID[0]', ''),
-        nombre: _.get(resultado, 'meetingName[0]', ''),
-        curso: _.get(resultado, 'metadata[0]["bbb-context"][0]', ''),
-        fecha: _.get(resultado, 'createDate[0]', ''),
-        moderatorPW: _.get(resultado, 'moderatorPW[0]', ''),
-        activa: _.get(resultado,'running[0]', ''),
-        duracion: _.get(resultado, 'duration[0]', ''),
-        grabando: _.get(resultado, 'recording[0]', ''),
-        participantes: _.get(resultado, 'participantCount[0]', ''),
-        oyentes: _.get(resultado, 'listenerCount[0]', ''),
-        maxusr: _.get(resultado, 'maxUsers[0]', ''),
-        moderadores: _.get(resultado, 'moderatorCount[0]', ''),
-        creador: _.get(resultado, 'metadata[0]["bn-userid"][0]', ''),
-        svrorigen: _.get(resultado, 'metadata[0]["bbb-origin-server-name"][0]', ''),
-        origen: _.get(resultado, 'metadata[0]["bbb-origin"][0]', ''),
-        usuarios: _.get(resultado, 'attendees[0]', ''),
+        sala: resultado,
       });
       console.log(this.state.id);
     }

@@ -12,7 +12,7 @@ class Main extends Component {
 
     this.state = {
       url: 'http://bbblisandro.duckdns.org/bigbluebutton/api',
-      clave: 'xrlUJJKyUVfQ26F6AYcU6oTEcP4OxAaGbq4Fj6IFvg'
+      clave: 'TM6I5tVVENQOLespdftbHQhF3M2SMYToOP7F4otJAc'
     };
 
     this.onChange = this.onChange.bind(this);

@@ -4,6 +4,7 @@ import { parseString } from 'xml2js';
 import { Col, Row, Card, Tag } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import * as tools from '../utils/ApiCalls';
+import _ from 'lodash';
 
 
 class Info extends Component {
@@ -74,12 +75,12 @@ class Info extends Component {
       .then((response) => {
         parseString(response.data, function (err, result) {
           console.log(err);
-          resultado = result.response.meetings[0].meeting;
+          resultado = _.get(result, 'response.meetings[0].meeting', 0);
         });
       });
 
     var count = 0;
-    if (resultado !== undefined) {
+    if (resultado !== 0) {
       for (var i = 0; i < resultado.length; ++i) {
         if (resultado[i].running[0] === 'true')
           count++;
