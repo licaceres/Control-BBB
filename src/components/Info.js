@@ -65,7 +65,7 @@ class Info extends Component {
                   {this.state.loadingusuarios ? <Empty description="No hay datos" />
                     :
                     <div>
-                      Total Usuarios: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalusuarios}</Tag><br />
+                    Total Usuarios: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalusuarios}</Tag><br />
                     Total Moderadores: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalmoderadores}</Tag><br />
                     Total Oyentes: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.oyentes}</Tag><br />
                     Total con Audio: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.conaudio}</Tag><br />
