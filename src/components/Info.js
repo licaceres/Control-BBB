@@ -38,7 +38,12 @@ class Info extends Component {
                   {this.state.loadingversion ? <Empty description="No hay datos" />
                     :
                     <div>
-                      BBB Version: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.version}</Tag>
+                      <Row gutter={[16, 16]}>
+                        <Col span={12}>
+                          BBB Version: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.version}</Tag>
+                        </Col>
+                        <Col span={12}></Col>
+                      </Row>
                     </div>
                   }
                 </Card>
@@ -48,11 +53,11 @@ class Info extends Component {
                   {this.state.loadingsalas ? <Empty description="No hay datos" />
                     :
                     <div>
-                      <Row>
-                        <Col>
-                          Total: <Tag style={{ marginLeft: '5px', marginRight: '25px' }} color="processing">{this.state.salas}</Tag>
+                      <Row gutter={[16, 16]}>
+                        <Col span={12}>
+                          Total: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.salas}</Tag>
                         </Col>
-                        <Col>
+                        <Col span={12}>
                           Activas: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.activas}</Tag>
                         </Col>
                       </Row>
@@ -60,18 +65,33 @@ class Info extends Component {
                   }
                 </Card>
               </Col>
-              </Row>
-              <Row gutter={[16, 16]} justify="center">
+            </Row>
+            <Row gutter={[16, 16]} justify="center">
               <Col xs={24} sm={24} md={24} lg={24}>
                 <Card title="Usuarios" type="inner" extra={<TeamOutlined />}>
                   {this.state.loadingusuarios ? <Empty description="No hay datos" />
                     :
                     <div>
-                      Total Usuarios: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalusuarios}</Tag><br />
-                    Total Moderadores: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalmoderadores}</Tag><br />
-                    Total Oyentes: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.oyentes}</Tag><br />
-                    Total con Audio: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.conaudio}</Tag><br />
-                    Total con Video: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.convideo}</Tag>
+                      <Row gutter={[16, 16]}>
+                        <Col span={8}>
+                          Total Usuarios: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalusuarios}</Tag><br />
+                        </Col>
+                        <Col span={8}>
+                          Total Moderadores: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalmoderadores}</Tag><br />
+                        </Col>
+                        <Col span={8}>
+                          Total Oyentes: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.oyentes}</Tag><br />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col span={8}>
+                          Total con Audio: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.conaudio}</Tag><br />
+                        </Col>
+                        <Col span={8}>
+                          Total con Video: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.convideo}</Tag>
+                        </Col>
+                        <Col span={8}></Col>
+                      </Row>
                     </div>
                   }
                 </Card>
@@ -123,20 +143,20 @@ class Info extends Component {
         });
       }
       for (i = 0; i < resultado.length; ++i) {
-        try{
-        minfo = await axios.get(tools.getMeetingInfo(resultado[i]))
-          .then((response) => {
-            return new Promise((resolve, reject) => {
-              parseString(response.data, function (err, result) {
-                if (result.response.returncode[0] !== 'SUCCESS') {
-                  reject(message.error(result.response.messageKey[0], '  ' + err));
-                }
-                resolve(_.get(result, 'response', ''));
-              })
-            });
-          }
-          );
-        }catch(error){
+        try {
+          minfo = await axios.get(tools.getMeetingInfo(resultado[i]))
+            .then((response) => {
+              return new Promise((resolve, reject) => {
+                parseString(response.data, function (err, result) {
+                  if (result.response.returncode[0] !== 'SUCCESS') {
+                    reject(message.error(result.response.messageKey[0], '  ' + err));
+                  }
+                  resolve(_.get(result, 'response', ''));
+                })
+              });
+            }
+            );
+        } catch (error) {
           console.log(error);
         }
         totusrs = totusrs + parseInt(_.get(minfo, 'participantCount[0]', 0));

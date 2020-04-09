@@ -43,7 +43,7 @@ class ModalSala extends Component {
     if (exists) {
       return (
         <Modal
-          title={_.get(sala, 'meetingName[0]', '')}
+          title={'Sala: ' + _.get(sala, 'meetingName[0]', '')}
           visible={visibleModal}
           okText='Cerrar'
           onOk={handleModal}
@@ -55,7 +55,7 @@ class ModalSala extends Component {
           cancelButtonProps={{
             style: { display: 'none' }
           }}
-          width='95%'>
+          width='80%'>
           <div>
             <Row justify="center">
               <Col span={12}>
