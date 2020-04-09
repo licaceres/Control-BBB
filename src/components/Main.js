@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Form, message, Card, Alert } from 'antd';
-import { SaveOutlined, SettingOutlined } from '@ant-design/icons';
+import { SaveOutlined, SettingOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { FormItem } from '../utils/FormItem';
 import '../styles/main.css';
 
@@ -17,6 +17,7 @@ class Main extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.limpiarCampos = this.limpiarCampos.bind(this);
     localStorage.setItem('url', this.state.url);
     localStorage.setItem('clave', this.state.clave);
   }
@@ -59,7 +60,16 @@ class Main extends Component {
                       error={null}
                       onChange={this.onChange} />
 
-                    <div className='btn-buscar'>
+                    <div className='btn-buttons'>
+                    <Button
+                        htmlType='button'
+                        type='secondary'
+                        style={{marginRight: '10px'}}
+                        onClick={this.limpiarCampos}
+                        icon={<CloseCircleOutlined />}>
+                        Limpiar
+                      </Button>
+
                       <Button
                         htmlType='submit'
                         type='primary'
@@ -92,6 +102,13 @@ class Main extends Component {
       localStorage.setItem('clave', clave);
       return message.success('Datos almacenados.')
     }
+  }
+
+  limpiarCampos() {
+    this.setState({
+      url: '',
+      clave: ''
+    })
   }
 }
 
