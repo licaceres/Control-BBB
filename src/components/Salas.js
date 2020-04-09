@@ -138,6 +138,7 @@ class Salas extends Component {
 
   handleRequest = async () => {
     var resultado;
+    try {
     await axios.get(tools.getMeetings())
       .then((response) => {
         parseString(response.data, function (err, result) {
@@ -149,6 +150,10 @@ class Salas extends Component {
       .catch((error) => {
         return message.success("No hay datos.")
       })
+    }
+    catch(error){
+      console.error(error)
+    }
   }
 
   handleEliminar = async (sala) => {

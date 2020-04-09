@@ -65,7 +65,7 @@ class Info extends Component {
                   {this.state.loadingusuarios ? <Empty description="No hay datos" />
                     :
                     <div>
-                    Total Usuarios: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalusuarios}</Tag><br />
+                      Total Usuarios: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalusuarios}</Tag><br />
                     Total Moderadores: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalmoderadores}</Tag><br />
                     Total Oyentes: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.oyentes}</Tag><br />
                     Total con Audio: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.conaudio}</Tag><br />
@@ -111,9 +111,17 @@ class Info extends Component {
     let minfo = 0;
     if (resultado !== 0) {
       for (var i = 0; i < resultado.length; ++i) {
-        if (resultado[i].running[0] === 'true')
+        if (resultado[i].running[0] === 'true') {
           count++;
-
+        }
+        this.setState({
+          salas: resultado.length,
+          loadingsalas: false,
+          activas: count,
+        });
+      }
+      for (i = 0; i < resultado.length; ++i) {
+        try{
         minfo = await axios.get(tools.getMeetingInfo(resultado[i]))
           .then((response) => {
             return new Promise((resolve, reject) => {
@@ -126,6 +134,9 @@ class Info extends Component {
             });
           }
           );
+        }catch(error){
+          console.log(error);
+        }
         totusrs = totusrs + parseInt(_.get(minfo, 'participantCount[0]', 0));
         moders = moders + parseInt(_.get(minfo, 'moderatorCount[0]', 0));
         oyentes = oyentes + parseInt(_.get(minfo, 'listenerCount[0]', 0));
@@ -136,10 +147,7 @@ class Info extends Component {
       }
 
       this.setState({
-        salas: resultado.length,
-        loadingsalas: false,
         loadingusuarios: false,
-        activas: count,
         totalmoderadores: moders,
         totalusuarios: totusrs,
         oyentes: oyentes,
