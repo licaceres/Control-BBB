@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
-import { Table, Button, Popconfirm, message, Card, Tooltip } from 'antd';
+import { Table, Button, Popconfirm, message, Card, Tooltip, Empty } from 'antd';
 import { DesktopOutlined, ReloadOutlined, CloseCircleOutlined, ZoomInOutlined, UserOutlined } from '@ant-design/icons';
 import * as tools from '../utils/ApiCalls';
 import ModalSala from './modals/ModalSala';
@@ -109,20 +109,24 @@ class Salas extends Component {
             style={{ marginBottom: '10px' }}
             onClick={this.handleRequest}>
             Actualizar
-        </Button>
-          <Table
-            columns={columns}
-            pagination={{ pageSize: 5 }}
-            dataSource={salas}
-            loading={loadingsalas}
-            rowKey='createTime'
-            size='small'
-            locale={{ emptyText: "No hay salas" }} />
+          </Button>
+
+          {loadingsalas ? <Empty description="No hay datos" />
+            :
+            <Table
+              columns={columns}
+              pagination={{ pageSize: 5 }}
+              dataSource={salas}
+              loading={loadingsalas}
+              rowKey='createTime'
+              size='small'
+              locale={{ emptyText: "No hay salas" }} />
+          }
           <ModalSala
             visibleModal={visibleModal}
             sala={sala}
             handleModal={this.closeModal} />
-          <ModalUsuarios 
+          <ModalUsuarios
             visibleModal={visibleModalUsr}
             sala={sala}
             handleModal={this.closeModal} />
@@ -138,11 +142,13 @@ class Salas extends Component {
       .then((response) => {
         parseString(response.data, function (err, result) {
           resultado = result.response.meetings[0].meeting;
-        });
-      }
-      );
-    this.setState({ salas: resultado, loadingsalas: false });
-    return message.success("Salas Actualizadas.");
+        })
+        this.setState({ salas: resultado, loadingsalas: false });
+        return message.success("Salas Actualizadas.");
+      })
+      .catch((error) => {
+        return message.success("No hay datos.")
+      })
   }
 
   handleEliminar = async (sala) => {
