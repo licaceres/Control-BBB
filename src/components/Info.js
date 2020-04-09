@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
-import { Col, Row, Card, Tag, message, Empty } from 'antd';
+import { Col, Row, Card, Tag, message, Empty, Typography } from 'antd';
 import { InfoCircleOutlined, DesktopOutlined, TeamOutlined } from '@ant-design/icons';
 import * as tools from '../utils/ApiCalls';
 import _ from 'lodash';
 
+const { Text } = Typography;
 
 class Info extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class Info extends Component {
                     <div>
                       <Row gutter={[16, 16]}>
                         <Col span={12}>
-                          BBB Version: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.version}</Tag>
+                          <Text code>BBB Version: </Text> <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.version}</Tag>
                         </Col>
                         <Col span={12}></Col>
                       </Row>
@@ -55,10 +56,10 @@ class Info extends Component {
                     <div>
                       <Row gutter={[16, 16]}>
                         <Col span={12}>
-                          Total: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.salas}</Tag>
+                          <Text code>Total: </Text> <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.salas}</Tag>
                         </Col>
                         <Col span={12}>
-                          Activas: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.activas}</Tag>
+                          <Text code>Activas: </Text> <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.activas}</Tag>
                         </Col>
                       </Row>
                     </div>
@@ -74,21 +75,21 @@ class Info extends Component {
                     <div>
                       <Row gutter={[16, 16]}>
                         <Col span={8}>
-                          Total Usuarios: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalusuarios}</Tag><br />
+                        <Text code>Total Usuarios: </Text> <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalusuarios}</Tag><br />
                         </Col>
                         <Col span={8}>
-                          Total Moderadores: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalmoderadores}</Tag><br />
+                        <Text code>Total Moderadores: </Text> <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.totalmoderadores}</Tag><br />
                         </Col>
                         <Col span={8}>
-                          Total Oyentes: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.oyentes}</Tag><br />
+                        <Text code>Total Oyentes: </Text> <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.oyentes}</Tag><br />
                         </Col>
                       </Row>
                       <Row>
                         <Col span={8}>
-                          Total con Audio: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.conaudio}</Tag><br />
+                        <Text code>Total con Audio: </Text> <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.conaudio}</Tag><br />
                         </Col>
                         <Col span={8}>
-                          Total con Video: <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.convideo}</Tag>
+                        <Text code>Total con Video: </Text> <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.convideo}</Tag>
                         </Col>
                         <Col span={8}></Col>
                       </Row>
