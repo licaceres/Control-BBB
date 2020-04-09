@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
 import { Col, Row, Card, Tag, message, Empty } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, DesktopOutlined, TeamOutlined } from '@ant-design/icons';
 import * as tools from '../utils/ApiCalls';
 import _ from 'lodash';
 
@@ -33,8 +33,8 @@ class Info extends Component {
         <Card title="Información" extra={<InfoCircleOutlined />}>
           <div className="site-card-wrapper">
             <Row gutter={[16, 16]} justify="center">
-              <Col xs={24} sm={24} md={16} lg={8}>
-                <Card title="Versión" type="inner">
+              <Col xs={24} sm={24} md={12} lg={12}>
+                <Card title="Versión" type="inner" extra={<InfoCircleOutlined />}>
                   {this.state.loadingversion ? <Empty description="No hay datos" />
                     :
                     <div>
@@ -43,8 +43,8 @@ class Info extends Component {
                   }
                 </Card>
               </Col>
-              <Col xs={24} sm={24} md={16} lg={8}>
-                <Card title="Salas" type="inner">
+              <Col xs={24} sm={24} md={12} lg={12}>
+                <Card title="Salas" type="inner" extra={<DesktopOutlined />}>
                   {this.state.loadingsalas ? <Empty description="No hay datos" />
                     :
                     <div>
@@ -60,8 +60,10 @@ class Info extends Component {
                   }
                 </Card>
               </Col>
-              <Col xs={24} sm={24} md={16} lg={8}>
-                <Card title="Usuarios" type="inner">
+              </Row>
+              <Row gutter={[16, 16]} justify="center">
+              <Col xs={24} sm={24} md={24} lg={24}>
+                <Card title="Usuarios" type="inner" extra={<TeamOutlined />}>
                   {this.state.loadingusuarios ? <Empty description="No hay datos" />
                     :
                     <div>

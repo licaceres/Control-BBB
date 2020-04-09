@@ -4,13 +4,15 @@ import { Layout, Menu } from 'antd';
 import {
   DesktopOutlined,
   SettingOutlined,
-  InfoCircleOutlined
+  InfoCircleOutlined,
+  DatabaseOutlined
 } from '@ant-design/icons';
 import '../styles/home.css';
 
 import Main from './Main';
 import Info from './Info';
-import Salas from './Salas'
+import Salas from './Salas';
+import Servidor from './Servidor';
 import LogoComunidades from '../images/logo-comunidades-unr.png';
 import LogoUnr from '../images/logo-unr.png';
 import LogoBbb from '../images/logo-bbb.jpg';
@@ -53,6 +55,11 @@ class Home extends Component {
                 <span>Salas</span>
                 <Link to="/salas" />
               </Menu.Item>
+              <Menu.Item key="4">
+                <DatabaseOutlined />
+                <span>Servidor</span>
+                <Link to="/servidor" />
+              </Menu.Item>
             </Menu>
           </Sider>
           <Layout className="site-layout">
@@ -63,6 +70,7 @@ class Home extends Component {
               <Route exact path="/" component={Main} />
               <Route exact path="/info" component={Info} />
               <Route exact path="/salas" component={Salas} />
+              <Route exact path="/servidor" component={Servidor} />
             </Content>
           </Layout>
         </Layout>
