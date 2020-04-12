@@ -16,21 +16,21 @@ class ModalSala extends Component {
 
     this.state = {
       exists: false,
-      id: '',
-      nombre: '',
-      curso: '',
-      fecha: '',
-      moderatorPW: '',
-      activa: '',
-      duracion: '',
-      grabando: '',
-      participantes: '',
-      oyentes: '',
-      maxusr: '',
-      moderadores: '',
-      creador: '',
-      svrorigen: '',
-      origen: '',
+      // id: '',
+      // nombre: '',
+      // curso: '',
+      // fecha: '',
+      // moderatorPW: '',
+      // activa: '',
+      // duracion: '',
+      // grabando: '',
+      // participantes: '',
+      // oyentes: '',
+      // maxusr: '',
+      // moderadores: '',
+      // creador: '',
+      // svrorigen: '',
+      // origen: '',
       usuarios: '',
       loading: false,
       sala: '',
@@ -38,7 +38,7 @@ class ModalSala extends Component {
   }
 
   render() {
-    const { visibleModal, handleModal, loading } = this.props;
+    const { visibleModal, loading } = this.props;
     const { exists, sala, usuarios } = this.state;
     console.log(usuarios);
     if (exists) {
@@ -47,12 +47,12 @@ class ModalSala extends Component {
           title={'Sala: ' + _.get(sala, 'meetingName[0]', '')}
           visible={visibleModal}
           okText='Cerrar'
-          onOk={handleModal}
+          onOk={this.okModal}
           okButtonProps={{
             disabled: loading,
             loading: loading
           }}
-          onCancel={handleModal}
+          onCancel={this.okModal}
           cancelButtonProps={{
             style: { display: 'none' }
           }}
@@ -86,7 +86,7 @@ class ModalSala extends Component {
   }
 
   componentDidUpdate = async () => {
-    if (this.props.visibleModal && !this.state.id) {
+    if (this.props.visibleModal && !this.state.exists) {
       var resultado = null;
       await axios.get(tools.getMeetingInfo(this.props.sala))
         .then((response) => {
@@ -109,6 +109,10 @@ class ModalSala extends Component {
       });
       console.log(this.state.id);
     }
+  }
+  okModal = () => {
+    this.props.handleModal();
+    this.setState({exists: false, sala: ''});
   }
 }
 

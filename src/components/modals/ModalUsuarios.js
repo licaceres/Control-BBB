@@ -18,7 +18,7 @@ class ModalUsuarios extends Component {
   }
 
   render() {
-    const { visibleModal, handleModal, loading } = this.props;
+    const { visibleModal, loading } = this.props;
     const { exists, loadingUsuarios, sala } = this.state;
     const columns = [{
       title: 'Id',
@@ -88,6 +88,7 @@ class ModalUsuarios extends Component {
     }
     ];
     if (exists) {
+      console.log(exists, visibleModal);
       return (
         <Modal
           title={'Usuarios'}
@@ -98,7 +99,7 @@ class ModalUsuarios extends Component {
             disabled: loading,
             loading: loading  
           }}
-          onCancel={handleModal}
+          onCancel={this.okModal}
           cancelButtonProps={{
             style: { display: 'none' }
           }}

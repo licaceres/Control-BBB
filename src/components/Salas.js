@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
 import { Table, Button, Popconfirm, message, Card, Tooltip, Empty } from 'antd';
-import { DesktopOutlined, ReloadOutlined, CloseCircleOutlined, ZoomInOutlined, TeamOutlined } from '@ant-design/icons';
+import { DesktopOutlined, ReloadOutlined, CloseCircleOutlined, ZoomInOutlined, UserOutlined } from '@ant-design/icons';
 import * as tools from '../utils/ApiCalls';
 import ModalSala from './modals/ModalSala';
 import ModalUsuarios from './modals/ModalUsuarios';
@@ -80,7 +80,7 @@ class Salas extends Component {
               <Button
                 style={{ marginLeft: '10px' }}
                 type='primary'
-                icon={<TeamOutlined />}
+                icon={<UserOutlined />}
                 onClick={() => this.consultarUsuarios(item)}>
               </Button>
             </Tooltip>
@@ -102,7 +102,7 @@ class Salas extends Component {
     ];
     return (
       <div>
-        <Card bordered={false} title={<span style={{fontSize: '1.2em'}}>Salas</span>} extra={<DesktopOutlined />}>
+        <Card title="Salas" extra={<DesktopOutlined />}>
           <Button
             type='primary'
             icon={<ReloadOutlined />}
@@ -139,20 +139,20 @@ class Salas extends Component {
   handleRequest = async () => {
     var resultado;
     try {
-    await axios.get(tools.getMeetings())
-      .then((response) => {
-        parseString(response.data, function (err, result) {
-          resultado = result.response.meetings[0].meeting;
+      await axios.get(tools.getMeetings())
+        .then((response) => {
+          parseString(response.data, function (err, result) {
+            resultado = result.response.meetings[0].meeting;
+          })
+          this.setState({ salas: resultado, loadingsalas: false });
+          return message.success("Salas Actualizadas.");
         })
-        this.setState({ salas: resultado, loadingsalas: false });
-        return message.success("Salas Actualizadas.");
-      })
-      .catch((error) => {
-        return message.success("No hay datos.")
-      })
+        .catch((error) => {
+          return message.success("No hay datos.");
+        })
     }
-    catch(error){
-      console.error(error)
+    catch (error) {
+      console.error(error);
     }
   }
 
@@ -176,6 +176,7 @@ class Salas extends Component {
     this.setState({
       visibleModal: false,
       visibleModalUsr: false,
+  
     });
   }
 
@@ -186,12 +187,7 @@ class Salas extends Component {
 
   consultarUsuarios = (sala) => {
     this.setState({ visibleModalUsr: true, sala: sala });
-  }
-
-  handleModal = () => {
-    this.setState({
-      visible: !this.state.visibleModal,
-    });
+    console.log(this.state.visibleModalUsr);
   }
 
   componentDidMount = async () => {
