@@ -102,7 +102,7 @@ class Salas extends Component {
     ];
     return (
       <div>
-        <Card title="Salas" extra={<DesktopOutlined />}>
+        <Card bordered={false} title={<span style={{fontSize: '1.2em'}}>Salas</span>} extra={<DesktopOutlined />}>
           <Button
             type='primary'
             icon={<ReloadOutlined />}
