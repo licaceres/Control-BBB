@@ -8,7 +8,8 @@ class Servidor extends Component {
   render() {
     return (
       <div>
-        <Card title="Servidor" extra={<DatabaseOutlined />}>
+        <Card bordered={false} title={<span style={{fontSize: '1.2em'}}>Servidor</span>} extra={<DatabaseOutlined />}>
+        
         </Card>
       </div>
     )
