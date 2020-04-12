@@ -5,6 +5,7 @@ import { Col, Row, message, Modal, Typography } from 'antd';
 
 import * as tools from '../../utils/ApiCalls';
 import _ from 'lodash';
+import '../../styles/modalsala.css';
 
 const { Text } = Typography;
 
@@ -59,21 +60,21 @@ class ModalSala extends Component {
           <div>
             <Row justify="center">
               <Col span={12}>
-                <Text code>Curso:</Text> {_.get(sala, 'metadata[0]["bbb-context"][0]', '')}mi curso<br />
-                <Text code>Fecha:</Text>{_.get(sala, 'createDate[0]', '')}<br />
-                <Text code>Pass Moderador:</Text> {_.get(sala, 'moderatorPW[0]', '')}<br />
-                <Text code>Activa:</Text> {_.get(sala,'running[0]', '')}<br />
-                <Text code>Duración:</Text> {_.get(sala, 'duration[0]', '')}<br />
-                <Text code>Grabando:</Text> {_.get(sala, 'recording[0]', '')}<br />
-                <Text code>Participantes:</Text> {_.get(sala, 'participantCount[0]', '')}<br />
+                <Text code>Curso:</Text> <span className="consulta-font">{_.get(sala, 'metadata[0]["bbb-context"][0]', '')}mi curso</span><br />
+                <Text code>Fecha:</Text> <span className="consulta-font">{_.get(sala, 'createDate[0]', '')}</span><br />
+                <Text code>Pass Moderador:</Text> <span className="consulta-font">{_.get(sala, 'moderatorPW[0]', '')}</span><br />
+                <Text code>Activa:</Text> <span className="consulta-font">{_.get(sala,'running[0]', '')}</span><br />
+                <Text code>Duración:</Text> <span className="consulta-font">{_.get(sala, 'duration[0]', '')}</span><br />
+                <Text code>Grabando:</Text> <span className="consulta-font">{_.get(sala, 'recording[0]', '')}</span><br />
+                <Text code>Participantes:</Text> <span className="consulta-font">{_.get(sala, 'participantCount[0]', '')}</span><br />
               </Col>
               <Col span={12}>
-                <Text code>Oyentes:</Text> {_.get(sala, 'listenerCount[0]', '')}<br />
-                <Text code>Cant. Max. Usuarios:</Text> {_.get(sala, 'maxUsers[0]', '')}<br />
-                <Text code>Moderadores:</Text> {_.get(sala, 'moderatorCount[0]', '')}<br />
-                <Text code>Usuario Creador:</Text> {_.get(sala, 'metadata[0]["bn-userid"][0]', '')}<br />
-                <Text code>Server Origen:</Text> {_.get(sala, 'metadata[0]["bbb-origin-server-name"][0]', '')}<br />
-                <Text code>Origen:</Text> {_.get(sala, 'metadata[0]["bbb-origin"][0]', '')}<br />
+                <Text code>Oyentes:</Text> <span className="consulta-font">{_.get(sala, 'listenerCount[0]', '')}</span><br />
+                <Text code>Cant. Max. Usuarios:</Text> <span className="consulta-font">{_.get(sala, 'maxUsers[0]', '')}</span><br />
+                <Text code>Moderadores:</Text> <span className="consulta-font">{_.get(sala, 'moderatorCount[0]', '')}</span><br />
+                <Text code>Usuario Creador:</Text> <span className="consulta-font">{_.get(sala, 'metadata[0]["bn-userid"][0]', '')}</span><br />
+                <Text code>Server Origen:</Text> <span className="consulta-font">{_.get(sala, 'metadata[0]["bbb-origin-server-name"][0]', '')}</span><br />
+                <Text code>Origen:</Text> <span className="consulta-font">{_.get(sala, 'metadata[0]["bbb-origin"][0]', '')}</span><br />
               </Col>
             </Row>
           </div>

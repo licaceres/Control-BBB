@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
-import { Col, Row, Card, Tag, message, Empty, Typography } from 'antd';
+import { Col, Row, Card, Tag, message, Empty, Typography, Divider } from 'antd';
 import { InfoCircleOutlined, DesktopOutlined, TeamOutlined } from '@ant-design/icons';
 import * as tools from '../utils/ApiCalls';
 import _ from 'lodash';
+import '../styles/info.css'
 
 const { Text } = Typography;
 
@@ -31,45 +32,120 @@ class Info extends Component {
   render() {
     return (
       <div>
-        <Card title="Información" extra={<InfoCircleOutlined />}>
+        <Card bordered={false} title={<span style={{fontSize: '1.2em'}}>Información</span>} extra={<InfoCircleOutlined />}>
           <div className="site-card-wrapper">
             <Row gutter={[16, 16]} justify="center">
-              <Col xs={24} sm={24} md={12} lg={12}>
-                <Card title="Versión" type="inner" extra={<InfoCircleOutlined />}>
-                  {this.state.loadingversion ? <Empty description="No hay datos" />
+              <Col xs={24} sm={24} md={8} lg={8}>
+                <Card size="small"  bordered={false} style={{backgroundColor: '#191919'}} title="Versión BBB" extra={<InfoCircleOutlined />}>
+                  {this.state.loadingversion ? <Empty imageStyle={{ height: '20px' }} image={Empty.PRESENTED_IMAGE_SIMPLE} description="No hay datos" />
                     :
                     <div>
-                      <Row gutter={[16, 16]}>
+                      <span className="card-content-font">{this.state.version}</span>
+                      {/* <Row gutter={[16, 16]}>
                         <Col span={12}>
                           <Text code>BBB Version: </Text> <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.version}</Tag>
                         </Col>
                         <Col span={12}></Col>
-                      </Row>
+                      </Row> */}
                     </div>
                   }
                 </Card>
               </Col>
-              <Col xs={24} sm={24} md={12} lg={12}>
-                <Card title="Salas" type="inner" extra={<DesktopOutlined />}>
-                  {this.state.loadingsalas ? <Empty description="No hay datos" />
+              <Col xs={24} sm={24} md={8} lg={8}>
+                <Card size="small"  bordered={false} style={{backgroundColor: '#191919'}} title="Total Salas" extra={<DesktopOutlined />}>
+                  {this.state.loadingsalas ? <Empty imageStyle={{ height: '20px' }} image={Empty.PRESENTED_IMAGE_SIMPLE} description="No hay datos" />
                     :
                     <div>
-                      <Row gutter={[16, 16]}>
+                      <span className="card-content-font">{this.state.salas}</span>
+                      {/* <Row gutter={[16, 16]}>
                         <Col span={12}>
                           <Text code>Total: </Text> <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.salas}</Tag>
                         </Col>
                         <Col span={12}>
                           <Text code>Activas: </Text> <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.activas}</Tag>
                         </Col>
-                      </Row>
+                      </Row> */}
+                    </div>
+                  }
+                </Card>
+              </Col>
+              <Col xs={24} sm={24} md={8} lg={8}>
+                <Card size="small"  bordered={false} style={{backgroundColor: '#191919'}} title="Salas Activas" extra={<DesktopOutlined />}>
+                  {this.state.loadingsalas ? <Empty imageStyle={{ height: '20px' }} image={Empty.PRESENTED_IMAGE_SIMPLE} description="No hay datos" />
+                    :
+                    <div>
+                      <span className="card-content-font">{this.state.activas}</span>
+                      {/* <Row gutter={[16, 16]}>
+                        <Col span={12}>
+                          <Text code>Total: </Text> <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.salas}</Tag>
+                        </Col>
+                        <Col span={12}>
+                          <Text code>Activas: </Text> <Tag style={{ marginLeft: '5px' }} color="processing">{this.state.activas}</Tag>
+                        </Col>
+                      </Row> */}
                     </div>
                   }
                 </Card>
               </Col>
             </Row>
             <Row gutter={[16, 16]} justify="center">
-              <Col xs={24} sm={24} md={24} lg={24}>
-                <Card title="Usuarios" type="inner" extra={<TeamOutlined />}>
+              <Col xs={24} sm={24} md={8} lg={8}>
+              <Card size="small"  bordered={false} style={{backgroundColor: '#191919'}} title="Total Usuarios" extra={<TeamOutlined />}>
+                  {this.state.loadingusuarios ? <Empty imageStyle={{ height: '20px' }} image={Empty.PRESENTED_IMAGE_SIMPLE} description="No hay datos" />
+                    :
+                    <div>
+                      <span className="card-content-font">{this.state.totalusuarios}</span>
+                    </div>
+                  }
+                </Card>
+                </Col>
+                <Col xs={24} sm={24} md={8} lg={8}>
+                <Card size="small"  bordered={false} style={{backgroundColor: '#191919'}} title="Total Moderadores" extra={<TeamOutlined />}>
+                  {this.state.loadingusuarios ? <Empty imageStyle={{ height: '20px' }} image={Empty.PRESENTED_IMAGE_SIMPLE} description="No hay datos" />
+                    :
+                    <div>
+                      <span className="card-content-font">{this.state.totalmoderadores}</span>
+                    </div>
+                  }
+                </Card>
+                </Col>
+                <Col xs={24} sm={24} md={8} lg={8}>
+                <Card size="small"  bordered={false} style={{backgroundColor: '#191919'}} title="Total Oyentes" extra={<TeamOutlined />}>
+                  {this.state.loadingusuarios ? <Empty imageStyle={{ height: '20px' }} image={Empty.PRESENTED_IMAGE_SIMPLE} description="No hay datos" />
+                    :
+                    <div>
+                      <span className="card-content-font">{this.state.oyentes}</span>
+                    </div>
+                  }
+                </Card>
+                </Col>
+                </Row>
+                <Row gutter={[16, 16]} justify="center">
+                <Col xs={24} sm={24} md={8} lg={8}>
+                <Card size="small"  bordered={false} style={{backgroundColor: '#191919'}} title="Total con Audio" extra={<TeamOutlined />}>
+                  {this.state.loadingusuarios ? <Empty imageStyle={{ height: '20px' }} image={Empty.PRESENTED_IMAGE_SIMPLE} description="No hay datos" />
+                    :
+                    <div>
+                      <span className="card-content-font">{this.state.conaudio}</span>
+                    </div>
+                  }
+                </Card>
+                </Col>
+                <Col xs={24} sm={24} md={8} lg={8}>
+                <Card size="small" bordered={false} style={{backgroundColor: '#191919'}} title="Total con Video" extra={<TeamOutlined />}>
+                  {this.state.loadingusuarios ? <Empty imageStyle={{ height: '20px' }} image={Empty.PRESENTED_IMAGE_SIMPLE} description="No hay datos" />
+                    :
+                    <div>
+                      <span className="card-content-font">{this.state.convideo}</span>
+                    </div>
+                  }
+                </Card>
+                </Col>
+                <Col xs={24} sm={24} md={8} lg={8}>
+                </Col>
+
+                {/* <Card size="small" title="Usuarios" type="inner" extra={<TeamOutlined />}>
+                                    
                   {this.state.loadingusuarios ? <Empty description="No hay datos" />
                     :
                     <div>
@@ -95,8 +171,8 @@ class Info extends Component {
                       </Row>
                     </div>
                   }
-                </Card>
-              </Col>
+                </Card> */}
+              
             </Row>
           </div>
         </Card>

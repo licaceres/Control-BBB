@@ -15,7 +15,7 @@ import Salas from './Salas';
 import Servidor from './Servidor';
 import LogoComunidades from '../images/logo-comunidades-unr.png';
 import LogoUnr from '../images/logo-unr.png';
-import LogoBbb from '../images/logo-bbb.jpg';
+import LogoBbb from '../images/logo-bbb.png';
 
 const { Content, Sider, Header } = Layout;
 
@@ -39,32 +39,32 @@ class Home extends Component {
             <div className="logo-unr" hidden={!this.state.collapsed}>
               <img src={LogoUnr} alt='logo-unr' className='logo-unr-size' />
             </div>
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+            <Menu theme="dark" style={{backgroundColor: '#A82582'}} defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1">
                 <SettingOutlined />
-                <span>Configuración</span>
+                <span style={{fontWeight: 'bold'}}>Configuración</span>
                 <Link to="/" />
               </Menu.Item>
               <Menu.Item key="2">
                 <InfoCircleOutlined />
-                <span>Información</span>
+                <span style={{fontWeight: 'bold'}}>Información</span>
                 <Link to="/info" />
               </Menu.Item>
               <Menu.Item key="3">
                 <DesktopOutlined />
-                <span>Salas</span>
+                <span style={{fontWeight: 'bold'}}>Salas</span>
                 <Link to="/salas" />
               </Menu.Item>
               <Menu.Item key="4">
                 <DatabaseOutlined />
-                <span>Servidor</span>
+                <span style={{fontWeight: 'bold'}}>Servidor</span>
                 <Link to="/servidor" />
               </Menu.Item>
             </Menu>
           </Sider>
           <Layout className="site-layout">
             <Header className="site-layout-background" style={{ paddingLeft: '16px', paddingRight: '35px' }}>
-              <h3 style={{ fontWeight: 'initial', textAlign: 'right' }}>[ Panel de Control ]<span style={{ paddingLeft: '10px' }}><img src={LogoBbb} alt='logo-bbb' className="logo-bbb-size" /></span></h3>
+              <h3 style={{ fontWeight: 'bold', textAlign: 'right' }}>Panel de Control<span style={{ paddingLeft: '10px' }}><img src={LogoBbb} alt='logo-bbb' className="logo-bbb-size" /></span></h3>
             </Header>
             <Content style={{ margin: '16px' }}>
               <Route exact path="/" component={Main} />

@@ -29,7 +29,7 @@ class Main extends Component {
       <div>
         <Row justify="center">
           <Col span={24}>
-            <Card title="Configuración" extra={<SettingOutlined />} style={{ width: '100%' }}>
+            <Card bordered={false} title={<span style={{fontSize: '1.2em'}}>Configuración</span>} extra={<SettingOutlined />} style={{ width: '100%' }}>
               <Row>
                 <Col span={16} offset={4}>
                   <Alert message="Servidor: BigBlueButton" type="info" style={{ marginBottom: '30px' }} />
