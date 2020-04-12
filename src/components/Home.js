@@ -32,7 +32,7 @@ class Home extends Component {
     return (
       <div>
         <Layout style={{ minHeight: '100vh' }}>
-          <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+          <Sider style={{backgroundColor: '#A82582'}} collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
             <div className="logo-comunidades" hidden={this.state.collapsed}>
               <img src={LogoComunidades} alt='logo-comunidades' className='logo-comunidades-size' />
             </div>
