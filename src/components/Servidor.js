@@ -9,7 +9,10 @@ class Servidor extends Component {
     return (
       <div>
         <Card bordered={false} title={<span style={{fontSize: '1.2em'}}>Servidor</span>} extra={<DatabaseOutlined />}>
-        
+
+          <img src="http://cactibbb.duckdns.org/cacti/graph_image.php?action=view&local_graph_id=5&rra_id=1" alt="graph"/>
+          
+
         </Card>
       </div>
     )
