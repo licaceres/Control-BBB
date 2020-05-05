@@ -6,6 +6,7 @@ import { url } from '../utils/Url'
 import { omit } from 'lodash';
 import axios from 'axios';
 import '../styles/login.css';
+import Logo from '../images/logo_comunidades_login.png'
 
 const validateSchema = Yup.object().shape({
   username: Yup.string()
@@ -53,14 +54,13 @@ class Login extends Component {
     return (
       <Row className='login'>
         <Col>
-          {/* <img
+        <Row className="logo-login-unr">
+            <img
             src={Logo}
             alt=''
-            className='login-logo' /> */}
-        </Col>
-
-        <Col>
-          <h4 className='login-title'>Panel de Control [BigBlueButton]</h4>
+            className='login-logo' />
+        </Row>
+          <h3 className='login-title'>Panel de Control [BigBlueButton]</h3>
 
           <Form
             onSubmitCapture={this.handleSubmit}
@@ -95,8 +95,7 @@ class Login extends Component {
           <div>
             <p className='login-copyright'>
               Panel de Control BigBlueButton. Comunidades UNR.
-              Licensed under the MIT license.
-              <br />Mayo 2020.
+              <br />Licensed under the MIT license.
             </p>
           </div>
         </Col>
