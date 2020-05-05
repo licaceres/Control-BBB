@@ -5,7 +5,8 @@ import {
   DesktopOutlined,
   SettingOutlined,
   InfoCircleOutlined,
-  DatabaseOutlined
+  DatabaseOutlined,
+  UserOutlined
 } from '@ant-design/icons';
 import '../styles/home.css';
 
@@ -32,33 +33,37 @@ class Home extends Component {
     return (
       <div>
         <Layout style={{ minHeight: '100vh' }}>
-          <Sider style={{backgroundColor: '#A82582'}} collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+          <Sider style={{ backgroundColor: '#A82582' }} collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
             <div className="logo-comunidades" hidden={this.state.collapsed}>
               <img src={LogoComunidades} alt='logo-comunidades' className='logo-comunidades-size' />
             </div>
             <div className="logo-unr" hidden={!this.state.collapsed}>
               <img src={LogoUnr} alt='logo-unr' className='logo-unr-size' />
             </div>
-            <Menu theme="dark" style={{backgroundColor: '#A82582'}} defaultSelectedKeys={['1']} mode="inline">
+            <Menu theme="dark" style={{ backgroundColor: '#A82582' }} defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1">
                 <SettingOutlined />
-                <span style={{fontWeight: 'bold'}}>Configuración</span>
+                <span style={{ fontWeight: 'bold' }}>Configuración</span>
                 <Link to="/" />
               </Menu.Item>
               <Menu.Item key="2">
                 <InfoCircleOutlined />
-                <span style={{fontWeight: 'bold'}}>Información</span>
+                <span style={{ fontWeight: 'bold' }}>Información</span>
                 <Link to="/info" />
               </Menu.Item>
               <Menu.Item key="3">
                 <DesktopOutlined />
-                <span style={{fontWeight: 'bold'}}>Salas</span>
+                <span style={{ fontWeight: 'bold' }}>Salas</span>
                 <Link to="/salas" />
               </Menu.Item>
               <Menu.Item key="4">
                 <DatabaseOutlined />
-                <span style={{fontWeight: 'bold'}}>Servidor</span>
+                <span style={{ fontWeight: 'bold' }}>Servidor</span>
                 <Link to="/servidor" />
+              </Menu.Item>
+              <Menu.Item key="5">
+                <UserOutlined />                
+                <span style={{ fontWeight: 'bold' }} onClick={this.logOut}>Cerrar Sesión</span>
               </Menu.Item>
             </Menu>
           </Sider>
@@ -76,6 +81,11 @@ class Home extends Component {
         </Layout>
       </div>
     );
+  }
+
+  logOut = () => {
+    localStorage.clear();
+    window.location.reload();
   }
 }
 
