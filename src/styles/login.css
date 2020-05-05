@@ -23,3 +23,22 @@
   font-size: 0.7rem;
   color: white !important;
 }
+
+.ant-input-affix-wrapper {
+  background-color: rgb(148, 21, 112);
+}
+
+.ant-form-item-has-error .ant-input, .ant-form-item-has-error .ant-input-affix-wrapper, .ant-form-item-has-error .ant-input:hover, .ant-form-item-has-error .ant-input-affix-wrapper:hover {
+  background-color: rgb(148, 21, 112);
+  border-color: white;
+}
+
+.ant-form-item-has-error .ant-input, .ant-form-item-has-error .ant-input-affix-wrapper, .ant-form-item-has-error .ant-input:hover, .ant-form-item-has-error .ant-input-affix-wrapper:hover {
+  background-color: rgb(148, 21, 112);
+  border: transparent;
+}
+
+.ant-form-item-has-error .ant-form-item-explain, .ant-form-item-has-error .ant-form-item-split {
+  color: white;
+  margin-bottom: 15px;
+}
