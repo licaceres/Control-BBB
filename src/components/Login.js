@@ -57,7 +57,7 @@ class Login extends Component {
         <Row className="logo-login-unr">
             <img
             src={Logo}
-            alt=''
+            alt='logo-unr-login'
             className='login-logo' />
         </Row>
           <h3 className='login-title'>Panel de Control [BigBlueButton]</h3>
