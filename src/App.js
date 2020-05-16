@@ -1,20 +1,18 @@
-import 'antd/dist/antd.css';
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { PrivateRoute } from './utils/PrivateRoute'
-import Login from './components/Login';
-import Home from './components/Home';
+import { Route, Switch } from 'react-router-dom';
+import Login from './components/Login/Login';
+import MainMenu from './components/MainMenu/MainMenu';
+import { PrivateRoute } from './utils/PrivateRoute';
 import './App.css';
 
 
 function App() {
+
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path='/login' component={Login} exact />
-        <Route path='/' component={PrivateRoute(Home)} />
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route exact path="/login" component={Login} />
+      <PrivateRoute path="/" roles={[1, 2]} component={MainMenu} />
+    </Switch>
   );
 }
 

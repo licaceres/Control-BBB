@@ -1,0 +1,61 @@
+.login {
+  height: 100%;
+  background-color: #A82582;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.logo-login-unr {
+  background-color: white;
+  margin-bottom: 25px;
+  border-style: solid;
+  border-color: white;
+  border-radius: 0.2em;
+  -webkit-box-shadow: 2px 2px 4px 0px rgba(126, 27, 97, 0.75);
+  -moz-box-shadow:    2px 2px 4px 0px rgba(126, 27, 97, 0.75);
+  box-shadow:         2px 2px 4px 0px rgba(126, 27, 97, 0.75);
+  display: flex;
+  justify-content: center;
+}
+
+.center-items {
+  justify-content: center;
+  align-items: center;
+}
+
+.login-logo {
+  height: 3rem;
+}
+
+.login-footer {
+  font-size: 0.8em;
+}
+
+.ant-form-item-has-error .ant-form-item-explain, .ant-form-item-has-error .ant-form-item-split {
+  color: white;
+}
+
+.ant-form-item-has-error .ant-input, .ant-form-item-has-error .ant-input-affix-wrapper, .ant-form-item-has-error .ant-input:hover, .ant-form-item-has-error .ant-input-affix-wrapper:hover {
+  border-color: white !important;
+}
+
+.ant-form-item-has-error .ant-input, .ant-form-item-has-error .ant-input-affix-wrapper, .ant-form-item-has-error .ant-input:hover, .ant-form-item-has-error .ant-input-affix-wrapper:hover  {
+  border-color: white !important;
+}
+
+.ant-form-item-has-error .ant-input:not([disabled]):hover, .ant-form-item-has-error .ant-input-affix-wrapper:not([disabled]):hover {
+  border-color: grey !important;
+}
+
+.ant-form-item-has-error .ant-input:not([disabled]):hover, .ant-form-item-has-error .ant-input-affix-wrapper:not([disabled]):hover {
+  border-color: white !important;
+}
+
+.ant-form-item-has-error .ant-input-prefix {
+  color: #514563;
+}

@@ -3,9 +3,9 @@ import axios from 'axios';
 import { parseString } from 'xml2js';
 import { Table, Button, Popconfirm, message, Card, Tooltip, Empty } from 'antd';
 import { DesktopOutlined, ReloadOutlined, CloseCircleOutlined, ZoomInOutlined, UserOutlined } from '@ant-design/icons';
-import * as tools from '../utils/ApiCalls';
-import ModalSala from './modals/ModalSala';
-import ModalUsuarios from './modals/ModalUsuarios';
+import * as tools from '../../utils/ApiCalls';
+import ModalSala from '../Salas/Modal/ModalSala';
+import ModalUsuarios from '../Salas/Modal/ModalUsuarios';
 
 class Salas extends Component {
   constructor(props) {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Col, DatePicker, Card } from 'antd';
 import { DatabaseOutlined } from '@ant-design/icons';
 import axios from 'axios';
-import LineChart from './charts/LineChart';
+import LineChart from './Charts/LineChart';
 import _ from 'lodash';
 
 const { RangePicker } = DatePicker;

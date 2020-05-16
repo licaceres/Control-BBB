@@ -1,65 +1,19 @@
 import '../App.css';
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Spin } from 'antd';
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
 
-export const PrivateRoute = (ChildComponent) => class PrivateRoute extends Component {
-  constructor(props) {
-    super(props);
+export const PrivateRoute = ({ component: Component, roles, ...rest }) => (
+  <Route {...rest} render={props => {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      
+      if (!currentUser) {
+          return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+      }
 
-    this.state = {
-      loading: false,
-      currentUser: null,
-      hasTried: false
-    };
-  }
+      if (roles && roles.indexOf(currentUser.idRol) === -1) {
+        return <Redirect to={{ pathname: '/' }} />
+      }
 
-  componentDidMount() {
-    this.auth();
-  }
-
-  auth = () => {
-    this.setState({ loading: true });
-    // CHEQUEO USUARIO EN LOCAL STORAGE
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
-    // SIMULO ASINCRONIA
-    setTimeout(
-      () => {
-        this.setState({
-          currentUser,
-          hasTried: true,
-          loading: false
-        });
-      },
-      2000
-    );
-  }
-
-  render() {
-    const { currentUser, hasTried, loading } = this.state;
-
-    // SI NO INTENTO AUTH Y ESTA LOADING SPINNER
-    if (!hasTried || loading) {
-      return (
-        <div className='auth-spin'>
-          <div><Spin size='large' /></div>
-        </div>
-      );
-    }
-
-    // SI EXISTE USER AL PANEL
-    if (!!currentUser) {
-      return (
-        <ChildComponent {...this.props} />
-      );
-    }
-
-    // SINO AL LOGIN
-    return (
-      <Redirect to='/login'  />
-    );
-  }
-};
-
-export default (ChildComponent) => PrivateRoute(ChildComponent);
+      return <Component {...props} />
+  }} />
+)

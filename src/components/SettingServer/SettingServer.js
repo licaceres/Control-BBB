@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Form, message, Card, Alert } from 'antd';
 import { SaveOutlined, SettingOutlined, CloseCircleOutlined } from '@ant-design/icons';
-import { FormItem } from '../utils/FormItem';
-import '../styles/main.css';
+import { FormItem } from '../../utils/FormItem';
 
+import './settingserver.css';
 
-class Main extends Component {
-
+class SettingServer extends Component {
   constructor(props) {
     super(props);
 
@@ -15,9 +14,6 @@ class Main extends Component {
       clave: 'TM6I5tVVENQOLespdftbHQhF3M2SMYToOP7F4otJAc'
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.limpiarCampos = this.limpiarCampos.bind(this);
     localStorage.setItem('url', this.state.url);
     localStorage.setItem('clave', this.state.clave);
   }
@@ -87,11 +83,11 @@ class Main extends Component {
     );
   }
 
-  onChange(value, key) {
+  onChange = (value, key) => {
     this.setState({ [key]: value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     if (!!event) event.preventDefault();
     const { url, clave } = this.state;
 
@@ -104,7 +100,7 @@ class Main extends Component {
     }
   }
 
-  limpiarCampos() {
+  limpiarCampos = () => {
     this.setState({
       url: '',
       clave: ''
@@ -112,4 +108,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default SettingServer;

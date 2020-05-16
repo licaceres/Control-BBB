@@ -3,9 +3,9 @@ import axios from 'axios';
 import { parseString } from 'xml2js';
 import { Col, Row, message, Modal, Typography } from 'antd';
 
-import * as tools from '../../utils/ApiCalls';
+import * as tools from '../../../utils/ApiCalls';
 import _ from 'lodash';
-import '../../styles/modalsala.css';
+import './modalsala.css';
 
 const { Text } = Typography;
 

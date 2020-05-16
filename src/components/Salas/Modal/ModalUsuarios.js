@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { parseString } from 'xml2js';
 import { message, Modal, Button, Table } from 'antd';
-import * as tools from '../../utils/ApiCalls';
+import * as tools from '../../../utils/ApiCalls';
 import { ReloadOutlined } from '@ant-design/icons';
 
 class ModalUsuarios extends Component {

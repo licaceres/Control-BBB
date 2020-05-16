@@ -1,0 +1,51 @@
+.logo-comunidades {
+  height: 50px;
+  background: white;
+  margin: 16px;
+  text-align: center;
+  border-style: solid;  
+  border-color: white;  
+  border-radius: 0.2em;
+  -webkit-box-shadow: 2px 2px 4px 0px rgba(126, 27, 97, 0.75);
+  -moz-box-shadow:    2px 2px 4px 0px rgba(126, 27, 97, 0.75);
+  box-shadow:         2px 2px 4px 0px rgba(126, 27, 97, 0.75);
+}
+
+.logo-comunidades-size {
+  height: 40px;
+  margin-top: 2px;
+}
+
+.logo-unr {
+  height: 50px;
+  background: white;
+  margin: 16px;
+  text-align: center;
+  border-style: solid;
+  border-color: white;
+  border-radius: 0.2em;
+  -webkit-box-shadow: 2px 2px 4px 0px rgba(126, 27, 97, 0.75);
+  -moz-box-shadow:    2px 2px 4px 0px rgba(126, 27, 97, 0.75);
+  box-shadow:         2px 2px 4px 0px rgba(126, 27, 97, 0.75);
+}
+
+.logo-unr-size {
+  height: 40px;
+  margin-top: 2px;
+}
+
+.logo-bbb-size {
+  height: 25px;
+}
+
+/* .site-layout .site-layout-background {
+  background: #141414;
+}
+
+[data-theme="dark"] .site-layout .site-layout-background {
+  background: #141414;
+}
+
+.site-card-wrapper {
+  padding: 30px;
+} */
