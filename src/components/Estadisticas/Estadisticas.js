@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Col, DatePicker, Card } from 'antd';
-import { DatabaseOutlined } from '@ant-design/icons';
+import { LineChartOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import LineChart from './Charts/LineChart';
 import _ from 'lodash';
 
 const { RangePicker } = DatePicker;
 
-class Servidor extends Component {
+class Estadisticas extends Component {
   constructor(props) {
     super(props);
 
@@ -22,7 +22,7 @@ class Servidor extends Component {
     return (
       
       <div>
-        <Card bordered={false} style={{ width: 600 }} title={<span style={{ fontSize: '1.2em' }}>Usuarios</span>} extra={<DatabaseOutlined />}>
+        <Card bordered={false} style={{ width: 600 }} title={<span style={{ fontSize: '1.2em' }}>Estadísticas</span>} extra={<LineChartOutlined />}>
           <Col xs={{ span: 24 }} lg={{ span: 12 }}>
             <RangePicker
               showTime={{ format: 'HH:mm' }}
@@ -90,5 +90,5 @@ class Servidor extends Component {
   // }
 }
 
-export default Servidor;
+export default Estadisticas;
 
