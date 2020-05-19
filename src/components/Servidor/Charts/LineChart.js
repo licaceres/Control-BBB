@@ -10,11 +10,11 @@ class LineChart extends Component {
   }
 
   render() {
-    const { data } = this.props;
-    console.log(this.props);
+    const { options, data } = this.props.data;
+    console.log(this.props.data);
     return (
       <div>
-        <Line data={data}  options={{label: {display: false}}} />
+        <Line data={data}  options={ options } />
       </div>
     );
   }

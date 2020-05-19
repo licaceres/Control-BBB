@@ -16,6 +16,7 @@
     "less-loader": "^5.0.0",
     "lodash.get": "^4.4.2",
     "minimist": "^1.2.5",
+    "moment": "^2.25.3",
     "react": "^16.13.1",
     "react-app-rewired": "^2.1.6",
     "react-burger-menu": "^2.6.13",
