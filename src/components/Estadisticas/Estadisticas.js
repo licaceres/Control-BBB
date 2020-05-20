@@ -6,10 +6,11 @@ import LineChart from './Charts/LineChart';
 import BarChart from '../charts/BarChart';
 import _ from 'lodash';
 import './servidor.css';
+import moment from 'moment';
 
 const { RangePicker } = DatePicker;
 
-class Servidor extends Component {
+class Estadisticas extends Component {
   constructor(props) {
     super(props);
 
@@ -72,7 +73,7 @@ class Servidor extends Component {
   usuariosRequest = async () => {
 
     var resultado = await axios.get(`https://localhost:44398/api/salas/fecha/${this.state.fechaInicio}/${this.state.fechaFin}`);
-    var labels = resultado.data.map((item) => item.horaConsulta);
+    var labels = resultado.data.map((item) => moment(item.horaConsulta));
     var data = resultado.data.map((item) => item.cant);
     this.setState({
       usuarios: {
@@ -125,7 +126,7 @@ class Servidor extends Component {
 
   salasRequest = async () => {
     var resultado = await axios.get(`https://localhost:44398/api/salas/salas/${this.state.fechaInicio}/${this.state.fechaFin}`);
-    var labels = resultado.data.map((item) => item.horaConsulta);
+    var labels = resultado.data.map((item) => moment(item.horaConsulta).format("DD-MM-YYYY"));
     var data = resultado.data.map((item) => item.cant);
     console.log(resultado);
     this.setState({
@@ -134,7 +135,7 @@ class Servidor extends Component {
           responsive: false,
           scales: {
             xAxes: [{
-              type: 'time',
+              type: 'date',
               ticks: {
                 min: 0,
               }
@@ -196,5 +197,5 @@ class Servidor extends Component {
   // }
 }
 
-export default Servidor;
+export default Estadisticas;
 

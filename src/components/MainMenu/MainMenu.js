@@ -5,7 +5,7 @@ import {
   DesktopOutlined,
   SettingOutlined,
   InfoCircleOutlined,
-  DatabaseOutlined,
+  LineChartOutlined,
   UserOutlined,
   TeamOutlined
 } from '@ant-design/icons';
@@ -13,8 +13,9 @@ import './mainmenu.css';
 
 import SettingServer from '../SettingServer/SettingServer';
 import Info from '../Info/Info';
-import Salas from '../Salas/Salas'
-import Servidor from '../Servidor/Servidor'
+import Salas from '../Salas/Salas';
+import Estadisticas from '../Estadisticas/Estadisticas';
+import Usuarios from '../Usuarios/Usuarios';
 import { PrivateRoute } from '../../utils/PrivateRoute';
 
 import LogoComunidades from '../../images/logo-comunidades-unr.png';
@@ -69,12 +70,12 @@ class MainMenu extends Component {
           <span style={{ fontWeight: 'bold' }}>Salas</span>
           <Link to="/salas" />
         </Menu.Item>
-        <Menu.Item key="4" onClick={() => this.handleLinkClick('/servidor')}>
-          <DatabaseOutlined />
-          <span style={{ fontWeight: 'bold' }}>Servidor</span>
-          <Link to="/servidor" />
+        <Menu.Item key="4" onClick={() => this.handleLinkClick('/estadisticas')}>
+          <LineChartOutlined />
+          <span style={{ fontWeight: 'bold' }}>Estadísticas</span>
+          <Link to="/estadisticas" />
         </Menu.Item>
-        <Menu.Item key="5">
+        <Menu.Item key="5" onClick={() => this.handleLinkClick('/usuarios')}>
           <TeamOutlined />
           <span style={{ fontWeight: 'bold' }}>Gestión Usuarios</span>
         </Menu.Item>
@@ -101,10 +102,10 @@ class MainMenu extends Component {
           <DesktopOutlined />
           <span style={{ fontWeight: 'bold' }}>Salas</span>
         </Menu.Item>
-        <Menu.Item key="4" onClick={() => this.handleLinkClick('/servidor')}>
-          <DatabaseOutlined />
-          <span style={{ fontWeight: 'bold' }}>Servidor</span>
-          <Link to="/servidor" />
+        <Menu.Item key="4" onClick={() => this.handleLinkClick('/estadisticas')}>
+        <LineChartOutlined />
+          <span style={{ fontWeight: 'bold' }}>Estadísticas</span>
+          <Link to="/estadísticas" />
         </Menu.Item>
         <Menu.Item key="5" onClick={() => this.logOut()}>
           <UserOutlined />
@@ -148,7 +149,8 @@ class MainMenu extends Component {
                 <PrivateRoute exact path="/settingserver" roles={[1, 2]} component={SettingServer} />
                 <PrivateRoute exact path="/info" roles={[1, 2]} component={Info} />
                 <PrivateRoute exact path="/salas" roles={[1, 2]} component={Salas} />
-                <PrivateRoute exact path="/servidor" roles={[1, 2]} component={Servidor} />
+                <PrivateRoute exact path="/estadisticas" roles={[1, 2]} component={Estadisticas} />
+                <PrivateRoute exact path="/usuarios" roles={[1, 2]} component={Usuarios} />
                 <Route path="/404" component={SettingServer} />
                 <Redirect to="/" />
               </Switch>
