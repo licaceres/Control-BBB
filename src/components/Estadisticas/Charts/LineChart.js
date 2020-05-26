@@ -11,7 +11,6 @@ class LineChart extends Component {
 
   render() {
     const { options, data } = this.props.data;
-    console.log(this.props.data);
     return (
       <div>
         <Line data={data}  options={ options } />

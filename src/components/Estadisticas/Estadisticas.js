@@ -70,11 +70,12 @@ class Estadisticas extends Component {
     )
   }
 
-  usuariosRequest = async () => {
+  usuariosRequest = async (inicio, fin) => {
 
-    var resultado = await axios.get(`https://localhost:44398/api/salas/fecha/${this.state.fechaInicio}/${this.state.fechaFin}`);
-    var labels = resultado.data.map((item) => moment(item.horaConsulta));
+    var resultado = await axios.get(`https://localhost:44398/api/salas/fecha/${inicio}/${fin}`);
+    var labels = resultado.data.map((item) => item.horaConsulta);
     var data = resultado.data.map((item) => item.cant);
+    console.log(resultado);
     this.setState({
       usuarios: {
         options: {
@@ -121,14 +122,12 @@ class Estadisticas extends Component {
         }
       }
     })
-    console.log(this.state.usuarios);
   }
 
-  salasRequest = async () => {
-    var resultado = await axios.get(`https://localhost:44398/api/salas/salas/${this.state.fechaInicio}/${this.state.fechaFin}`);
+  salasRequest = async (inicio, fin) => {
+    var resultado = await axios.get(`https://localhost:44398/api/salas/salas/${inicio}/${fin}`);
     var labels = resultado.data.map((item) => moment(item.horaConsulta).format("DD-MM-YYYY"));
     var data = resultado.data.map((item) => item.cant);
-    console.log(resultado);
     this.setState({
       salas: {
         options: {
@@ -166,27 +165,19 @@ class Estadisticas extends Component {
   }
   
   componentDidMount() {
-    this.usuariosRequest();
-    this.salasRequest();
+    this.usuariosRequest(this.state.fechaInicio, this.state.fechaFin);
+    this.salasRequest(this.state.fechaInicio, this.state.fechaFin);
   }
 
   okUsuarios = (value) => {
     if (_.get(value, '[0]', false) && _.get(value, '[1]', false)) {
-      this.setState({
-          fechaInicio: value[0].toISOString(),
-          fechaFin: value[1].toISOString()
-      });
-      this.usuariosRequest();
+      this.usuariosRequest(moment(value[0]).toISOString(), moment(value[1]).toISOString());
     }
   }
 
     okSalas = (value) => {
       if (_.get(value, '[0]', false) && _.get(value, '[1]', false)) {
-        this.setState({
-            fechaInicio: value[0].toISOString(),
-            fechaFin: value[1].toISOString()
-        });
-        this.salasRequest();
+        this.salasRequest(moment(value[0]).toISOString(), moment(value[1]).toISOString());
       }
     }
   // onChange = async (value) => {
