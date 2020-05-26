@@ -3,10 +3,11 @@ import { Row, Col, DatePicker, Card } from 'antd';
 import { DatabaseOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import LineChart from './Charts/LineChart';
-import BarChart from '../charts/BarChart';
+import BarChart from './Charts/BarChart';
 import _ from 'lodash';
 import './servidor.css';
 import moment from 'moment';
+import { url } from '../../utils/Url';
 
 const { RangePicker } = DatePicker;
 
@@ -71,9 +72,8 @@ class Estadisticas extends Component {
   }
 
   usuariosRequest = async (inicio, fin) => {
-
-    var resultado = await axios.get(`https://localhost:44398/api/salas/fecha/${inicio}/${fin}`);
-    var labels = resultado.data.map((item) => item.horaConsulta);
+    var resultado = await axios.get(url + `/api/salas/fecha/${inicio}/${fin}`);
+    var labels = resultado.data.map((item) => moment(item.horaConsulta));
     var data = resultado.data.map((item) => item.cant);
     console.log(resultado);
     this.setState({
@@ -125,7 +125,7 @@ class Estadisticas extends Component {
   }
 
   salasRequest = async (inicio, fin) => {
-    var resultado = await axios.get(`https://localhost:44398/api/salas/salas/${inicio}/${fin}`);
+    var resultado = await axios.get(url + `/api/salas/salas/${inicio}/${fin}`);
     var labels = resultado.data.map((item) => moment(item.horaConsulta).format("DD-MM-YYYY"));
     var data = resultado.data.map((item) => item.cant);
     this.setState({
