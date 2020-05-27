@@ -163,7 +163,7 @@ class UsuariosModal extends Component {
                       return (
                         <Select.Option
                           key={index}
-                          value={sector.idSector}>
+                          value={sector.id}>
                           {sector.nombre} [{sector.dependencia}]
                         </Select.Option>
                       );
