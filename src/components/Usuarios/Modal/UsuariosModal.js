@@ -7,6 +7,7 @@ import { getHeader } from '../../../utils/Header';
 import { url } from '../../../utils/Url';
 import axios from 'axios';
 
+
 const validateSchema = Yup.object().shape({
 
   username: Yup.string()
@@ -62,6 +63,7 @@ class UsuariosModal extends Component {
             password: ''
           }
         });
+      console.log(this.state);
       } else {
         this.reset();
       }
@@ -201,12 +203,13 @@ class UsuariosModal extends Component {
             </Col>
             <Col xs={{ span: 24 }} lg={{ span: 12 }} style={{ paddingLeft: 5, paddingRight: 5 }}>
               <Form.Item
-                name="estado" valuePropName="checked"
+                name="estado"
                 style={{ marginLeft: '88px' }}
               >
                 <Checkbox
                   checked={form.estado}
-                  onChange={value => this.onChange(value, 'estado')}
+                  onChange={value => this.onChange(value.target.checked, 'estado')}
+                  
                 >Estado Cuenta (Activa/Desactiva)</Checkbox>
               </Form.Item>
             </Col>
@@ -221,7 +224,7 @@ class UsuariosModal extends Component {
     try {
       // VALIDO CON YUP
       await validateSchema.validate(form, { abortEarly: false });
-
+      
       if (!!this.props.usuario) {
         return this.props.editarUsuario(form);
       }
@@ -235,7 +238,7 @@ class UsuariosModal extends Component {
         })
         return message.error('Ingrese password')
       }
-      form.id = '0';
+      form.id = 0;
       this.props.crearUsuario(form);
     } catch (error) {
       let errors = {};
