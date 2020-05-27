@@ -104,7 +104,7 @@ class MainMenu extends Component {
 
   menuUser = () => {
     return (
-      <Menu theme="dark" style={{ backgroundColor: '#A82582' }} defaultSelectedKeys={['1']} mode="inline">
+      <Menu theme="dark" style={{ backgroundColor: '#A82582' }} selectedKeys={this.state.selected} mode="inline">
         <Menu.Item key="/settingserver" onClick={() => this.handleLinkClick('/settingserver')}>
           <SettingOutlined />
           <span style={{ fontWeight: 'bold' }}>Configuración</span>
