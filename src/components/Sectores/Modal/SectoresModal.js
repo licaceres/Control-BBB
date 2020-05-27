@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Modal, Form, message, Select, Row, Col, Checkbox } from 'antd';
+import { Modal, Form, Row, Col } from 'antd';
 import * as Yup from 'yup';
 import { omit } from 'lodash';
 import { FormItem } from '../../../utils/FormItem';
-import { getHeader } from '../../../utils/Header';
-import { url } from '../../../utils/Url';
-import axios from 'axios';
+
 
 const validateSchema = Yup.object().shape({
 
@@ -33,10 +31,10 @@ class SectoresModal extends Component {
 
   componentDidUpdate(prevProps) {
     if (!prevProps.visible && this.props.visible) {
-      if (!!this.props.sectores) {
+      if (!!this.props.sector) {
         this.setState({
           form: {
-            ...this.props.sectores
+            ...this.props.sector
           }
         });
       } else {

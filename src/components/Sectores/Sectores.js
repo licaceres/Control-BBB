@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Button, Popconfirm, message, Card, Tooltip, Empty } from 'antd';
-import { TeamOutlined, ReloadOutlined, CloseCircleOutlined, EditOutlined, ApartmentOutlined, UserAddOutlined } from '@ant-design/icons';
+import { ReloadOutlined, CloseCircleOutlined, EditOutlined, ApartmentOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { getHeader } from '../../utils/Header';
 import { url } from '../../utils/Url';
