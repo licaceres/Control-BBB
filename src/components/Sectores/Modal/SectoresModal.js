@@ -101,7 +101,7 @@ class SectoresModal extends Component {
   }
 
   handleSubmit = async () => {
-    const { form, errors } = this.state;
+    const { form } = this.state;
     try {
       // VALIDO CON YUP
       await validateSchema.validate(form, { abortEarly: false });
