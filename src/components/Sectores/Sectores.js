@@ -1,53 +1,37 @@
 import React, { Component } from 'react';
 import { Table, Button, Popconfirm, message, Card, Tooltip, Empty } from 'antd';
-import { TeamOutlined, ReloadOutlined, CloseCircleOutlined, EditOutlined, UserOutlined, UserAddOutlined } from '@ant-design/icons';
+import { TeamOutlined, ReloadOutlined, CloseCircleOutlined, EditOutlined, ApartmentOutlined, UserAddOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { getHeader } from '../../utils/Header';
 import { url } from '../../utils/Url';
-import UsuariosModal from '../Usuarios/Modal/UsuariosModal'
+import SectoresModal from '../Sectores/Modal/SectoresModal'
 
-class Usuarios extends Component {
+class Sectores extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      usuarios: '',
-      loadingUsuarios: true,
+      sectores: '',
+      loadingSectores: true,
       visible: false,
       creating: false,
       editando: false,
-      usuario: null
+      sector: null
     }
   }
 
   render() {
 
-    const { usuarios, loadingUsuarios, visible, editando, usuario } = this.state;
+    const { sectores, loadingSectores, visible, editando, sector } = this.state;
 
     const columns = [{
-      title: 'Usuario',
-      dataIndex: 'username',
-      key: 'username'
-    }, {
-      title: 'Rol',
-      dataIndex: 'rol',
-      key: 'rol'
-    }, {
-      title: 'Apellido y Nombre',
-      dataIndex: 'fullName',
-      key: 'fullName'
-    }, {
       title: 'Sector',
-      dataIndex: 'nombreSector',
-      key: 'nombreSector'
+      dataIndex: 'nombre',
+      key: 'nombre'
     }, {
-      title: 'Dependencia',
+      title: 'Depedencia',
       dataIndex: 'dependencia',
       key: 'dependencia'
-    }, {
-      title: 'Estado Cuenta',
-      dataIndex: 'estadoCuenta',
-      key: 'estadoCuenta',
     }, {
       title: 'Acciones',
       key: 'acciones',
@@ -64,7 +48,7 @@ class Usuarios extends Component {
             </Tooltip>
             <Popconfirm
               onConfirm={() => this.handleEliminar(item)}
-              title="¿Seguro desea eliminar el usuario?" okText="Confirmar" cancelText="Cancelar">
+              title="¿Seguro desea eliminar el sector?" okText="Confirmar" cancelText="Cancelar">
               <Tooltip placement="topRight" title={'Eliminar'}>
                 <Button
                   style={{ marginLeft: '10px' }}
@@ -81,7 +65,7 @@ class Usuarios extends Component {
 
     return (
       <div>
-        <Card bordered={false} title={<span style={{ fontSize: '1.2em' }}>Usuarios</span>} extra={<TeamOutlined />}>
+        <Card bordered={false} title={<span style={{ fontSize: '1.2em' }}>Sectores</span>} extra={<ApartmentOutlined />}>
           <Button
             type='primary'
             icon={<ReloadOutlined />}
@@ -91,31 +75,31 @@ class Usuarios extends Component {
           </Button>
           <Button
             type='primary'
-            icon={<UserAddOutlined />}
+            icon={<ApartmentOutlined />}
             style={{ marginBottom: '10px', marginLeft: '10px' }}
             onClick={this.handleModal}>
-            Nuevo Usuario
+            Nuevo Sector
           </Button>
-          {loadingUsuarios ? <Empty description="No hay datos" />
+          {loadingSectores ? <Empty description="No hay datos" />
             :
             <Table
               columns={columns}
               pagination={{ pageSize: 10 }}
-              dataSource={usuarios}
-              loading={loadingUsuarios}
-              rowKey='username'
+              dataSource={sectores}
+              loading={loadingSectores}
+              rowKey='id'
               size='small'
-              locale={{ emptyText: "No hay usuarios" }} />
+              locale={{ emptyText: "No hay sectores" }} />
           }
         </Card>
 
-        <UsuariosModal
+        <SectoresModal
           visible={visible}
           handleModal={this.handleModal}
-          crearUsuario={this.crearUsuario}
+          crearSector={this.crearSector}
           editando={editando}
-          usuario={usuario}
-          editarUsuario={this.editarUsuario}
+          sector={sector}
+          editarSector={this.editarSector}
         />
       </div>
     );
@@ -124,11 +108,11 @@ class Usuarios extends Component {
   handleRequest = async () => {
     var resultado;
     try {
-      await axios.get(url + `/api/usuarios`, getHeader())
+      await axios.get(url + `/api/sectores`, getHeader())
         .then((response) => {
           resultado = response.data;
-          this.setState({ usuarios: resultado, loadingUsuarios: false });
-          return message.success("Usuarios Actualizados.");
+          this.setState({ sectores: resultado, loadingSectores: false });
+          return message.success("Sectores Actualizados.");
         })
         .catch((error) => {
           return message.success("No hay datos.");
@@ -143,13 +127,13 @@ class Usuarios extends Component {
     this.handleRequest();
   }
 
-  crearUsuario = async (form) => {
+  crearSector = async (form) => {
     try {
       this.setState({ creating: true });
-      const res = await axios.post(url + `/api/usuarios/register`, form, getHeader());
+      const res = await axios.post(url + `/api/sectores`, form, getHeader());
 
       if (res.status === 200) {
-        message.success('Usuario creado con exito!');
+        message.success('Sector creado con exito!');
         this.handleModal();
       }
     } catch (error) {
@@ -164,10 +148,10 @@ class Usuarios extends Component {
     this.setState({ creating: false });
   }
 
-  editarUsuario = async (form) => {
+  editarSector = async (form) => {
     try {
       this.setState({ editando: true });
-      const res = await axios.put(url + `/api/usuarios/${form.id}`, form, getHeader());
+      const res = await axios.put(url + `/api/sectores/${form.id}`, form, getHeader());
       if (res.status === 200) {
         message.success('Usuario actualizado con éxito');
         this.handleRequest();
@@ -189,23 +173,23 @@ class Usuarios extends Component {
   handleModal = () => {
     this.setState({
       visible: !this.state.visible,
-      usuario: null
+      sector: null
     });
   }
   
-  handleEditar = (usuario) => {
+  handleEditar = (sector) => {
     this.setState({
       visible: true,
-      usuario: usuario
+      sector: sector
     });
   }
 
-  handleEliminar = async (usuario) => {
+  handleEliminar = async (sector) => {
     try{
       this.setState({ creating: true });
-      const res = await axios.delete(url + `/api/usuarios/${usuario.id}`, getHeader());
+      const res = await axios.delete(url + `/api/sectores/${sector.id}`, getHeader());
       if (res.status === 200) {
-        message.success('Usuario eliminado con éxito');
+        message.success('Sector eliminado con éxito');
         this.handleRequest();
       }
     }catch(error) {
@@ -218,4 +202,4 @@ class Usuarios extends Component {
   }
 }
 
-export default Usuarios;
+export default Sectores;

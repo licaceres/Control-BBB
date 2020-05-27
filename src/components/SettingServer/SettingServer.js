@@ -3,7 +3,7 @@ import { Row, Col, Button, Form, message, Card, Alert } from 'antd';
 import { SaveOutlined, SettingOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { FormItem } from '../../utils/FormItem';
 
-import './settingserver.css';
+import './SettingServer.css';
 
 class SettingServer extends Component {
   constructor(props) {

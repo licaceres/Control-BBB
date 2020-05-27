@@ -5,7 +5,7 @@ import { Col, Row, Card, message, Empty } from 'antd';
 import { InfoCircleOutlined, DesktopOutlined, TeamOutlined } from '@ant-design/icons';
 import * as tools from '../../utils/ApiCalls';
 import _ from 'lodash';
-import './info.css';
+import './Info.css';
 
 class Info extends Component {
   constructor(props) {

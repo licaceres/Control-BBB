@@ -5,7 +5,7 @@ import { Col, Row, message, Modal, Typography } from 'antd';
 
 import * as tools from '../../../utils/ApiCalls';
 import _ from 'lodash';
-import './modalsala.css';
+import './ModalSala.css';
 
 const { Text } = Typography;
 

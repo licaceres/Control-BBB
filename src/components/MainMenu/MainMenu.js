@@ -7,15 +7,17 @@ import {
   InfoCircleOutlined,
   LineChartOutlined,
   UserOutlined,
-  TeamOutlined
+  TeamOutlined,
+  ApartmentOutlined
 } from '@ant-design/icons';
-import './mainmenu.css';
+import './MainMenu.css';
 
 import SettingServer from '../SettingServer/SettingServer';
 import Info from '../Info/Info';
 import Salas from '../Salas/Salas';
 import Estadisticas from '../Estadisticas/Estadisticas';
 import Usuarios from '../Usuarios/Usuarios';
+import Sectores from '../Sectores/Sectores';
 import { PrivateRoute } from '../../utils/PrivateRoute';
 
 import LogoComunidades from '../../images/logo-comunidades-unr.png';
@@ -77,9 +79,13 @@ class MainMenu extends Component {
         </Menu.Item>
         <Menu.Item key="5" onClick={() => this.handleLinkClick('/usuarios')}>
           <TeamOutlined />
-          <span style={{ fontWeight: 'bold' }}>Gestión Usuarios</span>
+          <span style={{ fontWeight: 'bold' }}>Usuarios</span>
         </Menu.Item>
-        <Menu.Item key="6" onClick={() => this.logOut()}>
+        <Menu.Item key="6" onClick={() => this.handleLinkClick('/sectores')}>
+          <ApartmentOutlined />
+          <span style={{ fontWeight: 'bold' }}>Sectores</span>
+        </Menu.Item>
+        <Menu.Item key="7" onClick={() => this.logOut()}>
           <UserOutlined />
           <span style={{ fontWeight: 'bold' }}>Cerrar Sesión</span>
         </Menu.Item>
@@ -150,7 +156,8 @@ class MainMenu extends Component {
                 <PrivateRoute exact path="/info" roles={[1, 2]} component={Info} />
                 <PrivateRoute exact path="/salas" roles={[1, 2]} component={Salas} />
                 <PrivateRoute exact path="/estadisticas" roles={[1, 2]} component={Estadisticas} />
-                <PrivateRoute exact path="/usuarios" roles={[1, 2]} component={Usuarios} />
+                <PrivateRoute exact path="/usuarios" roles={[1]} component={Usuarios} />
+                <PrivateRoute exact path="/sectores" roles={[1]} component={Sectores} />
                 <Route path="/404" component={SettingServer} />
                 <Redirect to="/" />
               </Switch>
