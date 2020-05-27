@@ -153,7 +153,7 @@ class Sectores extends Component {
       this.setState({ editando: true });
       const res = await axios.put(url + `/api/sectores/${form.id}`, form, getHeader());
       if (res.status === 200) {
-        message.success('Usuario actualizado con éxito');
+        message.success('Sector actualizado con éxito');
         this.handleRequest();
         this.handleModal();
       }
