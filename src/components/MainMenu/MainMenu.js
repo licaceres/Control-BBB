@@ -10,7 +10,7 @@ import {
   TeamOutlined,
   ApartmentOutlined
 } from '@ant-design/icons';
-import './MainMenu.css';
+import './mainmenu.css';
 
 import SettingServer from '../SettingServer/SettingServer';
 import Info from '../Info/Info';

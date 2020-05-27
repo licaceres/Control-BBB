@@ -5,7 +5,7 @@ import axios from 'axios';
 import LineChart from './Charts/LineChart';
 import BarChart from './Charts/BarChart';
 import _ from 'lodash';
-import './Estadisticas.css';
+import './estadisticas.css';
 import moment from 'moment';
 import { url } from '../../utils/Url';
 

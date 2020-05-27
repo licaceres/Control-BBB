@@ -4,7 +4,7 @@ import axios from 'axios';
 import { url } from '../../utils/Url';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import '../Login/Login.css';
+import '../Login/login.css';
 
 import Logo from '../../images/logo_comunidades_login.png'
 
