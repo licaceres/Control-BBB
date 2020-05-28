@@ -69,10 +69,6 @@ class MainMenu extends Component {
   menuAdmin = () => {
     return (
       <Menu theme="dark" style={{ backgroundColor: '#A82582' }} selectedKeys={this.state.selected} mode="inline">
-        <Menu.Item key={"/settingserver"} onClick={() => this.handleLinkClick('/settingserver')}>
-          <SettingOutlined />
-          <span style={{ fontWeight: 'bold' }}>Configuración</span>
-        </Menu.Item>
         <Menu.Item key="/info"  onClick={() => this.handleLinkClick('/info')}>
           <InfoCircleOutlined />
           <span style={{ fontWeight: 'bold' }}>Información</span>
@@ -85,6 +81,10 @@ class MainMenu extends Component {
         <Menu.Item key="/estadisticas" onClick={() => this.handleLinkClick('/estadisticas')}>
           <LineChartOutlined />
           <span style={{ fontWeight: 'bold' }}>Estadísticas</span>
+        </Menu.Item>
+        <Menu.Item key={"/settingserver"} onClick={() => this.handleLinkClick('/settingserver')}>
+          <SettingOutlined />
+          <span style={{ fontWeight: 'bold' }}>Configuración</span>
         </Menu.Item>
         <Menu.Item key="/usuarios" onClick={() => this.handleLinkClick('/usuarios')}>
           <TeamOutlined />
@@ -105,10 +105,6 @@ class MainMenu extends Component {
   menuUser = () => {
     return (
       <Menu theme="dark" style={{ backgroundColor: '#A82582' }} selectedKeys={this.state.selected} mode="inline">
-        <Menu.Item key="/settingserver" onClick={() => this.handleLinkClick('/settingserver')}>
-          <SettingOutlined />
-          <span style={{ fontWeight: 'bold' }}>Configuración</span>
-        </Menu.Item>
         <Menu.Item key="/info" onClick={() => this.handleLinkClick('/info')}>
           <InfoCircleOutlined />
           <span style={{ fontWeight: 'bold' }}>Información</span>
@@ -120,6 +116,10 @@ class MainMenu extends Component {
         <Menu.Item key="/estadisticas" onClick={() => this.handleLinkClick('/estadisticas')}>
         <LineChartOutlined />
           <span style={{ fontWeight: 'bold' }}>Estadísticas</span>
+        </Menu.Item>
+        <Menu.Item key="/settingserver" onClick={() => this.handleLinkClick('/settingserver')}>
+          <SettingOutlined />
+          <span style={{ fontWeight: 'bold' }}>Configuración</span>
         </Menu.Item>
         <Menu.Item key="0" onClick={() => this.logOut()}>
           <UserOutlined />
@@ -159,14 +159,14 @@ class MainMenu extends Component {
             </Header>
             <Content style={{ margin: '16px' }}>
               <Switch>
-                <PrivateRoute exact path="/settingserver" roles={[1, 2]} component={SettingServer} />
                 <PrivateRoute exact path="/info" roles={[1, 2]} component={Info} />
+                <PrivateRoute exact path="/settingserver" roles={[1, 2]} component={SettingServer} />
                 <PrivateRoute exact path="/salas" roles={[1, 2]} component={Salas} />
                 <PrivateRoute exact path="/estadisticas" roles={[1, 2]} component={Estadisticas} />
                 <PrivateRoute exact path="/usuarios" roles={[1]} component={Usuarios} />
                 <PrivateRoute exact path="/sectores" roles={[1]} component={Sectores} />
                 <Route path="/404" component={SettingServer} />
-                <Redirect to="/settingserver" />
+                <Redirect to="/info" />
               </Switch>
             </Content>
           </Layout>
