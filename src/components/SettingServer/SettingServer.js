@@ -10,12 +10,9 @@ class SettingServer extends Component {
     super(props);
 
     this.state = {
-      url: 'http://bbblisandro.duckdns.org/bigbluebutton/api',
-      clave: 'TM6I5tVVENQOLespdftbHQhF3M2SMYToOP7F4otJAc'
+      url: localStorage.getItem('url'),
+      clave: localStorage.getItem('secret')
     };
-
-    localStorage.setItem('url', this.state.url);
-    localStorage.setItem('clave', this.state.clave);
   }
 
   render() {

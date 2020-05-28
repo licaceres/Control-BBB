@@ -4,6 +4,8 @@ import { parseString } from 'xml2js';
 import { Col, Row, Card, message, Empty } from 'antd';
 import { InfoCircleOutlined, DesktopOutlined, TeamOutlined } from '@ant-design/icons';
 import * as tools from '../../utils/ApiCalls';
+import { getHeader } from '../../utils/Header';
+import { url } from '../../utils/Url';
 import _ from 'lodash';
 import './info.css';
 
@@ -24,11 +26,7 @@ class Info extends Component {
       oyentes: 0,
       conaudio: 0,
       convideo: 0,
-      url: 'http://bbblisandro.duckdns.org/bigbluebutton/api',
-      clave: 'TM6I5tVVENQOLespdftbHQhF3M2SMYToOP7F4otJAc'
     }
-    localStorage.setItem('url', this.state.url);
-    localStorage.setItem('clave', this.state.clave);
   }
 
   render() {
@@ -261,7 +259,10 @@ class Info extends Component {
 
   }
 
-  componentDidMount() {
+  componentDidMount = async () => {
+    var resultado = await axios.get(url + `/api/dataconfig`, getHeader());
+    localStorage.setItem('url', resultado.data.urlServerBbb);
+    localStorage.setItem('clave', resultado.data.secretSharedBbb);
     this.handleRequest();
   }
 }
