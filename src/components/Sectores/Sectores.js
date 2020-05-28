@@ -134,6 +134,7 @@ class Sectores extends Component {
 
       if (res.status === 200) {
         message.success('Sector creado con exito!');
+        this.handleRequest();
         this.handleModal();
       }
     } catch (error) {

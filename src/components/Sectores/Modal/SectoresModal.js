@@ -110,7 +110,7 @@ class SectoresModal extends Component {
         return this.props.editarSector(form);
       }
 
-      form.id = '0';
+      form.id = 0;
       this.props.crearSector(form);
     } catch (error) {
       let errors = {};
