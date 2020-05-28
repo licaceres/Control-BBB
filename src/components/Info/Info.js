@@ -24,7 +24,11 @@ class Info extends Component {
       oyentes: 0,
       conaudio: 0,
       convideo: 0,
-    };
+      url: 'http://bbblisandro.duckdns.org/bigbluebutton/api',
+      clave: 'TM6I5tVVENQOLespdftbHQhF3M2SMYToOP7F4otJAc'
+    }
+    localStorage.setItem('url', this.state.url);
+    localStorage.setItem('clave', this.state.clave);
   }
 
   render() {
