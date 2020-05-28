@@ -210,7 +210,7 @@ class UsuariosModal extends Component {
                   checked={form.estado}
                   onChange={value => this.onChange(value.target.checked, 'estado')}
                   
-                >Estado Cuenta: {form.estado ? 'Activa' : 'Desactiva'}</Checkbox>
+                >Estado Cuenta: {form.estado ? 'Activa' : 'Inactiva'}</Checkbox>
               </Form.Item>
             </Col>
           </Row>
