@@ -117,10 +117,6 @@ class MainMenu extends Component {
         <LineChartOutlined />
           <span style={{ fontWeight: 'bold' }}>Estadísticas</span>
         </Menu.Item>
-        <Menu.Item key="/settingserver" onClick={() => this.handleLinkClick('/settingserver')}>
-          <SettingOutlined />
-          <span style={{ fontWeight: 'bold' }}>Configuración</span>
-        </Menu.Item>
         <Menu.Item key="0" onClick={() => this.logOut()}>
           <UserOutlined />
           <span style={{ fontWeight: 'bold' }}>Cerrar Sesión</span>
@@ -160,7 +156,7 @@ class MainMenu extends Component {
             <Content style={{ margin: '16px' }}>
               <Switch>
                 <PrivateRoute exact path="/info" roles={[1, 2]} component={Info} />
-                <PrivateRoute exact path="/settingserver" roles={[1, 2]} component={SettingServer} />
+                <PrivateRoute exact path="/settingserver" roles={[1]} component={SettingServer} />
                 <PrivateRoute exact path="/salas" roles={[1, 2]} component={Salas} />
                 <PrivateRoute exact path="/estadisticas" roles={[1, 2]} component={Estadisticas} />
                 <PrivateRoute exact path="/usuarios" roles={[1]} component={Usuarios} />
