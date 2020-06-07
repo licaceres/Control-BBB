@@ -127,14 +127,12 @@ class Usuarios extends Component {
       await axios.get(url + `/api/usuarios`, getHeader())
         .then((response) => {
           resultado = response.data;
-          console.log(resultado);
           this.setState({ usuarios: resultado, loadingUsuarios: false });
           return message.success("Usuarios Actualizados.");
         })
         .catch((error) => {
           return message.success("No hay datos.");
         })
-        console.log(resultado);
     }
     catch (error) {
       console.error(error);
