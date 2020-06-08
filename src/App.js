@@ -5,7 +5,6 @@ import MainMenu from './components/MainMenu/MainMenu';
 import { PrivateRoute } from './utils/PrivateRoute';
 import './App.css';
 
-
 function App() {
 
   return (

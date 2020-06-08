@@ -24,7 +24,7 @@ class SettingServer extends Component {
   }
 
   render() {
-    const { form } = this.state;
+  const { form } = this.state;
 
     return (
       <div>
@@ -112,7 +112,9 @@ class SettingServer extends Component {
   }
 
   onChange = (value, key) => {
-    this.setState({ [key]: value });
+    let form = this.state.form
+    form[key] = value;
+    this.setState({form: form})
   }
 
   handleSubmit = async (event) => {
