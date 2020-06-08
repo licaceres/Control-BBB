@@ -16,6 +16,7 @@ class SettingServer extends Component {
       form: {
         id: 1,
         nombreServerBbb: '',
+        servidorPrincipal: true,
         urlServerBbb: '',
         secretSharedBbb: '',
         timerConsulta: ''
@@ -103,6 +104,7 @@ class SettingServer extends Component {
       form: {
         id: 1,
         nombreServerBbb: resultado.data.nombreServerBbb,
+        servidorPrincipal: true,
         urlServerBbb: resultado.data.urlServerBbb,
         secretSharedBbb: resultado.data.secretSharedBbb,
         timerConsulta: resultado.data.timerConsulta
@@ -113,6 +115,8 @@ class SettingServer extends Component {
 
   onChange = (value, key) => {
     let form = this.state.form
+    if (key === 'timerConsulta')
+      value = Number(value);
     form[key] = value;
     this.setState({form: form})
   }
@@ -126,7 +130,7 @@ class SettingServer extends Component {
     } else {
 
       try {
-        console.log(form.id + '  ' + form);
+        console.log(form);
         const res = await axios.put(url + `/api/dataconfig`, form, getHeader());
         if (res.status === 200) {
 
@@ -151,6 +155,7 @@ class SettingServer extends Component {
       form: {
         id: 1,
         urlServerBbb: '',
+        servidorPrincipal: true,
         secretSharedBbb: '',
         timerConsulta: ''
       }
