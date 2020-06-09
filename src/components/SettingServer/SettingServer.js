@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Row, Col, Button, Form, message, Card, Alert } from 'antd';
-import { SaveOutlined, SettingOutlined, CloseCircleOutlined } from '@ant-design/icons';
+import { Row, Col, Button, Form, message, Card, Alert, InputNumber } from 'antd';
+import { SaveOutlined, SettingOutlined } from '@ant-design/icons';
 import { FormItem } from '../../utils/FormItem';
 import axios from 'axios';
 import { getHeader } from '../../utils/Header';
@@ -25,7 +25,7 @@ class SettingServer extends Component {
   }
 
   render() {
-  const { form } = this.state;
+    const { form } = this.state;
 
     return (
       <div>
@@ -51,7 +51,7 @@ class SettingServer extends Component {
                       placeholder={'Url'}
                       value={form.urlServerBbb}
                       error={null}
-                      onChange={this.onChange}/>
+                      onChange={this.onChange} />
 
                     <FormItem
                       key='secretSharedBbb'
@@ -60,16 +60,18 @@ class SettingServer extends Component {
                       placeholder={'Clave'}
                       value={form.secretSharedBbb}
                       error={null}
-                      onChange={this.onChange}/>
+                      onChange={this.onChange} />
 
-                    <FormItem
-                      key='timerConsulta'
-                      label='Minutos: '
-                      name='timerConsulta'
-                      placeholder={'timer'}
-                      value={form.timerConsulta}
-                      error={null}
-                      onChange={this.onChange}/>
+                    <Form.Item label="Minutos">
+                      <InputNumber 
+                        key='timerConsulta'
+                        name='timerConsulta'
+                        min={1}
+                        max={60}
+                        value={form.timerConsulta}
+                        onChange={value => this.onChange(value, 'timerConsulta')}
+                      />
+                    </Form.Item>
 
                     <div className='btn-buttons'>
                       {/* <Button
@@ -118,7 +120,11 @@ class SettingServer extends Component {
     if (key === 'timerConsulta')
       value = Number(value);
     form[key] = value;
-    this.setState({form: form})
+    this.setState({ form: form })
+  }
+
+  onChangeTimer = (value) => {
+    console.log('changed', value);
   }
 
   handleSubmit = async (event) => {
