@@ -123,10 +123,6 @@ class SettingServer extends Component {
     this.setState({ form: form })
   }
 
-  onChangeTimer = (value) => {
-    console.log('changed', value);
-  }
-
   handleSubmit = async (event) => {
     if (!!event) event.preventDefault();
     const { form } = this.state;
