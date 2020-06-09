@@ -91,7 +91,7 @@ class ModalSala extends Component {
       await axios.get(tools.getMeetingInfo(this.props.sala))
         .then((response) => {
           parseString(response.data, function (err, result) {
-            if (result.response.returncode[0] !== 'SUCCESS') {
+            if (_.get(result.response, 'returncode[0]', '') !== 'SUCCESS') {
               return message.error(resultado.messageKey[0]);
             }
 

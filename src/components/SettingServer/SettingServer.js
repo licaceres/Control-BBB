@@ -45,8 +45,17 @@ class SettingServer extends Component {
                     onSubmitCapture={this.handleSubmit}>
 
                     <FormItem
+                      key='nombreServerBbb'
+                      label='Nombre Serv.:'
+                      name='nombreServerBbb'
+                      placeholder={'nombreServerBbb'}
+                      value={form.nombreServerBbb}
+                      error={null}
+                      onChange={this.onChange}/>
+                      
+                    <FormItem
                       key='urlServerBbb'
-                      label='URL Server:'
+                      label='URL:'
                       name='urlServerBbb'
                       placeholder={'Url'}
                       value={form.urlServerBbb}

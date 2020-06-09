@@ -6,6 +6,7 @@ import { DesktopOutlined, ReloadOutlined, CloseCircleOutlined, ZoomInOutlined, U
 import * as tools from '../../utils/ApiCalls';
 import ModalSala from '../Salas/Modal/ModalSala';
 import ModalUsuarios from '../Salas/Modal/ModalUsuarios';
+import _ from 'lodash';
 
 class Salas extends Component {
   constructor(props) {
@@ -162,7 +163,7 @@ class Salas extends Component {
       .then((response) => {
         parseString(response.data, function (err, result) {
           resultado = result.response;
-          if (resultado.returncode[0] === 'SUCCESS') {
+          if (_.get(resultado, 'returncode[0]', '') === 'SUCCESS') {
             message.success('Sala cerrada con éxito. Actualice la lista en unos segundos.');
           } else {
             message.error(resultado.messageKey[0]);
