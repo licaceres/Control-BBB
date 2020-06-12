@@ -225,7 +225,7 @@ class Info extends Component {
             .then((response) => {
               return new Promise((resolve, reject) => {
                 parseString(response.data, function (err, result) {
-                  if (result.response.returncode[0] !== 'SUCCESS') {
+                  if (_.get(result.response, 'returncode[0]', '') !== 'SUCCESS') {
                     reject(message.error(result.response.messageKey[0], '  ' + err));
                   }
                   resolve(_.get(result, 'response', ''));
