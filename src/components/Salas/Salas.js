@@ -7,6 +7,7 @@ import * as tools from '../../utils/ApiCalls';
 import ModalSala from '../Salas/Modal/ModalSala';
 import ModalUsuarios from '../Salas/Modal/ModalUsuarios';
 import _ from 'lodash';
+import { url } from '../../utils/Url';
 
 class Salas extends Component {
   constructor(props) {
@@ -140,17 +141,10 @@ class Salas extends Component {
   handleRequest = async () => {
     var resultado;
     try {
-      await axios.get(tools.getMeetings())
-        .then((response) => {
-          parseString(response.data, function (err, result) {
-            resultado = result.response.meetings[0].meeting;
-          })
-          this.setState({ salas: resultado, loadingsalas: false });
-          return message.success("Salas Actualizadas.");
-        })
-        .catch((error) => {
-          return message.success("No hay datos.");
-        })
+      resultado = await axios.get(url + `/api/salas/nowsalas`);
+      resultado = resultado.data.meetings.meeting;
+      this.setState({salas: resultado, loadingsalas: false})
+        console.log(resultado);
     }
     catch (error) {
       console.error(error);
