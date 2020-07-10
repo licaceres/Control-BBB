@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { parseString } from 'xml2js';
-import { Col, Row, Card, message, Empty } from 'antd';
+import { Col, Row, Card, Empty } from 'antd';
 import { InfoCircleOutlined, DesktopOutlined, TeamOutlined } from '@ant-design/icons';
-import * as tools from '../../utils/ApiCalls';
 import { getHeader } from '../../utils/Header';
 import { url } from '../../utils/Url';
 import _ from 'lodash';
@@ -188,26 +186,16 @@ class Info extends Component {
     var oyentes = 0;
     var conaudio = 0;
     var convideo = 0;
-    await axios.get(localStorage.getItem('url'))
-      .then((response) => {
-        parseString(response.data, function (err, result) {
-          console.log(err);
-          ver = result.response;
-        });
-      });
+    ver = await axios.get(url + `/api/dataconfig/version`);
+    ver = ver.data;
     this.setState({ version: ver.version, loadingversion: false });
 
 
-    await axios.get(tools.getMeetings())
-      .then((response) => {
-        parseString(response.data, function (err, result) {
-          console.log(err);
-          resultado = _.get(result, 'response.meetings[0].meeting', 0);
-        });
-      });
-
+    resultado = await axios.get(url + `/api/salas/nowsalas`);
+    resultado = resultado = _.get(resultado.data, 'meetings.meeting', 0);
+    console.log(resultado);
+    
     var count = 0;
-    let minfo = 0;
     if (resultado !== 0) {
       for (var i = 0; i < resultado.length; ++i) {
         if (resultado[i].running[0] === 'true') {
@@ -220,27 +208,12 @@ class Info extends Component {
         });
       }
       for (i = 0; i < resultado.length; ++i) {
-        try {
-          minfo = await axios.get(tools.getMeetingInfo(resultado[i]))
-            .then((response) => {
-              return new Promise((resolve, reject) => {
-                parseString(response.data, function (err, result) {
-                  if (_.get(result.response, 'returncode[0]', '') !== 'SUCCESS') {
-                    reject(message.error(result.response.messageKey[0], '  ' + err));
-                  }
-                  resolve(_.get(result, 'response', ''));
-                })
-              });
-            }
-            );
-        } catch (error) {
-          console.log(error);
-        }
-        totusrs = totusrs + parseInt(_.get(minfo, 'participantCount[0]', 0));
-        moders = moders + parseInt(_.get(minfo, 'moderatorCount[0]', 0));
-        oyentes = oyentes + parseInt(_.get(minfo, 'listenerCount[0]', 0));
-        conaudio = conaudio + parseInt(_.get(minfo, 'voiceParticipantCount[0]', 0));
-        convideo = convideo + parseInt(_.get(minfo, 'videoCount[0]', 0));
+
+        totusrs = totusrs + parseInt(_.get(resultado[i], 'participantCount', 0));
+        moders = moders + parseInt(_.get(resultado[i], 'moderatorCount', 0));
+        oyentes = oyentes + parseInt(_.get(resultado[i], 'listenerCount', 0));
+        conaudio = conaudio + parseInt(_.get(resultado[i], 'voiceParticipantCount', 0));
+        convideo = convideo + parseInt(_.get(resultado[i], 'videoCount', 0));
 
 
       }

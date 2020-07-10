@@ -153,18 +153,13 @@ class Salas extends Component {
 
   handleEliminar = async (sala) => {
     var resultado;
-    await axios.get(tools.endMeeting(sala))
-      .then((response) => {
-        parseString(response.data, function (err, result) {
-          resultado = result.response;
-          if (_.get(resultado, 'returncode[0]', '') === 'SUCCESS') {
-            message.success('Sala cerrada con éxito. Actualice la lista en unos segundos.');
-          } else {
-            message.error(resultado.messageKey[0]);
-          }
-        });
-      }
-      );
+    resultado = await axios.get(tools.endMeeting(sala));
+    resultado = resultado.response;
+    if (_.get(resultado, 'returncode[0]', '') === 'SUCCESS') {
+      message.success('Sala cerrada con éxito. Actualice la lista en unos segundos.');
+    } else {
+      message.error(resultado.messageKey[0]);
+    }
   }
 
   closeModal = () => {
@@ -186,9 +181,6 @@ class Salas extends Component {
   }
 
   componentDidMount = async () => {
-    await axios.get('http://bbblisandro.duckdns.org/bigbluebutton/api/create?allowStartStopRecording=true&attendeePW=ap&autoStartRecording=false&meetingID=1&moderatorPW=mp&name=1&record=false&voiceBridge=74471&welcome=%3Cbr%3EWelcome+to+%3Cb%3E%25%25CONFNAME%25%25%3C%2Fb%3E%21&checksum=c644e184daf32b2e2397e27d85c61b572dd394d6');
-    await axios.get('http://bbblisandro.duckdns.org/bigbluebutton/api/create?allowStartStopRecording=true&attendeePW=ap&autoStartRecording=false&meetingID=2&moderatorPW=mp&name=2&record=false&voiceBridge=74471&welcome=%3Cbr%3EWelcome+to+%3Cb%3E%25%25CONFNAME%25%25%3C%2Fb%3E%21&checksum=b6266d5af0554d10e953ac8240dc8e8e19533b83');
-    await axios.get('http://bbblisandro.duckdns.org/bigbluebutton/api/create?allowStartStopRecording=true&attendeePW=ap&autoStartRecording=false&meetingID=3&moderatorPW=mp&name=3&record=false&voiceBridge=74471&welcome=%3Cbr%3EWelcome+to+%3Cb%3E%25%25CONFNAME%25%25%3C%2Fb%3E%21&checksum=35a324b6d592bf1836bd7b4cc90466b932d1250c');
     this.handleRequest();
   }
 }
