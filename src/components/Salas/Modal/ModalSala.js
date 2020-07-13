@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { parseString } from 'xml2js';
 import { Col, Row, message, Modal, Typography } from 'antd';
 import { url } from '../../../utils/Url';
-
 import _ from 'lodash';
 import './modalsala.css';
-import { getHeader } from '../../../utils/Header';
 
 const { Text } = Typography;
 
@@ -40,7 +37,7 @@ class ModalSala extends Component {
 
   render() {
     const { visibleModal, loading } = this.props;
-    const { exists, sala, usuarios } = this.state;
+    const { exists, sala } = this.state;
     if (exists) {
       return (
         <Modal
@@ -87,8 +84,7 @@ class ModalSala extends Component {
 
   componentDidUpdate = async () => {
     if (this.props.visibleModal && !this.state.exists) {
-      var resultado = null;
-      resultado = await axios.post(url + '/api/salas/getmeetinginfo',this.props.sala);
+      var resultado = await axios.post(url + '/api/salas/getmeetinginfo',this.props.sala);
       console.log(resultado);
       if (_.get(resultado.data, 'returncode', '') !== 'SUCCESS') {
         return message.error(_.get(resultado.data, 'messageKey', ''));

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { parseString } from 'xml2js';
 import { Table, Button, Popconfirm, message, Card, Tooltip, Empty } from 'antd';
 import { DesktopOutlined, ReloadOutlined, CloseCircleOutlined, ZoomInOutlined, UserOutlined } from '@ant-design/icons';
-import * as tools from '../../utils/ApiCalls';
 import ModalSala from '../Salas/Modal/ModalSala';
 import ModalUsuarios from '../Salas/Modal/ModalUsuarios';
 import _ from 'lodash';
@@ -153,7 +151,7 @@ class Salas extends Component {
 
   handleEliminar = async (sala) => {
     var resultado;
-    resultado = await axios.get(tools.endMeeting(sala));
+    resultado = await axios.get(url + `/api/salas/endmeeting`, sala);
     resultado = resultado.response;
     if (_.get(resultado, 'returncode[0]', '') === 'SUCCESS') {
       message.success('Sala cerrada con éxito. Actualice la lista en unos segundos.');

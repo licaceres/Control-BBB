@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { parseString } from 'xml2js';
 import { message, Modal, Button, Table } from 'antd';
-import * as tools from '../../../utils/ApiCalls';
 import { ReloadOutlined } from '@ant-design/icons';
 import _ from 'lodash';
+import { url } from '../../../utils/Url';
+
 
 class ModalUsuarios extends Component {
   constructor(props) {
@@ -131,20 +131,12 @@ class ModalUsuarios extends Component {
 
   componentDidUpdate = async () => {
     if (this.props.visibleModal && !this.state.exists) {
-      var resultado = null;
-      await axios.get(tools.getMeetingInfo(this.props.sala))
-        .then((response) => {
-          parseString(response.data, function (err, result) {
-            if (_.get(result.response, 'returncode[0]', '') !== 'SUCCESS') {
-              return message.error(resultado.messageKey[0]);
-            }
-
-            resultado = result.response;
-            console.log(resultado);
-
-          });
-        }
-        );
+      var resultado = await axios.post(url + '/api/salas/getmeetinginfo',this.props.sala);
+      console.log(resultado);
+      if (_.get(resultado.data, 'returncode', '') !== 'SUCCESS') {
+        return message.error(_.get(resultado.data, 'messageKey', ''));
+      }
+      console.log(resultado);
 
       this.setState({
         exists: true,
