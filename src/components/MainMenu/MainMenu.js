@@ -151,7 +151,7 @@ class MainMenu extends Component {
           </Sider>
           <Layout className="site-layout">
             <Header className="site-layout-background" style={{ paddingLeft: '16px', paddingRight: '35px' }}>
-              <h3 style={{ fontWeight: 'bold', textAlign: 'right' }}>Panel de Control<span style={{ paddingLeft: '10px' }}><img src={LogoBbb} alt='logo-bbb' className="logo-bbb-size" /></span></h3>
+              <h3 style={{ fontWeight: 'bold', textAlign: 'right' }}>[ Proyecto MONSA ] · Panel de Control<span style={{ paddingLeft: '10px' }}><img src={LogoBbb} alt='logo-bbb' className="logo-bbb-size" /></span></h3>
             </Header>
             <Content style={{ margin: '16px' }}>
               <Switch>

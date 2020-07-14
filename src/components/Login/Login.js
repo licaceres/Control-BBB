@@ -87,7 +87,7 @@ class Login extends Component {
             </Form.Item>
           </Form>
           <div className="login-footer">
-            <p>Panel de Control BigBlueButton. Lincesed under the MIT license.</p>
+            <p>Proyecto MONSA. Lincesed under the MIT license.</p>
           </div>
         </Col>
       </Row>
