@@ -47,14 +47,14 @@ class MainMenu extends Component {
   }
 
   logOut = () => {
-    localStorage.clear();
+    sessionStorage.clear();
     window.location.reload();
   }
 
   componentDidMount() {
     this.setState({
       selected: [this.props.location.pathname],
-      currentUser: JSON.parse(localStorage.getItem('currentUser'))
+      currentUser: JSON.parse(sessionStorage.getItem('currentUser'))
     })
   }
 

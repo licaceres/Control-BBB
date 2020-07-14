@@ -234,8 +234,8 @@ class Info extends Component {
 
   componentDidMount = async () => {
     var resultado = await axios.get(url + `/api/dataconfig`, getHeader());
-    localStorage.setItem('url', resultado.data.urlServerBbb);
-    localStorage.setItem('clave', resultado.data.secretSharedBbb);
+    sessionStorage.setItem('url', resultado.data.urlServerBbb);
+    sessionStorage.setItem('clave', resultado.data.secretSharedBbb);
     this.handleRequest();
   }
 }

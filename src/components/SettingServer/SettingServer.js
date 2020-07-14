@@ -145,8 +145,8 @@ class SettingServer extends Component {
         const res = await axios.put(url + `/api/dataconfig`, form, getHeader());
         if (res.status === 200) {
 
-          localStorage.setItem('url', form.urlServerBbb);
-          localStorage.setItem('clave', form.secretSharedBbb);
+          sessionStorage.setItem('url', form.urlServerBbb);
+          sessionStorage.setItem('clave', form.secretSharedBbb);
           message.success('Datos almacenados.')
         } else {
           message.error('Error de comunicación con Backend.')

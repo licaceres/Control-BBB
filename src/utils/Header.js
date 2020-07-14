@@ -10,7 +10,7 @@ export const date_format = 'HH:mm DD/MM/YYYY';
 // }
 
 export const getHeader = () => {
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   return {
     headers: { 
       Authorization: 'Bearer ' + currentUser.token 

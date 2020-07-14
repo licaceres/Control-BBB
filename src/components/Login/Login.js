@@ -22,7 +22,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
 
     if (!!currentUser) {
       this.props.history.push('/');
@@ -109,7 +109,7 @@ class Login extends Component {
       const res = await axios.post(`${url}/api/usuarios/authenticate`, form);
 
       if (!!res.data) {
-        localStorage.setItem('currentUser', JSON.stringify(res.data));
+        sessionStorage.setItem('currentUser', JSON.stringify(res.data));
         return this.props.history.push('/');
       }
 

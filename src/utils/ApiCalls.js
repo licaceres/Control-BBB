@@ -5,15 +5,15 @@ export const checksum = (str) => {
 }
 
 export const getMeetings = () => {
-  return localStorage.getItem('url') + '/getMeetings?checksum=' + checksum('getMeetings' + localStorage.getItem('clave'))
+  return sessionStorage.getItem('url') + '/getMeetings?checksum=' + checksum('getMeetings' + sessionStorage.getItem('clave'))
 }
 
 export const endMeeting = (sala) => {
-  var str = 'endmeetingID=' + sala.meetingID[0] + '&password=' + encodeURIComponent(sala.moderatorPW[0]) + localStorage.getItem('clave');
-  return localStorage.getItem('url') + '/end?meetingID=' + sala.meetingID[0] + '&password=' + encodeURIComponent(sala.moderatorPW[0]) + '&checksum=' + checksum(str);
+  var str = 'endmeetingID=' + sala.meetingID[0] + '&password=' + encodeURIComponent(sala.moderatorPW[0]) + sessionStorage.getItem('clave');
+  return sessionStorage.getItem('url') + '/end?meetingID=' + sala.meetingID[0] + '&password=' + encodeURIComponent(sala.moderatorPW[0]) + '&checksum=' + checksum(str);
 }
 
 export const getMeetingInfo = (sala) => {
-  var str = 'getMeetingInfomeetingID=' + sala.meetingID[0] + '&password=' + encodeURIComponent(sala.moderatorPW[0]) + localStorage.getItem('clave');
-  return localStorage.getItem('url') + '/getMeetingInfo?meetingID=' + sala.meetingID[0] + '&password=' + encodeURIComponent(sala.moderatorPW[0]) + '&checksum=' + checksum(str);
+  var str = 'getMeetingInfomeetingID=' + sala.meetingID[0] + '&password=' + encodeURIComponent(sala.moderatorPW[0]) + sessionStorage.getItem('clave');
+  return sessionStorage.getItem('url') + '/getMeetingInfo?meetingID=' + sala.meetingID[0] + '&password=' + encodeURIComponent(sala.moderatorPW[0]) + '&checksum=' + checksum(str);
 }
