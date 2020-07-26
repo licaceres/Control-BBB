@@ -8,6 +8,7 @@ import _ from 'lodash';
 import './estadisticas.css';
 import moment from 'moment';
 import { url } from '../../utils/Url';
+import { getHeader } from '../../utils/Header';
 
 const { RangePicker } = DatePicker;
 
@@ -116,7 +117,7 @@ class Estadisticas extends Component {
   }
 
   usuariosRequest = async (inicio, fin) => {
-    var resultado = await axios.get(url + `/api/salas/fecha/${inicio}/${fin}`);
+    var resultado = await axios.get(url + `/api/salas/fecha/${inicio}/${fin}`, getHeader());
     var labels = resultado.data.map((item) => moment(item.horaConsulta).toISOString());
     var data = resultado.data.map((item) => item.cant);
     this.setState({
@@ -175,10 +176,9 @@ class Estadisticas extends Component {
   }
 
   usuariosDRequest = async (inicio, fin) => {
-    var resultado = await axios.get(url + `/api/salas/usrdate/${inicio}/${fin}`);
+    var resultado = await axios.get(url + `/api/salas/usrdate/${inicio}/${fin}`, getHeader());
     var labels = resultado.data.map((item) => moment(item.horaConsulta).format("DD-MM-YYYY"));
     var data = resultado.data.map((item) => item.cant);
-    console.log(data);
     this.setState({
       usuariosD: {
         options: {
@@ -217,10 +217,9 @@ class Estadisticas extends Component {
   }
 
   salasRequest = async (inicio, fin) => {
-    var resultado = await axios.get(url + `/api/salas/datetime/${inicio}/${fin}`);
+    var resultado = await axios.get(url + `/api/salas/datetime/${inicio}/${fin}`,getHeader());
     var labels = resultado.data.map((item) => moment(item.horaConsulta).format("DD-MM-YYYY HH:mm"));
     var data = resultado.data.map((item) => item.cant);
-    console.log(resultado);
     this.setState({
       salas: {
         options: {
@@ -258,10 +257,9 @@ class Estadisticas extends Component {
   }
 
   salasDtRequest = async (inicio, fin) => {
-    var resultado = await axios.get(url + `/api/salas/date/${inicio}/${fin}`);
+    var resultado = await axios.get(url + `/api/salas/date/${inicio}/${fin}`,getHeader());
     var labels = resultado.data.map((item) => moment(item.horaConsulta).format("DD-MM-YYYY"));
     var data = resultado.data.map((item) => item.cant);
-    console.log(resultado);
     this.setState({
       salasDt: {
         options: {

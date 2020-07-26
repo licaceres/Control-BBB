@@ -4,11 +4,12 @@ import { Col, Row, message, Modal, Typography } from 'antd';
 import { url } from '../../../utils/Url';
 import _ from 'lodash';
 import './modalsala.css';
+import { getHeader } from '../../../utils/Header';
 
 const { Text } = Typography;
 
 
-class ModalSala extends Component {
+class ModalRecord extends Component {
   constructor(props) {
     super(props);
 
@@ -84,19 +85,16 @@ class ModalSala extends Component {
 
   componentDidUpdate = async () => {
     if (this.props.visibleModal && !this.state.exists) {
-      var resultado = await axios.post(url + '/api/salas/getmeetinginfo',this.props.sala);
-      console.log(resultado);
+      var resultado = await axios.post(url + '/api/salas/getmeetinginfo',this.props.sala, getHeader());
       if (_.get(resultado.data, 'returncode', '') !== 'SUCCESS') {
         return message.error(_.get(resultado.data, 'messageKey', ''));
       }
-      console.log(resultado);
 
       this.setState({
         exists: true,
         id: _.get(resultado.data, 'meetingID', ''),
         sala: resultado.data,
       });
-      console.log(this.state.id);
     }
   }
   okModal = () => {
@@ -105,4 +103,4 @@ class ModalSala extends Component {
   }
 }
 
-export default ModalSala;
+export default ModalRecord;

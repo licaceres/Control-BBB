@@ -186,19 +186,18 @@ class Info extends Component {
     var oyentes = 0;
     var conaudio = 0;
     var convideo = 0;
-    ver = await axios.get(url + `/api/dataconfig/version`);
+    ver = await axios.get(url + `/api/dataconfig/version`,getHeader());
     ver = ver.data;
     this.setState({ version: ver.version, loadingversion: false });
 
 
-    resultado = await axios.get(url + `/api/salas/nowsalas`);
+    resultado = await axios.get(url + `/api/salas/nowsalas`,getHeader());
     resultado = resultado = _.get(resultado.data, 'meetings.meeting', 0);
-    console.log(resultado);
     
     var count = 0;
     if (resultado !== 0) {
       for (var i = 0; i < resultado.length; ++i) {
-        if (resultado[i].running[0] === 'true') {
+        if (resultado[i].running === 'true') {
           count++;
         }
         this.setState({
@@ -233,9 +232,6 @@ class Info extends Component {
   }
 
   componentDidMount = async () => {
-    var resultado = await axios.get(url + `/api/dataconfig`, getHeader());
-    sessionStorage.setItem('url', resultado.data.urlServerBbb);
-    sessionStorage.setItem('clave', resultado.data.secretSharedBbb);
     this.handleRequest();
   }
 }

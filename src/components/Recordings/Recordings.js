@@ -1,68 +1,60 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Table, Button, Popconfirm, message, Card, Tooltip, Empty } from 'antd';
-import { DesktopOutlined, ReloadOutlined, CloseCircleOutlined, ZoomInOutlined, UserOutlined } from '@ant-design/icons';
-import ModalSala from '../Salas/Modal/ModalSala';
-import ModalUsuarios from '../Salas/Modal/ModalUsuarios';
+import { DesktopOutlined, ReloadOutlined, CloseCircleOutlined, ZoomInOutlined, CaretRightOutlined } from '@ant-design/icons';
+import ModalRecord from '../Recordings/Modal/ModalRecord';
+import ModalPlayback from './Modal/ModalPlayback';
 import _ from 'lodash';
 import { url } from '../../utils/Url';
 import { getHeader } from '../../utils/Header';
+import moment from 'moment';
 
-class Salas extends Component {
+class Recordings extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       version: '',
-      salas: '',
+      recordings: '',
       activas: '',
-      usuarios: '',
       loadingversion: true,
-      loadingsalas: true,
+      loadingrec: true,
       loadingusuarios: true,
       creating: false,
       visibleModal: false,
       visibleModalUsr: false,
-      sala: null,
+      recording: null,
       act: false,
     };
   }
 
   render() {
-    const { salas, loadingsalas, visibleModal, sala, visibleModalUsr } = this.state;
+    const { recordings, loadingrec, visibleModal, recording, visibleModalUsr } = this.state;
 
     const columns = [{
-      title: 'Id Sala',
-      dataIndex: 'meetingID',
-      key: 'meetingID',
-      width: '15%',
-    }, {
       title: 'Nombre de sala',
-      dataIndex: 'meetingName',
-      key: 'meetingName',
+      dataIndex: 'name',
+      key: 'name',
       width: '30%'
 
     }, {
+      title: 'Tamaño en bytes',
+      dataIndex: 'size',
+      key: 'size',
+      width: '30%'
+
+    },{
       title: 'Fecha y hora',
-      dataIndex: 'createTime',
-      key: 'createTime',
+      dataIndex: 'startTime',
+      key: 'startTime',
       render: data => {
         // eslint-disable-next-line
-        var fh = new Date(parseFloat(data)).toISOString();
-        return fh;
+        return moment(parseFloat(data)).format('DD/MM/YYYY HH:MM').toString();
       }
     }, {
-      title: 'Activa',
-      dataIndex: 'running',
-      key: 'running',
-      render: data => {
-        // eslint-disable-next-line
-        if (data == 'true') return 'Si'
-        // eslint-disable-next-line
-        if (data == 'false') return 'No'
-        // eslint-disable-next-line
-        return data;
-      }
+      title: 'Participantes',
+      dataIndex: 'participants',
+      key: 'participants',
     }, {
       title: 'Acciones',
       key: 'acciones',
@@ -74,21 +66,21 @@ class Salas extends Component {
               <Button
                 type='primary'
                 icon={<ZoomInOutlined />}
-                onClick={() => this.consultarSala(item)}>
+                onClick={() => this.consultarRecord(item)}>
               </Button>
             </Tooltip>
-            <Tooltip placement="top" title={'Usuarios'}>
+            <Tooltip placement="top" title={'Play'}>
               <Button
                 style={{ marginLeft: '10px' }}
                 type='primary'
-                icon={<UserOutlined />}
-                onClick={() => this.consultarUsuarios(item)}>
+                icon={<CaretRightOutlined />}
+                onClick={() => this.consultarPlayback(item)}>
               </Button>
             </Tooltip>
             <Popconfirm
               onConfirm={() => this.handleEliminar(item)}
-              title="¿Seguro desea cerrar la sala?" okText="Confirmar" cancelText="Cancelar">
-              <Tooltip placement="topRight" title={'Cerrar Sala'}>
+              title="¿Seguro eliminar la grabación?" okText="Confirmar" cancelText="Cancelar">
+              <Tooltip placement="topRight" title={'Eliminar'}>
                 <Button
                   style={{ marginLeft: '10px' }}
                   type='primary'
@@ -103,7 +95,7 @@ class Salas extends Component {
     ];
     return (
       <div>
-        <Card bordered={false} title={<span style={{fontSize: '1.2em'}}>Salas</span>} extra={<DesktopOutlined />}>
+        <Card bordered={false} title={<span style={{fontSize: '1.2em'}}>Grabaciones</span>} extra={<DesktopOutlined />}>
           <Button
             type='primary'
             icon={<ReloadOutlined />}
@@ -112,24 +104,24 @@ class Salas extends Component {
             Actualizar
           </Button>
 
-          {loadingsalas ? <Empty description="No hay datos" />
+          {loadingrec ? <Empty description="No hay datos" />
             :
             <Table
               columns={columns}
               pagination={{ pageSize: 5 }}
-              dataSource={salas}
-              loading={loadingsalas}
-              rowKey='createTime'
+              dataSource={recordings}
+              loading={loadingrec}
+              rowKey='startTime'
               size='small'
-              locale={{ emptyText: "No hay salas" }} />
+              locale={{ emptyText: "No hay grabaciones" }} />
           }
-          <ModalSala
+          <ModalRecord
             visibleModal={visibleModal}
-            sala={sala}
+            recording={recording}
             handleModal={this.closeModal} />
-          <ModalUsuarios
+          <ModalPlayback
             visibleModal={visibleModalUsr}
-            sala={sala}
+            recording={recording}
             handleModal={this.closeModal} />
         </Card>
       </div>
@@ -140,21 +132,24 @@ class Salas extends Component {
   handleRequest = async () => {
     var resultado;
     try {
-      resultado = await axios.get(url + `/api/salas/nowsalas`,getHeader());
-      resultado = resultado.data.meetings.meeting;
-      this.setState({salas: resultado, loadingsalas: false})
+      resultado = await axios.get(url + `/api/recordings`,getHeader());
+      resultado = resultado.data.recordings.recording;
+      console.log(resultado);
+      this.setState({recordings: resultado, loadingrec: false})
     }
     catch (error) {
       console.error(error);
     }
   }
 
-  handleEliminar = async (sala) => {
+  handleEliminar = async (rec) => {
     var resultado;
-    resultado = await axios.post(url + `/api/salas/endmeeting`, sala, getHeader());
+    console.log(rec);
+    resultado = await axios.delete(url + `/api/recordings/${rec.recordID}`, getHeader());
     resultado = resultado.data;
+    console.log(resultado);
     if (_.get(resultado, 'returncode', '') === 'SUCCESS') {
-      message.success('Sala cerrada con éxito. Actualice la lista en unos segundos.');
+      message.success('Grabación eliminada con éxito. Actualice la lista en unos segundos.');
     } else {
       message.error(_.get(resultado, 'messageKey', ''));
     }
@@ -169,12 +164,13 @@ class Salas extends Component {
   }
 
 
-  consultarSala = (sala) => {
-    this.setState({ visibleModal: true, sala: sala });
+  consultarRecord = (rec) => {
+    this.setState({ visibleModal: true, recording: rec });
   }
 
-  consultarUsuarios = (sala) => {
-    this.setState({ visibleModalUsr: true, sala: sala });
+  consultarPlayback = (rec) => {
+    window.open(rec.playback.format.url)
+    //this.setState({ visibleModalUsr: true, recording: rec });
   }
 
   componentDidMount = async () => {
@@ -182,4 +178,4 @@ class Salas extends Component {
   }
 }
 
-export default Salas;
+export default Recordings;

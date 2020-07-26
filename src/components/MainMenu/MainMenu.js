@@ -8,7 +8,8 @@ import {
   LineChartOutlined,
   UserOutlined,
   TeamOutlined,
-  ApartmentOutlined
+  ApartmentOutlined,
+  PlaySquareOutlined
 } from '@ant-design/icons';
 import './mainmenu.css';
 
@@ -18,6 +19,7 @@ import Salas from '../Salas/Salas';
 import Estadisticas from '../Estadisticas/Estadisticas';
 import Usuarios from '../Usuarios/Usuarios';
 import Sectores from '../Sectores/Sectores';
+import Recordings from '../Recordings/Recordings';
 import { PrivateRoute } from '../../utils/PrivateRoute';
 
 import LogoComunidades from '../../images/logo-comunidades-unr.png';
@@ -94,6 +96,10 @@ class MainMenu extends Component {
           <ApartmentOutlined />
           <span style={{ fontWeight: 'bold' }}>Sectores</span>
         </Menu.Item>
+        <Menu.Item key="/recordings" onClick={() => this.handleLinkClick('/recordings')}>
+        <PlaySquareOutlined />
+          <span style={{ fontWeight: 'bold' }}>Grabaciones</span>
+        </Menu.Item>
         <Menu.Item key="0" onClick={() => this.logOut()}>
           <UserOutlined />
           <span style={{ fontWeight: 'bold' }}>Cerrar Sesión</span>
@@ -116,6 +122,10 @@ class MainMenu extends Component {
         <Menu.Item key="/estadisticas" onClick={() => this.handleLinkClick('/estadisticas')}>
         <LineChartOutlined />
           <span style={{ fontWeight: 'bold' }}>Estadísticas</span>
+        </Menu.Item>
+        <Menu.Item key="/recordings" onClick={() => this.handleLinkClick('/recordings')}>
+        <PlaySquareOutlined />
+          <span style={{ fontWeight: 'bold' }}>Grabaciones</span>
         </Menu.Item>
         <Menu.Item key="0" onClick={() => this.logOut()}>
           <UserOutlined />
@@ -161,6 +171,7 @@ class MainMenu extends Component {
                 <PrivateRoute exact path="/estadisticas" roles={[1, 2]} component={Estadisticas} />
                 <PrivateRoute exact path="/usuarios" roles={[1]} component={Usuarios} />
                 <PrivateRoute exact path="/sectores" roles={[1]} component={Sectores} />
+                <PrivateRoute exact path="/recordings" roles={[1, 2]} component={Recordings} />
                 <Route path="/404" component={SettingServer} />
                 <Redirect to="/info" />
               </Switch>

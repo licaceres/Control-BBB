@@ -4,6 +4,7 @@ import { message, Modal, Button, Table } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 import _ from 'lodash';
 import { url } from '../../../utils/Url';
+import { getHeader } from '../../../utils/Header';
 
 
 class ModalUsuarios extends Component {
@@ -89,7 +90,6 @@ class ModalUsuarios extends Component {
     }
     ];
     if (exists) {
-      console.log(exists, visibleModal);
       return (
         <Modal
           title={'Usuarios'}
@@ -131,19 +131,15 @@ class ModalUsuarios extends Component {
 
   componentDidUpdate = async () => {
     if (this.props.visibleModal && !this.state.exists) {
-      var resultado = await axios.post(url + '/api/salas/getmeetinginfo',this.props.sala);
-      console.log(resultado);
+      var resultado = await axios.post(url + '/api/salas/getmeetinginfo',this.props.sala, getHeader());
       if (_.get(resultado.data, 'returncode', '') !== 'SUCCESS') {
         return message.error(_.get(resultado.data, 'messageKey', ''));
       }
-      console.log(resultado);
-
       this.setState({
         exists: true,
         loadingUsuarios: false,        
-        sala: resultado.attendees[0].attendee,
+        sala: _.get(resultado.data, 'attendees.attendee', '')//resultado.attendees[0].attendee,
       });
-      console.log(this.state.sala);
     }
   }
   okModal =() => {

@@ -121,7 +121,6 @@ class SettingServer extends Component {
         timerConsulta: resultado.data.timerConsulta
       }
     })
-    console.log(this.state);
   }
 
   onChange = (value, key) => {
@@ -135,18 +134,14 @@ class SettingServer extends Component {
   handleSubmit = async (event) => {
     if (!!event) event.preventDefault();
     const { form } = this.state;
-    console.log(form);
     if (!form.urlServerBbb || !form.secretSharedBbb || !form.timerConsulta) {
       return message.warning('Complete el formulario.');
     } else {
 
       try {
-        console.log(form);
         const res = await axios.put(url + `/api/dataconfig`, form, getHeader());
         if (res.status === 200) {
 
-          sessionStorage.setItem('url', form.urlServerBbb);
-          sessionStorage.setItem('clave', form.secretSharedBbb);
           message.success('Datos almacenados.')
         } else {
           message.error('Error de comunicación con Backend.')

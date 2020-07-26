@@ -63,7 +63,6 @@ class UsuariosModal extends Component {
             password: ''
           }
         });
-      console.log(this.state);
       } else {
         this.reset();
       }
