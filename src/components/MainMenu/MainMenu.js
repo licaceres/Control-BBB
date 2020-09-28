@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Button } from 'antd';
 import {
   DesktopOutlined,
   SettingOutlined,
@@ -10,7 +10,7 @@ import {
   TeamOutlined,
   ApartmentOutlined,
   PlaySquareOutlined,
-  QuestionCircleOutlined
+  FilePdfOutlined
 } from '@ant-design/icons';
 import './mainmenu.css';
 
@@ -21,7 +21,6 @@ import Estadisticas from '../Estadisticas/Estadisticas';
 import Usuarios from '../Usuarios/Usuarios';
 import Sectores from '../Sectores/Sectores';
 import Recordings from '../Recordings/Recordings';
-import Ayuda from '../Ayuda/Ayuda'
 import { PrivateRoute } from '../../utils/PrivateRoute';
 
 import LogoComunidades from '../../images/logo-comunidades-unr.png';
@@ -102,10 +101,6 @@ class MainMenu extends Component {
         <PlaySquareOutlined />
           <span style={{ fontWeight: 'bold' }}>Grabaciones</span>
         </Menu.Item>
-        <Menu.Item key="/ayuda" onClick={() => this.handleLinkClick('/ayuda')}>
-        <QuestionCircleOutlined />
-          <span style={{ fontWeight: 'bold' }}>Ayuda</span>
-        </Menu.Item>
         <Menu.Item key="0" onClick={() => this.logOut()}>
           <UserOutlined />
           <span style={{ fontWeight: 'bold' }}>Cerrar Sesión</span>
@@ -132,10 +127,6 @@ class MainMenu extends Component {
         <Menu.Item key="/recordings" onClick={() => this.handleLinkClick('/recordings')}>
         <PlaySquareOutlined />
           <span style={{ fontWeight: 'bold' }}>Grabaciones</span>
-        </Menu.Item>
-        <Menu.Item key="/ayuda" onClick={() => this.handleLinkClick('/ayuda')}>
-        <QuestionCircleOutlined />
-          <span style={{ fontWeight: 'bold' }}>Ayuda</span>
         </Menu.Item>
         <Menu.Item key="0" onClick={() => this.logOut()}>
           <UserOutlined />
@@ -170,8 +161,10 @@ class MainMenu extends Component {
             {this.renderMenu()}
           </Sider>
           <Layout className="site-layout">
-            <Header className="site-layout-background" style={{ paddingLeft: '16px', paddingRight: '35px' }}>
-              <h3 style={{ fontWeight: 'bold', textAlign: 'right' }}>[ Proyecto MONSA ] · Panel de Control<span style={{ paddingLeft: '10px' }}><img src={LogoBbb} alt='logo-bbb' className="logo-bbb-size" /></span></h3>
+            <Header className="site-layout-background" style={{ paddingLeft: '16px', paddingRight: '35px' }}>     
+              <h3 style={{ fontWeight: 'bold', textAlign: 'right' }}>[ Proyecto MONSA ] · Panel de Control<span style={{ paddingLeft: '10px' }}><img src={LogoBbb} alt='logo-bbb' className="logo-bbb-size"/>
+              <Button style={{marginLeft: '15px'}}type="dashed" icon={<FilePdfOutlined/>}>Documentación</Button>
+              </span></h3>
             </Header>
             <Content style={{ margin: '16px' }}>
               <Switch>
@@ -182,7 +175,6 @@ class MainMenu extends Component {
                 <PrivateRoute exact path="/usuarios" roles={[1]} component={Usuarios} />
                 <PrivateRoute exact path="/sectores" roles={[1]} component={Sectores} />
                 <PrivateRoute exact path="/recordings" roles={[1, 2]} component={Recordings} />
-                <PrivateRoute exact path="/ayuda" roles={[1, 2]} component={Ayuda} />
                 <Route path="/404" component={SettingServer} />
                 <Redirect to="/info" />
               </Switch>
