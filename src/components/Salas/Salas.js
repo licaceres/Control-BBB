@@ -48,8 +48,7 @@ class Salas extends Component {
       key: 'createTime',
       render: data => {
         // eslint-disable-next-line
-        var fh = new Date(parseFloat(data)).toISOString();
-        return fh;
+        return new Date(parseFloat(data)).toLocaleString();
       }
     }, {
       title: 'Activa',

@@ -9,7 +9,8 @@ import {
   UserOutlined,
   TeamOutlined,
   ApartmentOutlined,
-  PlaySquareOutlined
+  PlaySquareOutlined,
+  QuestionCircleOutlined
 } from '@ant-design/icons';
 import './mainmenu.css';
 
@@ -20,6 +21,7 @@ import Estadisticas from '../Estadisticas/Estadisticas';
 import Usuarios from '../Usuarios/Usuarios';
 import Sectores from '../Sectores/Sectores';
 import Recordings from '../Recordings/Recordings';
+import Ayuda from '../Ayuda/Ayuda'
 import { PrivateRoute } from '../../utils/PrivateRoute';
 
 import LogoComunidades from '../../images/logo-comunidades-unr.png';
@@ -100,6 +102,10 @@ class MainMenu extends Component {
         <PlaySquareOutlined />
           <span style={{ fontWeight: 'bold' }}>Grabaciones</span>
         </Menu.Item>
+        <Menu.Item key="/ayuda" onClick={() => this.handleLinkClick('/ayuda')}>
+        <QuestionCircleOutlined />
+          <span style={{ fontWeight: 'bold' }}>Ayuda</span>
+        </Menu.Item>
         <Menu.Item key="0" onClick={() => this.logOut()}>
           <UserOutlined />
           <span style={{ fontWeight: 'bold' }}>Cerrar Sesión</span>
@@ -126,6 +132,10 @@ class MainMenu extends Component {
         <Menu.Item key="/recordings" onClick={() => this.handleLinkClick('/recordings')}>
         <PlaySquareOutlined />
           <span style={{ fontWeight: 'bold' }}>Grabaciones</span>
+        </Menu.Item>
+        <Menu.Item key="/ayuda" onClick={() => this.handleLinkClick('/ayuda')}>
+        <QuestionCircleOutlined />
+          <span style={{ fontWeight: 'bold' }}>Ayuda</span>
         </Menu.Item>
         <Menu.Item key="0" onClick={() => this.logOut()}>
           <UserOutlined />
@@ -172,6 +182,7 @@ class MainMenu extends Component {
                 <PrivateRoute exact path="/usuarios" roles={[1]} component={Usuarios} />
                 <PrivateRoute exact path="/sectores" roles={[1]} component={Sectores} />
                 <PrivateRoute exact path="/recordings" roles={[1, 2]} component={Recordings} />
+                <PrivateRoute exact path="/ayuda" roles={[1, 2]} component={Ayuda} />
                 <Route path="/404" component={SettingServer} />
                 <Redirect to="/info" />
               </Switch>

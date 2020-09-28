@@ -7,7 +7,6 @@ import ModalPlayback from './Modal/ModalPlayback';
 import _ from 'lodash';
 import { url } from '../../utils/Url';
 import { getHeader } from '../../utils/Header';
-import moment from 'moment';
 
 class Recordings extends Component {
   constructor(props) {
@@ -49,7 +48,7 @@ class Recordings extends Component {
       key: 'startTime',
       render: data => {
         // eslint-disable-next-line
-        return moment(parseFloat(data)).format('DD/MM/YYYY HH:MM').toString();
+        return new Date(parseFloat(data)).toLocaleString();
       }
     }, {
       title: 'Participantes',

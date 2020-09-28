@@ -118,7 +118,7 @@ class Estadisticas extends Component {
 
   usuariosRequest = async (inicio, fin) => {
     var resultado = await axios.get(url + `/api/salas/fecha/${inicio}/${fin}`, getHeader());
-    var labels = resultado.data.map((item) => moment(item.horaConsulta).toISOString());
+    var labels = resultado.data.map((item) => moment(item.horaConsulta).subtract(3, 'hours'));
     var data = resultado.data.map((item) => item.cant);
     this.setState({
       usuarios: {
@@ -218,7 +218,7 @@ class Estadisticas extends Component {
 
   salasRequest = async (inicio, fin) => {
     var resultado = await axios.get(url + `/api/salas/datetime/${inicio}/${fin}`,getHeader());
-    var labels = resultado.data.map((item) => moment(item.horaConsulta).format("DD-MM-YYYY HH:mm"));
+    var labels = resultado.data.map((item) => moment(item.horaConsulta).subtract(3, 'hours').format("DD-MM-YYYY HH:mm"));
     var data = resultado.data.map((item) => item.cant);
     this.setState({
       salas: {
@@ -258,7 +258,7 @@ class Estadisticas extends Component {
 
   salasDtRequest = async (inicio, fin) => {
     var resultado = await axios.get(url + `/api/salas/date/${inicio}/${fin}`,getHeader());
-    var labels = resultado.data.map((item) => moment(item.horaConsulta).format("DD-MM-YYYY"));
+    var labels = resultado.data.map((item) => moment(item.horaConsulta).subtract(3, 'hours').format("DD-MM-YYYY"));
     var data = resultado.data.map((item) => item.cant);
     this.setState({
       salasDt: {
