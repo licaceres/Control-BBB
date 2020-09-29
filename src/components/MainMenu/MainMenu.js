@@ -163,7 +163,7 @@ class MainMenu extends Component {
           <Layout className="site-layout">
             <Header className="site-layout-background" style={{ paddingLeft: '16px', paddingRight: '35px' }}>     
               <h3 style={{ fontWeight: 'bold', textAlign: 'right' }}>[ Proyecto MONSA ] · Panel de Control<span style={{ paddingLeft: '10px' }}><img src={LogoBbb} alt='logo-bbb' className="logo-bbb-size"/>
-              <Button style={{marginLeft: '15px'}}type="dashed" icon={<FilePdfOutlined/>}>Documentación</Button>
+              <Button style={{marginLeft: '15px'}}type="dashed" icon={<FilePdfOutlined/>} onClick={()=> window.open("https://bbb-tablero-dev.unr.edu.ar/manual/", "_blank")}>Documentación</Button>
               </span></h3>
             </Header>
             <Content style={{ margin: '16px' }}>
