@@ -66,6 +66,7 @@ class SettingServer extends Component {
                       key='secretSharedBbb'
                       label='Clave:'
                       name='secretSharedBbb'
+                      type="password"
                       placeholder={'Clave'}
                       value={form.secretSharedBbb}
                       error={null}

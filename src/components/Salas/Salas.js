@@ -40,20 +40,27 @@ class Salas extends Component {
       title: 'Nombre de sala',
       dataIndex: 'meetingName',
       key: 'meetingName',
-      width: '30%'
+      width: '30%',
+      sorter: (a, b) => a.meetingName.length - b.meetingName.length,
+      sortDirections: ['descend', 'ascend']
 
     }, {
       title: 'Fecha y hora',
       dataIndex: 'createTime',
       key: 'createTime',
+      sorter: (a, b) => a.createTime.length - b.createTime.length,
+      sortDirections: ['descend', 'ascend'],
       render: data => {
         // eslint-disable-next-line
-        return new Date(parseFloat(data)).toLocaleString();
+        var fh = new Date(parseFloat(data)).toISOString();
+        return fh;
       }
     }, {
       title: 'Activa',
       dataIndex: 'running',
       key: 'running',
+      sorter: (a, b) => a.running.length - b.running.length,
+      sortDirections: ['descend', 'ascend'],
       render: data => {
         // eslint-disable-next-line
         if (data == 'true') return 'Si'

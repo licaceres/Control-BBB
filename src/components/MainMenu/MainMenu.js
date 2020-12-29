@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
-import { Layout, Menu, Button } from 'antd';
+import { Layout, Menu } from 'antd';
 import {
   DesktopOutlined,
   SettingOutlined,
@@ -9,8 +9,7 @@ import {
   UserOutlined,
   TeamOutlined,
   ApartmentOutlined,
-  PlaySquareOutlined,
-  QuestionCircleOutlined
+  PlaySquareOutlined
 } from '@ant-design/icons';
 import './mainmenu.css';
 
@@ -161,10 +160,8 @@ class MainMenu extends Component {
             {this.renderMenu()}
           </Sider>
           <Layout className="site-layout">
-            <Header className="site-layout-background" style={{ paddingLeft: '16px', paddingRight: '35px' }}>     
-              <h3 style={{ fontWeight: 'bold', textAlign: 'right' }}>[ Proyecto MONSA ] · Panel de Control<span style={{ paddingLeft: '10px' }}><img src={LogoBbb} alt='logo-bbb' className="logo-bbb-size"/>
-              <Button style={{fontWeight: 'bold', marginLeft: '15px'}}type="text" icon={<QuestionCircleOutlined/>} onClick={()=> window.open("https://bbb-tablero-dev.unr.edu.ar/manual/", "_blank")}>Manual</Button>
-              </span></h3>
+            <Header className="site-layout-background" style={{ paddingLeft: '16px', paddingRight: '35px' }}>
+              <h3 style={{ fontWeight: 'bold', textAlign: 'right' }}>[ Proyecto MONSA ] · Panel de Control<span style={{ paddingLeft: '10px' }}><img src={LogoBbb} alt='logo-bbb' className="logo-bbb-size" /></span></h3>
             </Header>
             <Content style={{ margin: '16px' }}>
               <Switch>
