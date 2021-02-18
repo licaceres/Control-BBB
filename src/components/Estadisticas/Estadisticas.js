@@ -83,7 +83,7 @@ class Estadisticas extends Component {
           </Col>
         </Row>
         <Row gutter={16}>
-          <Col span={12}>
+          {/* <Col span={12}>
             <div className="card-style">
               <Card bordered={false} title={<span style={{ fontSize: '1.2em' }}>Usuarios por fecha</span>} extra={<DatabaseOutlined />}>
                 <Col>
@@ -96,7 +96,7 @@ class Estadisticas extends Component {
                 <BarChart data={this.state.usuariosD} />
               </Card>
             </div>
-          </Col>
+          </Col> */}
           <Col span={12}>
             <div className="card-style">
               <Card bordered={false} title={<span style={{ fontSize: '1.2em' }}>Salas por fecha</span>} extra={<DatabaseOutlined />}>
@@ -118,27 +118,19 @@ class Estadisticas extends Component {
 
   usuariosRequest = async (inicio, fin) => {
     var resultado = await axios.get(url + `/api/salas/fecha/${inicio}/${fin}`, getHeader());
-    var labels = resultado.data.map((item) => moment(item.horaConsulta).toISOString());
+    var labels = resultado.data.map((item) => moment(item.horaConsulta).subtract(3, 'hours').format("DD-MM-YYYY HH:mm"));
     var data = resultado.data.map((item) => item.cant);
-    console.log(resultado);
     this.setState({
       usuarios: {
         options: {
           responsive: false,
+          type: 'time',
           scales: {
             xAxes: [{
-              type: 'time',
               display: false,
-              time: {
-                displayFormats: {
-                  day: 'DD MM '
-                }
-              },
               ticks: {
                 min: 0,
-                maxTicksLimit: 10
               }
-
             }],
             yAxes: [{
               ticks: {
@@ -178,8 +170,9 @@ class Estadisticas extends Component {
 
   usuariosDRequest = async (inicio, fin) => {
     var resultado = await axios.get(url + `/api/salas/usrdate/${inicio}/${fin}`, getHeader());
-    var labels = resultado.data.map((item) => moment(item.horaConsulta).format("DD-MM-YYYY"));
+    var labels = resultado.data.map((item) => moment(item.horaConsulta).subtract(3, 'hours').format("DD-MM-YYYY"));
     var data = resultado.data.map((item) => item.cant);
+    
     this.setState({
       usuariosD: {
         options: {
@@ -219,7 +212,7 @@ class Estadisticas extends Component {
 
   salasRequest = async (inicio, fin) => {
     var resultado = await axios.get(url + `/api/salas/datetime/${inicio}/${fin}`,getHeader());
-    var labels = resultado.data.map((item) => moment(item.horaConsulta).format("DD-MM-YYYY HH:mm"));
+    var labels = resultado.data.map((item) => moment(item.horaConsulta).subtract(3, 'hours').format("DD-MM-YYYY HH:mm"));
     var data = resultado.data.map((item) => item.cant);
     this.setState({
       salas: {
@@ -259,9 +252,8 @@ class Estadisticas extends Component {
 
   salasDtRequest = async (inicio, fin) => {
     var resultado = await axios.get(url + `/api/salas/date/${inicio}/${fin}`,getHeader());
-    var labels = resultado.data.map((item) => moment(item.horaConsulta).format("DD-MM-YYYY"));
+    var labels = resultado.data.map((item) => moment(item.horaConsulta).subtract(3, 'hours').format("DD-MM-YYYY"));
     var data = resultado.data.map((item) => item.cant);
-    console.log(resultado);
     this.setState({
       salasDt: {
         options: {
@@ -315,30 +307,30 @@ class Estadisticas extends Component {
     this.usuariosRequest(this.state.fechaInicio, this.state.fechaFin);
     this.salasRequest(this.state.fechaInicio, this.state.fechaFin);
     this.salasDtRequest(this.state.fechaInicio, this.state.fechaFin)
-    this.usuariosDRequest(this.state.fechaInicio, this.state.fechaFin)
+    //this.usuariosDRequest(this.state.fechaInicio, this.state.fechaFin)
   }
 
   okUsuarios = (value) => {
     if (_.get(value, '[0]', false) && _.get(value, '[1]', false)) {
-      this.usuariosRequest(moment(value[0]).toISOString(), moment(value[1]).toISOString());
+      this.usuariosRequest(moment(value[0]).add(3, 'hours').toISOString(), moment(value[1]).add(3, 'hours').toISOString());
     }
   }
 
   okUsuariosD = (value) => {
     if (_.get(value, '[0]', false) && _.get(value, '[1]', false)) {
-      this.usuariosDRequest(moment(value[0]).toISOString(), moment(value[1]).toISOString());
+      this.usuariosDRequest(moment(value[0]).add(3, 'hours').toISOString(), moment(value[1]).add(3, 'hours').toISOString());
     }
   }
 
     okSalas = (value) => {
       if (_.get(value, '[0]', false) && _.get(value, '[1]', false)) {
-        this.salasRequest(moment(value[0]).toISOString(), moment(value[1]).toISOString());
+        this.salasRequest(moment(value[0]).add(3, 'hours').toISOString(), moment(value[1]).add(3, 'hours').toISOString());
       }
     }
 
     okSalasDt = (value) => {
       if (_.get(value, '[0]', false) && _.get(value, '[1]', false)) {
-        this.salasDtRequest(moment(value[0]).toISOString(), moment(value[1]).toISOString());
+        this.salasDtRequest(moment(value[0]).add(3, 'hours').toISOString(), moment(value[1]).add(3, 'hours').toISOString());
       }
     }
   // onChange = async (value) => {

@@ -36,7 +36,6 @@ class ModalPlayback extends Component {
           width='95%'>
           <div>
             <iframe src={recording.playback.format.url} width="500" height="500" title="Rec"></iframe>
-            {console.log(recording.playback.format.url)}
           </div>
         </Modal>
       );

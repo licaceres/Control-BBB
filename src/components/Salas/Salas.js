@@ -7,6 +7,7 @@ import ModalUsuarios from '../Salas/Modal/ModalUsuarios';
 import _ from 'lodash';
 import { url } from '../../utils/Url';
 import { getHeader } from '../../utils/Header';
+import moment from 'moment';
 
 class Salas extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class Salas extends Component {
       sortDirections: ['descend', 'ascend'],
       render: data => {
         // eslint-disable-next-line
-        var fh = new Date(parseFloat(data)).toISOString();
+        var fh = moment(parseFloat(data)).format("DD-MM-YYYY HH:mm");
         return fh;
       }
     }, {

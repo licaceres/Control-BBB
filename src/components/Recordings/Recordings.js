@@ -217,7 +217,6 @@ class Recordings extends Component {
     try {
       resultado = await axios.get(url + `/api/recordings`,getHeader());
       resultado = resultado.data.recordings.recording;
-      console.log(resultado);
       this.setState({recordings: resultado, loadingrec: false})
     }
     catch (error) {
@@ -227,10 +226,8 @@ class Recordings extends Component {
 
   handleEliminar = async (rec) => {
     var resultado;
-    console.log(rec);
     resultado = await axios.delete(url + `/api/recordings/${rec.recordID}`, getHeader());
     resultado = resultado.data;
-    console.log(resultado);
     if (_.get(resultado, 'returncode', '') === 'SUCCESS') {
       message.success('Grabación eliminada con éxito. Actualice la lista en unos segundos.');
     } else {

@@ -66,7 +66,6 @@ class ModalRecord extends Component {
                 <Text code>Tamaño:</Text> <span className="consulta-font">{_.get(recording, 'size', '')} bytes</span><br />
               </Col>
               <Col span={12}>
-                {console.log(recording)}
                 <Text code>Origen:</Text> <span className="consulta-font">{_.get(recording, 'metadata.bbborigin', '')}</span><br />
                 <Text code>Url Origen:</Text> <span className="consulta-font">{_.get(recording, 'metadata.bbboriginservername', '')}</span><br />
                 <Text code>Estado:</Text> <span className="consulta-font">{_.get(recording, 'state', '')}</span><br />
