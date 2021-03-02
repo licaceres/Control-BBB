@@ -1,3 +1,7 @@
+/*
+* Componente Grabaciones
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Table, Button, Popconfirm, message, Card, Tooltip, Empty, Input, Space } from 'antd';

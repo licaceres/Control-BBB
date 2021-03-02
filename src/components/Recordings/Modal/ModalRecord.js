@@ -1,3 +1,7 @@
+/*
+* Modal Grabaciones, expone metadata de una grabacion puntual.
+*/
+
 import React, { Component } from 'react';
 import { Col, Row, Modal, Typography } from 'antd';
 import _ from 'lodash';

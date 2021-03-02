@@ -1,3 +1,8 @@
+/*
+* Componente 
+*/
+
+
 import React, { Component } from 'react';
 import { Row, Col, DatePicker, Card } from 'antd';
 import { DatabaseOutlined } from '@ant-design/icons';

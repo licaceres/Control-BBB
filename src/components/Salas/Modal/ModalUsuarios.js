@@ -1,3 +1,7 @@
+/*
+* Modal Ususarios, expone metadata relacionada con los usuarios de la sala. 
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import { message, Modal, Button, Table } from 'antd';

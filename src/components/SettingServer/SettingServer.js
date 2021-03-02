@@ -1,3 +1,7 @@
+/*
+* Componente Servidor, se configura url y clave secreta de BBB
+*/
+
 import React, { Component } from 'react';
 import { Row, Col, Button, Form, message, Card, Alert, InputNumber } from 'antd';
 import { SaveOutlined, SettingOutlined } from '@ant-design/icons';

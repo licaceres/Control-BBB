@@ -1,3 +1,7 @@
+/*
+* Crea las urls para la consulta a la api de BBB 
+*/
+
 import sha1 from 'sha1';
 
 export const checksum = (str) => {

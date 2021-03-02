@@ -1,3 +1,7 @@
+/*
+* Modal Reproductor de video
+*/
+
 import React, { Component } from 'react';
 import { Modal } from 'antd';
 

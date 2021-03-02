@@ -1,3 +1,7 @@
+/*
+* Modal Salas, expone metadata de la sala. 
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Col, Row, message, Modal, Typography } from 'antd';

@@ -1,3 +1,7 @@
+/*
+* Constantes
+*/
+
 export const date_format = 'HH:mm DD/MM/YYYY';
 
 // export const getHeader = () => {

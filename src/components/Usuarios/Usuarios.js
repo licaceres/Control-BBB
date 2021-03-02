@@ -1,3 +1,7 @@
+/*
+* Componente Usuarios, ABM de usuarios
+*/
+
 import React, { Component } from 'react';
 import { Table, Button, Popconfirm, message, Card, Tooltip, Empty } from 'antd';
 import { TeamOutlined, ReloadOutlined, CloseCircleOutlined, EditOutlined, UserAddOutlined } from '@ant-design/icons';

@@ -1,3 +1,7 @@
+/*
+* Componente Menú
+*/
+
 import React, { Component } from 'react';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import { Layout, Menu } from 'antd';

@@ -1,3 +1,7 @@
+/*
+* Componente Salas
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Table, Button, Popconfirm, message, Card, Tooltip, Empty } from 'antd';
